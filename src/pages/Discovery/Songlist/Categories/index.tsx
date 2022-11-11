@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Icon } from '@blueprintjs/core';
+import { Icon } from '@blueprintjs/core';
 import { Popover2 as Popover } from '@blueprintjs/popover2';
 import cn from 'classnames';
 

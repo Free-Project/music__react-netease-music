@@ -8,7 +8,7 @@
     "dev": "webpack serve --mode=development --config config/webpack.config.babel.js",
     "build": "webpack --mode=production --config config/webpack.config.babel.js",
     "type-check": "tsc --watch",
-    "lint": "eslint src --ext .js,.jsx,.ts,.tsx --fix",
+    "eslint": "eslint src --ext .js,.jsx,.ts,.tsx --fix",
     "style-lint": "stylelint 'src/**/*.css' --fix"
   },
   "repository": {
