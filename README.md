@@ -40,24 +40,15 @@ React Netease Music——一个基于React、TypeScript网易云音乐。
 - [ ] 主题换肤
 
 ## 技术栈
-- React，使用react hook做状态管理，没有使用额外的数据管理库。
-- TypeScript，用TypeScript确实可以提高效率😃（容易发现错误）。
-- Graphql，使用@apollo/client优化部分页面性能。
-- CSS Modules。
-- Webpack。
-- Eslint做代码检查。
+- React
+- TypeScript
+- Graphql
+- CSS Modules
+- Webpack
+- Eslint
 
 感谢 https://github.com/uniquemo/react-netease-music
 
 ## API
 - [NeteaseCloudMusicApi](https://binaryify.github.io/NeteaseCloudMusicApi)
 
-## Start
-- 首先将上面👆提到的API接口部分，两个API服务代码拉到本地，并启动对应的服务；
-- [安装`pnpm`包管理工具](https://pnpm.io/installation)；
-- 然后拉取本仓库代码，并执行以下命令：
-```
-pnpm install
-pnpm run dev:local
-```
-- 最后在浏览器中访问：`http://localhost:8080`
