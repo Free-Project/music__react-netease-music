@@ -1,17 +1,17 @@
-import React from 'react'
+import React from 'react';
 
-import List from '../List'
-import { IMyMusic } from 'apis/types/business'
-import { PlayMusicDispatchContext, ACTIONS } from 'reducers/playMusic'
-import { playList as playListLocalStorage } from 'helpers/play'
-import useUpdate from 'hooks/useUpdate'
+import List from '../List';
+import type { IMyMusic } from 'apis/types/business';
+import { PlayMusicDispatchContext, ACTIONS } from 'reducers/playMusic';
+import { playList as playListLocalStorage } from 'helpers/play';
+import useUpdate from 'hooks/useUpdate';
 
-const { useContext } = React
+const { useContext } = React;
 
 const PlayList = () => {
-  const forceUpdate = useUpdate()
-  const dispatch = useContext(PlayMusicDispatchContext)
-  const playList = playListLocalStorage.getItem()
+  const forceUpdate = useUpdate();
+  const dispatch = useContext(PlayMusicDispatchContext);
+  const playList = playListLocalStorage.getItem();
 
   const handleDoubleClick = (item: IMyMusic) => {
     dispatch({
@@ -20,15 +20,15 @@ const PlayList = () => {
         musicId: item.id,
         music: item,
       },
-    })
-  }
+    });
+  };
 
   const handleClear = () => {
-    dispatch({ type: ACTIONS.CLEAR_PLAY_LIST })
-    forceUpdate()
-  }
+    dispatch({ type: ACTIONS.CLEAR_PLAY_LIST });
+    forceUpdate();
+  };
 
-  return <List data={playList} onDoubleClick={handleDoubleClick} onClear={handleClear} />
-}
+  return <List data={playList} onDoubleClick={handleDoubleClick} onClear={handleClear} />;
+};
 
-export default PlayList
+export default PlayList;

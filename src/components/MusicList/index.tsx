@@ -1,27 +1,27 @@
-import React from 'react'
-import { Icon } from '@blueprintjs/core'
-import cn from 'classnames'
+import React from 'react';
+import { Icon } from '@blueprintjs/core';
+import cn from 'classnames';
 
-import Table, { IColumn } from 'components/Table'
-import VipIcon from 'components/VipIcon'
-import { IMusic, IArtist, IAlbum, MUSIC_STATUS, MUSIC_TYPE } from 'apis/types/business'
-import albumApis from 'apis/album'
-import { formatTime } from 'helpers/time'
-import { createMusic } from 'helpers/business'
-import { PlayMusicStateContext, PlayMusicDispatchContext, AudioContext, ACTIONS } from 'reducers/playMusic'
-import styles from './style.module.css'
+import Table, { IColumn } from 'components/Table';
+import VipIcon from 'components/VipIcon';
+import { IMusic, IArtist, IAlbum, MUSIC_STATUS, MUSIC_TYPE } from 'apis/types/business';
+import albumApis from 'apis/album';
+import { formatTime } from 'helpers/time';
+import { createMusic } from 'helpers/business';
+import { PlayMusicStateContext, PlayMusicDispatchContext, AudioContext, ACTIONS } from 'reducers/playMusic';
+import styles from './style.module.css';
 
 interface IProps {
-  data: IMusic[]
-  onPlayAll?: (autoPlay?: boolean) => void
+  data: IMusic[];
+  onPlayAll?: (autoPlay?: boolean) => void;
 }
 
-const { useContext } = React
+const { useContext } = React;
 
 const MusicList: React.FC<IProps> = ({ data, onPlayAll }) => {
-  const state = useContext(PlayMusicStateContext)
-  const dispatch = useContext(PlayMusicDispatchContext)
-  const audioInfo = useContext(AudioContext)
+  const state = useContext(PlayMusicStateContext);
+  const dispatch = useContext(PlayMusicDispatchContext);
+  const audioInfo = useContext(AudioContext);
 
   const columns: IColumn<IMusic, keyof IMusic>[] = [
     {
@@ -40,7 +40,7 @@ const MusicList: React.FC<IProps> = ({ data, onPlayAll }) => {
             )}
             <Icon icon='import' iconSize={14} />
           </div>
-        )
+        );
       },
     },
     {
@@ -56,7 +56,7 @@ const MusicList: React.FC<IProps> = ({ data, onPlayAll }) => {
             </div>
             {alias?.length ? <div className={styles.alias}>{alias.join(' ')}</div> : null}
           </>
-        )
+        );
       },
     },
     {
@@ -77,14 +77,14 @@ const MusicList: React.FC<IProps> = ({ data, onPlayAll }) => {
       width: '10%',
       render: (duration: number) => formatTime(duration / 1000),
     },
-  ]
+  ];
 
   const handleDoubleClick = async (item: IMusic) => {
-    let { picUrl } = item
+    let { picUrl } = item;
 
     if (!picUrl) {
-      const result = await albumApis.getAlbum(item.album.id)
-      picUrl = result?.album.blurPicUrl
+      const result = await albumApis.getAlbum(item.album.id);
+      picUrl = result?.album.blurPicUrl;
     }
 
     dispatch({
@@ -97,12 +97,12 @@ const MusicList: React.FC<IProps> = ({ data, onPlayAll }) => {
           duration: item.duration / 1000,
         }),
       },
-    })
+    });
 
-    onPlayAll && onPlayAll()
-  }
+    onPlayAll && onPlayAll();
+  };
 
-  const checkIsRecordRowDisabled = (record: IMusic) => record.status === MUSIC_STATUS.NOT_FOUND
+  const checkIsRecordRowDisabled = (record: IMusic) => record.status === MUSIC_STATUS.NOT_FOUND;
 
   return (
     <div>
@@ -113,7 +113,7 @@ const MusicList: React.FC<IProps> = ({ data, onPlayAll }) => {
         isRecordRowDisabled={checkIsRecordRowDisabled}
       />
     </div>
-  )
-}
+  );
+};
 
-export default MusicList
+export default MusicList;

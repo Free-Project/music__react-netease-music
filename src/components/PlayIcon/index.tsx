@@ -1,11 +1,11 @@
-import React from 'react'
-import { Icon } from '@blueprintjs/core'
-import cn from 'classnames'
+import React from 'react';
+import { Icon } from '@blueprintjs/core';
+import cn from 'classnames';
 
-import styles from './style.module.css'
+import styles from './style.module.css';
 
 interface IProps {
-  className?: string
+  className?: string;
 }
 
 const PlayIcon: React.FC<IProps> = ({ className }) => {
@@ -13,7 +13,7 @@ const PlayIcon: React.FC<IProps> = ({ className }) => {
     <div className={cn(styles.root, className)}>
       <Icon icon='play' />
     </div>
-  )
-}
+  );
+};
 
-export default PlayIcon
+export default PlayIcon;

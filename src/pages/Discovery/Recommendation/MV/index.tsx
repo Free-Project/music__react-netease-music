@@ -1,24 +1,24 @@
-import React from 'react'
-import { Spinner } from '@blueprintjs/core'
+import React from 'react';
+import { Spinner } from '@blueprintjs/core';
 
-import LinkTitle from 'components/LinkTitle'
-import MVItem from './MVItem'
+import LinkTitle from 'components/LinkTitle';
+import MVItem from './MVItem';
 
-import ROUTES from 'constants/routes'
-import useAsyncFn from 'hooks/useAsyncFn'
-import personalizedApis from 'apis/personalized'
+import ROUTES from 'constants/routes';
+import useAsyncFn from 'hooks/useAsyncFn';
+import personalizedApis from 'apis/personalized';
 
-import styles from './style.module.css'
+import styles from './style.module.css';
 
-const { useEffect } = React
+const { useEffect } = React;
 
 const MV = () => {
-  const [state, getPersonalizedMVFn] = useAsyncFn(personalizedApis.getPersonalizedMV)
-  const { value: mvs = [], loading: isGettingMV } = state
+  const [state, getPersonalizedMVFn] = useAsyncFn(personalizedApis.getPersonalizedMV);
+  const { value: mvs = [], loading: isGettingMV } = state;
 
   useEffect(() => {
-    getPersonalizedMVFn()
-  }, [])
+    getPersonalizedMVFn();
+  }, []);
 
   return (
     <div className={styles.root}>
@@ -37,12 +37,12 @@ const MV = () => {
                 picUrl={picUrl}
                 copywriter={copywriter}
               />
-            )
+            );
           })}
         </div>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default MV
+export default MV;

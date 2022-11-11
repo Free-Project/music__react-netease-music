@@ -1,11 +1,11 @@
-import React from 'react'
+import React from 'react';
 
-import styles from './style.module.css'
+import styles from './style.module.css';
 
 interface IProps {
-  title: string
-  words?: string[]
-  onWordClick: (word: string) => void
+  title: string;
+  words?: string[];
+  onWordClick: (word: string) => void;
 }
 
 const Words: React.FC<IProps> = ({ title, words, onWordClick }) => {
@@ -20,7 +20,7 @@ const Words: React.FC<IProps> = ({ title, words, onWordClick }) => {
         ))}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Words
+export default Words;

@@ -1,30 +1,30 @@
-import React from 'react'
-import { Spinner } from '@blueprintjs/core'
+import React from 'react';
+import { Spinner } from '@blueprintjs/core';
 
-import MusicList from 'components/MusicList'
-import songApis from 'apis/song'
-import useAsyncFn from 'hooks/useAsyncFn'
-import { getDay, getWeekday } from 'helpers/time'
-import { createMusic } from 'helpers/business'
-import { PlayMusicDispatchContext, ACTIONS } from 'reducers/playMusic'
-import { LogStateContext } from 'reducers/log'
-import { IMusic } from 'apis/types/business'
-import styles from './style.module.css'
+import MusicList from 'components/MusicList';
+import songApis from 'apis/song';
+import useAsyncFn from 'hooks/useAsyncFn';
+import { getDay, getWeekday } from 'helpers/time';
+import { createMusic } from 'helpers/business';
+import { PlayMusicDispatchContext, ACTIONS } from 'reducers/playMusic';
+import { LogStateContext } from 'reducers/log';
+import { IMusic } from 'apis/types/business';
+import styles from './style.module.css';
 
-const { useEffect, useContext } = React
+const { useEffect, useContext } = React;
 
 const RecommendDaily = () => {
-  const dispatch = useContext(PlayMusicDispatchContext)
-  const logState = useContext(LogStateContext)
+  const dispatch = useContext(PlayMusicDispatchContext);
+  const logState = useContext(LogStateContext);
 
-  const [state, getRecommendSongsFn] = useAsyncFn(songApis.getRecommendSongs)
-  const { isLogined } = logState
+  const [state, getRecommendSongsFn] = useAsyncFn(songApis.getRecommendSongs);
+  const { isLogined } = logState;
 
   useEffect(() => {
     if (isLogined) {
-      getRecommendSongsFn()
+      getRecommendSongsFn();
     }
-  }, [isLogined])
+  }, [isLogined]);
 
   const playAll = (autoPlay?: boolean) => {
     dispatch({
@@ -32,19 +32,19 @@ const RecommendDaily = () => {
       payload: {
         playList: state.value,
       },
-    })
+    });
 
     if (autoPlay) {
-      const item = state.value?.[0] as IMusic
+      const item = state.value?.[0] as IMusic;
       dispatch({
         type: ACTIONS.PLAY,
         payload: {
           musicId: item.id,
           music: createMusic(item),
         },
-      })
+      });
     }
-  }
+  };
 
   return (
     <div className={styles.root}>
@@ -79,7 +79,7 @@ const RecommendDaily = () => {
         <div className={styles.needLogin}>请先登录喔~</div>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default RecommendDaily
+export default RecommendDaily;

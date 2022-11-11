@@ -1,36 +1,36 @@
-import React from 'react'
-import { Spinner } from '@blueprintjs/core'
-import cn from 'classnames'
+import React from 'react';
+import { Spinner } from '@blueprintjs/core';
+import cn from 'classnames';
 
-import Lyric from './Lyric'
-import Comments from './Comments'
-import Songlists from './Songlists'
-import SimiSongs from './SimiSongs'
-import songApis from 'apis/song'
-import useAsyncFn from 'hooks/useAsyncFn'
-import { PlayMusicStateContext, AudioContext } from 'reducers/playMusic'
-import playBar from 'assets/image/play-bar.png'
-import playCd from 'assets/image/play-cd.png'
-import styles from './style.module.css'
+import Lyric from './Lyric';
+import Comments from './Comments';
+import Songlists from './Songlists';
+import SimiSongs from './SimiSongs';
+import songApis from 'apis/song';
+import useAsyncFn from 'hooks/useAsyncFn';
+import { PlayMusicStateContext, AudioContext } from 'reducers/playMusic';
+import playBar from 'assets/image/play-bar.png';
+import playCd from 'assets/image/play-cd.png';
+import styles from './style.module.css';
 
-const { useContext, useEffect } = React
+const { useContext, useEffect } = React;
 
 const MusicDetail = () => {
-  const audioInfo = useContext(AudioContext)
-  const isPlaying = !audioInfo.state?.paused
+  const audioInfo = useContext(AudioContext);
+  const isPlaying = !audioInfo.state?.paused;
 
-  const state = useContext(PlayMusicStateContext)
-  const { showLyric, music, musicId } = state
+  const state = useContext(PlayMusicStateContext);
+  const { showLyric, music, musicId } = state;
 
-  const [songlistState, getSimiSonglistFn] = useAsyncFn(songApis.getSimiSonglist)
-  const [simiSongState, getSimiSongFn] = useAsyncFn(songApis.getSimiSong)
+  const [songlistState, getSimiSonglistFn] = useAsyncFn(songApis.getSimiSonglist);
+  const [simiSongState, getSimiSongFn] = useAsyncFn(songApis.getSimiSong);
 
   useEffect(() => {
     if (musicId && showLyric) {
-      getSimiSonglistFn({ id: musicId })
-      getSimiSongFn({ id: musicId })
+      getSimiSonglistFn({ id: musicId });
+      getSimiSongFn({ id: musicId });
     }
-  }, [musicId, showLyric])
+  }, [musicId, showLyric]);
 
   return (
     <div className={cn(styles.root, showLyric && styles.show)}>
@@ -93,7 +93,7 @@ const MusicDetail = () => {
         </>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default MusicDetail
+export default MusicDetail;

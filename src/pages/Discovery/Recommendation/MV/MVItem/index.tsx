@@ -1,15 +1,15 @@
-import React from 'react'
+import React from 'react';
 
-import PlayCount from 'components/PlayCount'
+import PlayCount from 'components/PlayCount';
 
-import styles from './style.module.css'
+import styles from './style.module.css';
 
 interface IProps {
-  name: string
-  artistName: string
-  playCount: number
-  picUrl: string
-  copywriter: string
+  name: string;
+  artistName: string;
+  playCount: number;
+  picUrl: string;
+  copywriter: string;
 }
 
 const MVItem: React.FC<IProps> = ({ name, artistName, playCount, picUrl, copywriter }) => {
@@ -23,7 +23,7 @@ const MVItem: React.FC<IProps> = ({ name, artistName, playCount, picUrl, copywri
       <div className={styles.name}>{name}</div>
       <div className={styles.artistName}>{artistName}</div>
     </div>
-  )
-}
+  );
+};
 
-export default MVItem
+export default MVItem;

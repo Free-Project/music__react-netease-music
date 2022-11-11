@@ -1,19 +1,18 @@
-import React from 'react'
-import { Spinner } from '@blueprintjs/core'
-import { useParams } from 'react-router-dom'
-import { useLazyQuery } from '@apollo/client'
-import { message } from '@mui/Notification'
+import React from 'react';
+import { Spinner } from '@blueprintjs/core';
+import { useParams } from 'react-router-dom';
+import { useLazyQuery } from '@apollo/client';
+import Message from 'components/Message';
+import Tabs from 'components/Tabs';
+import MusicList from 'components/MusicList';
+import BasicInfo from './BasicInfo';
+import { createMusic } from 'helpers/business';
+import { getSonglistDetail } from 'graphql/music';
+import type { IMusic } from 'apis/types/business';
+import { PlayMusicDispatchContext, ACTIONS } from 'reducers/playMusic';
+import styles from './style.module.css';
 
-import Tabs from 'components/Tabs'
-import MusicList from 'components/MusicList'
-import BasicInfo from './BasicInfo'
-import { createMusic } from 'helpers/business'
-import { getSonglistDetail } from 'graphql/music'
-import { IMusic } from 'apis/types/business'
-import { PlayMusicDispatchContext, ACTIONS } from 'reducers/playMusic'
-import styles from './style.module.css'
-
-const { useEffect, useContext } = React
+const { useEffect, useContext } = React;
 
 const TABS = [
   {
@@ -24,44 +23,44 @@ const TABS = [
     label: '评论',
     key: 'comment',
   },
-]
+];
 
 const SonglistDetail = () => {
-  const dispatch = useContext(PlayMusicDispatchContext)
-  const params = useParams<IDictionary<string>>()
-  const { songlistId } = params
+  const dispatch = useContext(PlayMusicDispatchContext);
+  const params = useParams<IDictionary<string>>();
+  const { songlistId } = params;
 
   const [getSonglistDetailGql, { loading, data }] = useLazyQuery(getSonglistDetail, {
     onError: (error) => {
-      message.error(error.message)
+      Message.error(error.message);
     },
-  })
+  });
 
-  const result = data?.getSonglistDetail
-  const songs = result?.songs as IMusic[]
+  const result = data?.getSonglistDetail;
+  const songs = result?.songs as IMusic[];
 
   useEffect(() => {
     getSonglistDetailGql({
       variables: {
         id: songlistId,
       },
-    })
-  }, [songlistId])
+    });
+  }, [songlistId]);
 
   const playAll = (autoPlay?: boolean) => {
     const list = songs.map((item) => {
       return createMusic({
         ...item,
         duration: item.duration / 1000,
-      })
-    })
+      });
+    });
 
     dispatch({
       type: ACTIONS.SET_PLAY_LIST,
       payload: {
         playList: list,
       },
-    })
+    });
 
     if (autoPlay) {
       dispatch({
@@ -70,9 +69,9 @@ const SonglistDetail = () => {
           musicId: list[0].id,
           music: list[0],
         },
-      })
+      });
     }
-  }
+  };
 
   return (
     <div className={styles.root}>
@@ -93,7 +92,7 @@ const SonglistDetail = () => {
         </>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default SonglistDetail
+export default SonglistDetail;

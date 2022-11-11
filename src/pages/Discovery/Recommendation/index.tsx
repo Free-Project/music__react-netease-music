@@ -1,12 +1,12 @@
-import React from 'react'
-import Banner from './Banner'
-import Songlist from './Songlist'
-import LatestMusic from './LatestMusic'
-import MV from './MV'
+import React from 'react';
+import Banner from './Banner';
+import Songlist from './Songlist';
+import LatestMusic from './LatestMusic';
+import MV from './MV';
 
-import { USER_PROFILE } from 'constants/github'
+import { USER_PROFILE } from 'constants/github';
 
-import styles from './style.module.css'
+import styles from './style.module.css';
 
 const Recommendation = () => {
   return (
@@ -36,7 +36,7 @@ const Recommendation = () => {
         </a>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Recommendation
+export default Recommendation;

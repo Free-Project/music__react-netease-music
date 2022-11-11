@@ -1,9 +1,9 @@
-import React from 'react'
-import { useHistory, useLocation } from 'react-router-dom'
-import cn from 'classnames'
-import ROUTES from 'constants/routes'
+import React from 'react';
+import { useHistory, useLocation } from 'react-router-dom';
+import cn from 'classnames';
+import ROUTES from 'constants/routes';
 
-import styles from './style.module.css'
+import styles from './style.module.css';
 
 const NAVBAR = {
   [ROUTES.DISCOVERY]: [
@@ -42,30 +42,30 @@ const NAVBAR = {
       route: ROUTES.MV,
     },
   ],
-}
+};
 
 const Navbar = () => {
-  const history = useHistory()
-  const { pathname } = useLocation()
+  const history = useHistory();
+  const { pathname } = useLocation();
 
-  const matchPathPrefix = Object.keys(NAVBAR).find((key) => pathname.startsWith(key))
+  const matchPathPrefix = Object.keys(NAVBAR).find((key) => pathname.startsWith(key));
 
   if (!matchPathPrefix) {
-    return null
+    return null;
   }
 
-  const items = NAVBAR[matchPathPrefix]
+  const items = NAVBAR[matchPathPrefix];
 
-  const hasMatchRoute = items.find(({ route }) => route === pathname)
+  const hasMatchRoute = items.find(({ route }) => route === pathname);
 
   const handleItemClick = (route: string) => {
-    history.push(route)
-  }
+    history.push(route);
+  };
 
   return (
     <div className={styles.root}>
       {items.map(({ label, route }, index) => {
-        const isActive = hasMatchRoute ? route === pathname : index === 0
+        const isActive = hasMatchRoute ? route === pathname : index === 0;
 
         return (
           <div
@@ -75,10 +75,10 @@ const Navbar = () => {
           >
             {label}
           </div>
-        )
+        );
       })}
     </div>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;

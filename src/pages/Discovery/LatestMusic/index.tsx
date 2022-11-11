@@ -1,14 +1,14 @@
-import React from 'react'
-import { Spinner } from '@blueprintjs/core'
-import cn from 'classnames'
+import React from 'react';
+import { Spinner } from '@blueprintjs/core';
+import cn from 'classnames';
 
-import Content from './Content'
-import songApis, { SONG_TYPE } from 'apis/song'
-import useAsyncFn from 'hooks/useAsyncFn'
-import { PlayMusicDispatchContext, ACTIONS } from 'reducers/playMusic'
-import styles from './style.module.css'
+import Content from './Content';
+import songApis, { SONG_TYPE } from 'apis/song';
+import useAsyncFn from 'hooks/useAsyncFn';
+import { PlayMusicDispatchContext, ACTIONS } from 'reducers/playMusic';
+import styles from './style.module.css';
 
-const { useEffect, useState, useContext } = React
+const { useEffect, useState, useContext } = React;
 
 const TABS = [
   {
@@ -31,21 +31,21 @@ const TABS = [
     label: '日本',
     type: SONG_TYPE.JAPANESE,
   },
-]
+];
 
 const LatestMusic = () => {
-  const dispatch = useContext(PlayMusicDispatchContext)
-  const [selectedType, setSelectedType] = useState(SONG_TYPE.ALL)
-  const [state, getTopSongsFn] = useAsyncFn(songApis.getTopSongs)
+  const dispatch = useContext(PlayMusicDispatchContext);
+  const [selectedType, setSelectedType] = useState(SONG_TYPE.ALL);
+  const [state, getTopSongsFn] = useAsyncFn(songApis.getTopSongs);
 
   useEffect(() => {
-    getTopSongsFn(selectedType)
-  }, [])
+    getTopSongsFn(selectedType);
+  }, []);
 
   const handleTypeChange = (type: SONG_TYPE) => {
-    setSelectedType(type)
-    getTopSongsFn(type)
-  }
+    setSelectedType(type);
+    getTopSongsFn(type);
+  };
 
   const playAll = (autoPlay?: boolean) => {
     dispatch({
@@ -53,7 +53,7 @@ const LatestMusic = () => {
       payload: {
         playList: state.value,
       },
-    })
+    });
 
     if (autoPlay) {
       dispatch({
@@ -62,9 +62,9 @@ const LatestMusic = () => {
           musicId: state.value?.[0].id,
           music: state.value?.[0],
         },
-      })
+      });
     }
-  }
+  };
 
   return (
     <div className={styles.root}>
@@ -79,7 +79,7 @@ const LatestMusic = () => {
               >
                 {label}
               </div>
-            )
+            );
           })}
         </div>
 
@@ -98,7 +98,7 @@ const LatestMusic = () => {
         )}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default LatestMusic
+export default LatestMusic;

@@ -1,4 +1,4 @@
-import webpack from 'webpack'
+import webpack from 'webpack';
 
 export default {
   devtool: 'eval-cheap-module-source-map',
@@ -31,7 +31,7 @@ export default {
     hot: true,
     proxy: {
       '/api': {
-        target: 'http://localhost:3000',
+        target: 'https://music-api.nice-boy.com',
         pathRewrite: { '^/api': '' },
       },
       '/graphql': {
@@ -39,4 +39,4 @@ export default {
       },
     },
   },
-}
+};

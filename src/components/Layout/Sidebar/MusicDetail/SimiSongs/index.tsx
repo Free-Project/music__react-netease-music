@@ -1,20 +1,20 @@
-import React from 'react'
-import cn from 'classnames'
+import React from 'react';
+import cn from 'classnames';
 
-import PlayIcon from 'components/PlayIcon'
-import { IMusic } from 'apis/types/business'
-import { createMusicWithAlbum } from 'helpers/business'
-import { PlayMusicDispatchContext, ACTIONS } from 'reducers/playMusic'
-import styles from './style.module.css'
+import PlayIcon from 'components/PlayIcon';
+import type { IMusic } from 'apis/types/business';
+import { createMusicWithAlbum } from 'helpers/business';
+import { PlayMusicDispatchContext, ACTIONS } from 'reducers/playMusic';
+import styles from './style.module.css';
 
 interface IProps {
-  data: IMusic[]
+  data: IMusic[];
 }
 
-const { useContext } = React
+const { useContext } = React;
 
 const SimiSongs: React.FC<IProps> = ({ data }) => {
-  const dispatch = useContext(PlayMusicDispatchContext)
+  const dispatch = useContext(PlayMusicDispatchContext);
 
   const handleItemClick = (music: IMusic) => {
     dispatch({
@@ -23,13 +23,13 @@ const SimiSongs: React.FC<IProps> = ({ data }) => {
         musicId: music.id,
         music: createMusicWithAlbum(music),
       },
-    })
-  }
+    });
+  };
 
   return (
     <div className={styles.root}>
       {data.map((item) => {
-        const { album, name, id, artists } = item
+        const { album, name, id, artists } = item;
 
         return (
           <div className={styles.item} key={id} onClick={() => handleItemClick(item)}>
@@ -42,10 +42,10 @@ const SimiSongs: React.FC<IProps> = ({ data }) => {
               <div className={styles.artists}>{artists.map(({ name }) => name).join(' / ')}</div>
             </div>
           </div>
-        )
+        );
       })}
     </div>
-  )
-}
+  );
+};
 
-export default SimiSongs
+export default SimiSongs;

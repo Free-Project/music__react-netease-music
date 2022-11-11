@@ -1,30 +1,30 @@
-import React from 'react'
-import { Icon } from '@blueprintjs/core'
-import { Popover, TRIGGER } from '@mui/Popover'
-import cn from 'classnames'
+import React from 'react';
+import { Button, Icon } from '@blueprintjs/core';
+import { Popover2 as Popover } from '@blueprintjs/popover2';
+import cn from 'classnames';
 
-import { IGetSonglistCatsResponse, ICategory } from 'apis/types/songlist'
-import { noop } from 'helpers/fn'
-import styles from './style.module.css'
+import { IGetSonglistCatsResponse, ICategory } from 'apis/types/songlist';
+import { noop } from 'helpers/fn';
+import styles from './style.module.css';
 
 interface IProps {
-  cats?: IGetSonglistCatsResponse
-  hotCats?: ICategory[]
-  selectedCat?: string
-  onCatSelect?: (cat: string) => void
+  cats?: IGetSonglistCatsResponse;
+  hotCats?: ICategory[];
+  selectedCat?: string;
+  onCatSelect?: (cat: string) => void;
 }
 
-const { useState } = React
+const { useState } = React;
 
-export const DEFAULT_CAT = '全部'
+export const DEFAULT_CAT = '全部';
 
 const Categories: React.FC<IProps> = ({ cats, hotCats, selectedCat, onCatSelect = noop }) => {
-  const [currentCat, setCurrentCat] = useState(selectedCat || DEFAULT_CAT)
+  const [currentCat, setCurrentCat] = useState(selectedCat || DEFAULT_CAT);
 
   const handleCatClick = (cat: string) => {
-    setCurrentCat(cat)
-    onCatSelect(cat)
-  }
+    setCurrentCat(cat);
+    onCatSelect(cat);
+  };
 
   const renderCats = () => {
     return (
@@ -36,7 +36,7 @@ const Categories: React.FC<IProps> = ({ cats, hotCats, selectedCat, onCatSelect 
         </div>
         <div className={styles.content}>
           {Object.entries(cats?.categories || {}).map(([key, value]) => {
-            const subCats = cats?.sub.filter(({ category }) => category === Number(key))
+            const subCats = cats?.sub.filter(({ category }) => category === Number(key));
             return (
               <div className={styles.catBlock} key={key}>
                 <div className={styles.label}>{value}</div>
@@ -50,26 +50,33 @@ const Categories: React.FC<IProps> = ({ cats, hotCats, selectedCat, onCatSelect 
                       >
                         {name}
                       </div>
-                    )
+                    );
                   })}
                 </div>
               </div>
-            )
+            );
           })}
         </div>
       </div>
-    )
-  }
+    );
+  };
 
   return (
     <div className={styles.root}>
       <div className={styles.cats}>
-        <Popover content={renderCats()} placement='right' trigger={TRIGGER.CLICK}>
-          <div className={styles.catsBtn}>
-            {currentCat}
-            <Icon icon='chevron-right' />
-          </div>
-        </Popover>
+        <Popover
+          interactionKind='click'
+          placement='right'
+          content={renderCats()}
+          renderTarget={({ ...targetProps }) => (
+            <div className={styles.catsBtn}>
+              <div {...targetProps}>
+                {currentCat}
+                <Icon icon='chevron-right' />
+              </div>
+            </div>
+          )}
+        />
       </div>
       <div className={styles.hotCats}>
         {hotCats?.map(({ name }) => {
@@ -81,11 +88,11 @@ const Categories: React.FC<IProps> = ({ cats, hotCats, selectedCat, onCatSelect 
             >
               {name}
             </div>
-          )
+          );
         })}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Categories
+export default Categories;

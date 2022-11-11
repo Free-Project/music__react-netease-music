@@ -1,29 +1,29 @@
-import React from 'react'
-import { useHistory } from 'react-router-dom'
-import cn from 'classnames'
+import React from 'react';
+import { useHistory } from 'react-router-dom';
+import cn from 'classnames';
 
-import PlayCount from 'components/PlayCount'
-import { ISonglist } from 'apis/types/business'
-import { PlayMusicDispatchContext, ACTIONS } from 'reducers/playMusic'
-import ROUTES from 'constants/routes'
-import styles from './style.module.css'
+import PlayCount from 'components/PlayCount';
+import type { ISonglist } from 'apis/types/business';
+import { PlayMusicDispatchContext, ACTIONS } from 'reducers/playMusic';
+import ROUTES from 'constants/routes';
+import styles from './style.module.css';
 
 interface IProps {
-  data: ISonglist[]
+  data: ISonglist[];
 }
 
-const { useContext } = React
+const { useContext } = React;
 
 const Songlists: React.FC<IProps> = ({ data }) => {
-  const history = useHistory()
-  const dispatch = useContext(PlayMusicDispatchContext)
+  const history = useHistory();
+  const dispatch = useContext(PlayMusicDispatchContext);
 
   const handleItemClick = (id: number) => {
     dispatch({
       type: ACTIONS.HIDE_LYRIC,
-    })
-    history.push(`${ROUTES.SONG_LISTS}/${id}`)
-  }
+    });
+    history.push(`${ROUTES.SONG_LISTS}/${id}`);
+  };
 
   return (
     <div className={styles.root}>
@@ -38,10 +38,10 @@ const Songlists: React.FC<IProps> = ({ data }) => {
               <PlayCount count={playCount} className={styles.playCount} />
             </div>
           </div>
-        )
+        );
       })}
     </div>
-  )
-}
+  );
+};
 
-export default Songlists
+export default Songlists;

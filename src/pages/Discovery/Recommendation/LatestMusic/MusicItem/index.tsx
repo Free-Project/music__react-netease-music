@@ -1,31 +1,31 @@
-import React from 'react'
-import { Icon } from '@blueprintjs/core'
-import cn from 'classnames'
+import React from 'react';
+import { Icon } from '@blueprintjs/core';
+import cn from 'classnames';
 
-import PlayIcon from 'components/PlayIcon'
-import Artists from 'components/Artists'
-import { IMusicSong } from 'apis/types/personalized'
+import PlayIcon from 'components/PlayIcon';
+import Artists from 'components/Artists';
+import { IMusicSong } from 'apis/types/personalized';
 
-import { PlayMusicStateContext, PlayMusicDispatchContext, ACTIONS, AudioContext } from 'reducers/playMusic'
-import { createMusic } from 'helpers/business'
-import styles from './style.module.css'
+import { PlayMusicStateContext, PlayMusicDispatchContext, ACTIONS, AudioContext } from 'reducers/playMusic';
+import { createMusic } from 'helpers/business';
+import styles from './style.module.css';
 
 interface IProps {
-  id: number
-  name: string
-  picUrl: string
-  song: IMusicSong
-  index: number
+  id: number;
+  name: string;
+  picUrl: string;
+  song: IMusicSong;
+  index: number;
 }
 
-const { useContext } = React
+const { useContext } = React;
 
 const MusicItem: React.FC<IProps> = ({ id, name, picUrl, song, index, ...others }) => {
-  const audioInfo = useContext(AudioContext)
-  const state = useContext(PlayMusicStateContext)
-  const dispatch = useContext(PlayMusicDispatchContext)
+  const audioInfo = useContext(AudioContext);
+  const state = useContext(PlayMusicStateContext);
+  const dispatch = useContext(PlayMusicDispatchContext);
 
-  const hasBorderBottom = [4, 9].indexOf(index) > -1
+  const hasBorderBottom = [4, 9].indexOf(index) > -1;
 
   const playMusic = (id: number) => {
     dispatch({
@@ -41,10 +41,10 @@ const MusicItem: React.FC<IProps> = ({ id, name, picUrl, song, index, ...others 
           ...others,
         }),
       },
-    })
-  }
+    });
+  };
 
-  const isMusicActive = state.musicId === id
+  const isMusicActive = state.musicId === id;
 
   return (
     <div className={cn(styles.root, hasBorderBottom && styles.borderBottom, isMusicActive && styles.active)}>
@@ -64,7 +64,7 @@ const MusicItem: React.FC<IProps> = ({ id, name, picUrl, song, index, ...others 
         <Artists artists={song?.artists} />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default MusicItem
+export default MusicItem;

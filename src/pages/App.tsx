@@ -1,33 +1,31 @@
-import React from 'react'
-import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
+import React, { useReducer, useMemo, useCallback, lazy, Suspense } from 'react';
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 
-import Layout from 'components/Layout'
-import useAudio from 'hooks/useAudio'
-import { MODE, playList as playListLocalStorage } from 'helpers/play'
+import Layout from 'components/Layout';
+import useAudio from 'hooks/useAudio';
+import { MODE, playList as playListLocalStorage } from 'helpers/play';
 import playMusicReducer, {
   initialState,
   PlayMusicStateContext,
   PlayMusicDispatchContext,
   AudioContext,
   ACTIONS,
-} from 'reducers/playMusic'
-import logReducer, { initialState as logInitialState, LogStateContext, LogDispatchContext } from 'reducers/log'
-import { IMyMusic } from 'apis/types/business'
-import ROUTES from 'constants/routes'
+} from 'reducers/playMusic';
+import logReducer, { initialState as logInitialState, LogStateContext, LogDispatchContext } from 'reducers/log';
+import type { IMyMusic } from 'apis/types/business';
+import ROUTES from 'constants/routes';
 
-const { useReducer, useMemo, useCallback, lazy, Suspense } = React
-
-const Discovery = lazy(() => import('./Discovery'))
-const Videos = lazy(() => import('./Videos'))
-const Search = lazy(() => import('./Search'))
-const SonglistDetail = lazy(() => import('./SonglistDetail'))
+const Discovery = lazy(() => import('./Discovery'));
+const Videos = lazy(() => import('./Videos'));
+const Search = lazy(() => import('./Search'));
+const SonglistDetail = lazy(() => import('./SonglistDetail'));
 
 const App = () => {
-  const [logState, logDispath] = useReducer(logReducer, logInitialState)
-  const [state, dispatch] = useReducer(playMusicReducer, initialState)
-  const { musicId, musicUrl, playMode } = state
+  const [logState, logDispath] = useReducer(logReducer, logInitialState);
+  const [state, dispatch] = useReducer(playMusicReducer, initialState);
+  const { musicId, musicUrl, playMode } = state;
 
-  const playList = useMemo(() => playListLocalStorage.getItem(), [musicId])
+  const playList = useMemo(() => playListLocalStorage.getItem(), [musicId]);
 
   const [audio, audioState, audioControls, audioRef] = useAudio({
     src: musicUrl,
@@ -35,11 +33,11 @@ const App = () => {
     onEnded: () => playNextMusic(),
     onError: () => {
       if (playMode === MODE.SINGLE_CYCLE) {
-        return
+        return;
       }
-      playNextMusic()
+      playNextMusic();
     },
-  })
+  });
 
   const audioInfo = useMemo(() => {
     return {
@@ -47,8 +45,8 @@ const App = () => {
       state: audioState,
       controls: audioControls,
       ref: audioRef,
-    }
-  }, [musicUrl, audio, audioState, audioControls, audioRef])
+    };
+  }, [musicUrl, audio, audioState, audioControls, audioRef]);
 
   const playMusic = useCallback(
     (index: number) => {
@@ -58,36 +56,36 @@ const App = () => {
           musicId: playList[index].id,
           music: playList[index],
         },
-      })
+      });
     },
     [playList],
-  )
+  );
 
   const playNextMusic = useCallback(() => {
     switch (playMode) {
       case MODE.PLAY_IN_ORDER: {
-        const idx = playList.findIndex(({ id }: IMyMusic) => id === musicId)
+        const idx = playList.findIndex(({ id }: IMyMusic) => id === musicId);
         if (playList.length) {
-          const nextIdx = idx > -1 ? (idx + 1) % playList.length : 0
-          playMusic(nextIdx)
+          const nextIdx = idx > -1 ? (idx + 1) % playList.length : 0;
+          playMusic(nextIdx);
         }
-        return
+        return;
       }
       case MODE.SINGLE_CYCLE: {
-        audioControls.play()
-        return
+        audioControls.play();
+        return;
       }
       case MODE.SHUFFLE_PLAYBACK: {
         if (playList.length) {
-          const randomIdx = Math.floor(Math.random() * playList.length)
-          playMusic(randomIdx)
+          const randomIdx = Math.floor(Math.random() * playList.length);
+          playMusic(randomIdx);
         }
-        return
+        return;
       }
       default:
-        return
+        return;
     }
-  }, [musicId, playMode, audioControls, playList])
+  }, [musicId, playMode, audioControls, playList]);
 
   return (
     <BrowserRouter>
@@ -114,7 +112,7 @@ const App = () => {
         </LogStateContext.Provider>
       </LogDispatchContext.Provider>
     </BrowserRouter>
-  )
-}
+  );
+};
 
-export default App
+export default App;

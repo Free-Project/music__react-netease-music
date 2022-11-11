@@ -1,22 +1,22 @@
-import React, { ReactElement } from 'react'
-import cn from 'classnames'
+import React, { ReactElement } from 'react';
+import cn from 'classnames';
 
-import { noop } from 'helpers/fn'
-import styles from './style.module.css'
+import { noop } from 'helpers/fn';
+import styles from './style.module.css';
 
 export interface IColumn<RecordType, Key extends keyof RecordType> {
-  title?: string
-  key: Key
-  width?: string
-  render: (value: any, record: RecordType, index?: number) => string | ReactElement
+  title?: string;
+  key: Key;
+  width?: string;
+  render: (value: any, record: RecordType, index?: number) => string | ReactElement;
 }
 
 interface IProps<RecordType> {
-  showHeader?: boolean
-  columns: IColumn<RecordType, keyof RecordType>[]
-  data: RecordType[]
-  onDoubleClick?: (item: RecordType) => void
-  isRecordRowDisabled?: (record: RecordType) => boolean
+  showHeader?: boolean;
+  columns: IColumn<RecordType, keyof RecordType>[];
+  data: RecordType[];
+  onDoubleClick?: (item: RecordType) => void;
+  isRecordRowDisabled?: (record: RecordType) => boolean;
 }
 
 function Table<RecordType extends Record<string, any> = any>({
@@ -35,14 +35,14 @@ function Table<RecordType extends Record<string, any> = any>({
               <div key={index} style={{ width }}>
                 {title}
               </div>
-            )
+            );
           })}
         </div>
       )}
       {data?.length ? (
         <div className={styles.content}>
           {data?.map((item, index) => {
-            const disabled = isRecordRowDisabled && isRecordRowDisabled(item)
+            const disabled = isRecordRowDisabled && isRecordRowDisabled(item);
 
             return (
               <div
@@ -55,17 +55,17 @@ function Table<RecordType extends Record<string, any> = any>({
                     <div key={idx} style={{ width }}>
                       {render(item[key], item, index)}
                     </div>
-                  )
+                  );
                 })}
               </div>
-            )
+            );
           })}
         </div>
       ) : (
         <div className={styles.empty}>暂无数据喔</div>
       )}
     </div>
-  )
+  );
 }
 
-export default Table
+export default Table;

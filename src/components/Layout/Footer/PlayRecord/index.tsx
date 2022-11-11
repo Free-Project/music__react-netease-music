@@ -1,22 +1,22 @@
-import React from 'react'
-import cn from 'classnames'
+import React from 'react';
+import cn from 'classnames';
 
-import PlayList from './PlayList'
-import PlayHistory from './PlayHistory'
-import useClickAway from 'hooks/useClickAway'
-import styles from './style.module.css'
+import PlayList from './PlayList';
+import PlayHistory from './PlayHistory';
+import useClickAway from 'hooks/useClickAway';
+import styles from './style.module.css';
 
 interface ITab {
-  tab: string
-  tabKey: string
+  tab: string;
+  tabKey: string;
 }
 
 interface IProps {
-  show: boolean
-  onClickAway: () => void
+  show: boolean;
+  onClickAway: () => void;
 }
 
-const { useState, useRef } = React
+const { useState, useRef } = React;
 
 const TABS: IDictionary<ITab> = {
   PLAY_LIST: {
@@ -27,13 +27,13 @@ const TABS: IDictionary<ITab> = {
     tab: '历史记录',
     tabKey: 'PLAY_HISTORY',
   },
-}
+};
 
 const PlayRecord: React.FC<IProps> = ({ show, onClickAway }) => {
-  const playRecordRef = useRef<HTMLDivElement | null>(null)
-  const [activeTab, setActiveTab] = useState(TABS.PLAY_LIST.tabKey)
+  const playRecordRef = useRef<HTMLDivElement | null>(null);
+  const [activeTab, setActiveTab] = useState(TABS.PLAY_LIST.tabKey);
 
-  useClickAway(playRecordRef, () => onClickAway())
+  useClickAway(playRecordRef, () => onClickAway());
 
   return (
     <div className={cn(styles.root, show && styles.show)} ref={(ref) => (playRecordRef.current = ref)}>
@@ -49,7 +49,7 @@ const PlayRecord: React.FC<IProps> = ({ show, onClickAway }) => {
                 >
                   {TABS[key].tab}
                 </div>
-              )
+              );
             })}
           </div>
 
@@ -57,7 +57,7 @@ const PlayRecord: React.FC<IProps> = ({ show, onClickAway }) => {
         </>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default PlayRecord
+export default PlayRecord;

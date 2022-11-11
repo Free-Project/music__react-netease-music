@@ -1,24 +1,24 @@
-import React from 'react'
-import { Spinner } from '@blueprintjs/core'
+import React from 'react';
+import { Spinner } from '@blueprintjs/core';
 
-import LinkTitle from 'components/LinkTitle'
-import MusicItem from './MusicItem'
+import LinkTitle from 'components/LinkTitle';
+import MusicItem from './MusicItem';
 
-import ROUTES from 'constants/routes'
-import useAsyncFn from 'hooks/useAsyncFn'
-import personalizedApis from 'apis/personalized'
+import ROUTES from 'constants/routes';
+import useAsyncFn from 'hooks/useAsyncFn';
+import personalizedApis from 'apis/personalized';
 
-import styles from './style.module.css'
+import styles from './style.module.css';
 
-const { useEffect } = React
+const { useEffect } = React;
 
 const LatestMusic = () => {
-  const [state, getPersonalizedNewMusicFn] = useAsyncFn(personalizedApis.getPersonalizedNewMusic)
-  const { value: music = [], loading } = state
+  const [state, getPersonalizedNewMusicFn] = useAsyncFn(personalizedApis.getPersonalizedNewMusic);
+  const { value: music = [], loading } = state;
 
   useEffect(() => {
-    getPersonalizedNewMusicFn()
-  }, [])
+    getPersonalizedNewMusicFn();
+  }, []);
 
   return (
     <div className={styles.root}>
@@ -40,7 +40,7 @@ const LatestMusic = () => {
         </div>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default LatestMusic
+export default LatestMusic;

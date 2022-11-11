@@ -1,27 +1,27 @@
-import React from 'react'
-import { Dialog, InputGroup, Button, IDialogProps } from '@blueprintjs/core'
+import React from 'react';
+import { Dialog, InputGroup, Button, IDialogProps } from '@blueprintjs/core';
 
-import authApis from 'apis/auth'
-import useAsyncFn from 'hooks/useAsyncFn'
-import { noop } from 'helpers/fn'
-import { LogDispatchContext, ACTIONS } from 'reducers/log'
-import styles from './style.module.css'
+import authApis from 'apis/auth';
+import useAsyncFn from 'hooks/useAsyncFn';
+import { noop } from 'helpers/fn';
+import { LogDispatchContext, ACTIONS } from 'reducers/log';
+import styles from './style.module.css';
 
 interface IProps extends IDialogProps {
-  onClose: () => void
+  onClose: () => void;
 }
 
-const { useState, useContext } = React
+const { useState, useContext } = React;
 
 const LoginDialog: React.FC<IProps> = ({ isOpen, onClose = noop }) => {
-  const dispatch = useContext(LogDispatchContext)
-  const [phone, setPhone] = useState<string>('')
-  const [password, setPassword] = useState<string>('')
-  const [loginState, loginFn] = useAsyncFn(authApis.login)
-  const { loading, error } = loginState
+  const dispatch = useContext(LogDispatchContext);
+  const [phone, setPhone] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [loginState, loginFn] = useAsyncFn(authApis.login);
+  const { loading, error } = loginState;
 
   const handleLogin = async () => {
-    const result = await loginFn({ phone, password })
+    const result = await loginFn({ phone, password });
     if (result) {
       dispatch({
         type: ACTIONS.LOGIN,
@@ -31,10 +31,10 @@ const LoginDialog: React.FC<IProps> = ({ isOpen, onClose = noop }) => {
             userId: result.profile.userId,
           },
         },
-      })
-      onClose()
+      });
+      onClose();
     }
-  }
+  };
 
   return (
     <Dialog style={{ width: '400px' }} title='登录' isOpen={isOpen} onClose={onClose}>
@@ -44,7 +44,7 @@ const LoginDialog: React.FC<IProps> = ({ isOpen, onClose = noop }) => {
           leftIcon='mobile-phone'
           value={phone}
           onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-            setPhone(event.target.value)
+            setPhone(event.target.value);
           }}
         />
         <InputGroup
@@ -53,7 +53,7 @@ const LoginDialog: React.FC<IProps> = ({ isOpen, onClose = noop }) => {
           type='password'
           value={password}
           onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-            setPassword(event.target.value)
+            setPassword(event.target.value);
           }}
         />
         {error && <div className='error'>{error.message}</div>}
@@ -65,7 +65,7 @@ const LoginDialog: React.FC<IProps> = ({ isOpen, onClose = noop }) => {
         </div>
       </div>
     </Dialog>
-  )
-}
+  );
+};
 
-export default LoginDialog
+export default LoginDialog;

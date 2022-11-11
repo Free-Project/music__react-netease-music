@@ -1,17 +1,15 @@
-import React from 'react'
+import React, { useContext } from 'react';
 
-import List from '../List'
-import { IMyMusic } from 'apis/types/business'
-import { PlayMusicDispatchContext, ACTIONS } from 'reducers/playMusic'
-import { playHistory as playHistoryLocalStorage } from 'helpers/play'
-import useUpdate from 'hooks/useUpdate'
-
-const { useContext } = React
+import List from '../List';
+import type { IMyMusic } from 'apis/types/business';
+import { PlayMusicDispatchContext, ACTIONS } from 'reducers/playMusic';
+import { playHistory as playHistoryLocalStorage } from 'helpers/play';
+import useUpdate from 'hooks/useUpdate';
 
 const PlayHistory = () => {
-  const forceUpdate = useUpdate()
-  const dispatch = useContext(PlayMusicDispatchContext)
-  const playHistory = playHistoryLocalStorage.getItem()
+  const forceUpdate = useUpdate();
+  const dispatch = useContext(PlayMusicDispatchContext);
+  const playHistory = playHistoryLocalStorage.getItem();
 
   const handleDoubleClick = (item: IMyMusic) => {
     dispatch({
@@ -21,17 +19,17 @@ const PlayHistory = () => {
         music: item,
         keepOrder: true, // 若直接从历史记录中播放，历史记录列表顺序不需要变更
       },
-    })
-  }
+    });
+  };
 
   const clearPlayHistory = () => {
     dispatch({
       type: ACTIONS.CLEAR_PLAY_HISTORY,
-    })
-    forceUpdate()
-  }
+    });
+    forceUpdate();
+  };
 
-  return <List data={playHistory} onDoubleClick={handleDoubleClick} onClear={clearPlayHistory} />
-}
+  return <List data={playHistory} onDoubleClick={handleDoubleClick} onClear={clearPlayHistory} />;
+};
 
-export default PlayHistory
+export default PlayHistory;

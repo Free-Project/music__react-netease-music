@@ -1,13 +1,13 @@
-import React from 'react'
-import { ISonglist } from 'apis/types/business'
+import React from 'react';
+import { ISonglist } from 'apis/types/business';
 
-import { formatDatetime } from 'helpers/time'
-import { formatNum } from 'helpers/num'
-import styles from './style.module.css'
+import { formatDatetime } from 'helpers/time';
+import { formatNum } from 'helpers/num';
+import styles from './style.module.css';
 
 interface IProps {
-  data?: ISonglist
-  onPlayAll: (autoPlay?: boolean) => void
+  data?: ISonglist;
+  onPlayAll: (autoPlay?: boolean) => void;
 }
 
 const BasicInfo: React.FC<IProps> = ({ data, onPlayAll }) => {
@@ -55,7 +55,7 @@ const BasicInfo: React.FC<IProps> = ({ data, onPlayAll }) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default BasicInfo
+export default BasicInfo;

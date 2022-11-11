@@ -1,13 +1,13 @@
-import React from 'react'
-import { Icon } from '@blueprintjs/core'
-import cn from 'classnames'
+import React from 'react';
+import { Icon } from '@blueprintjs/core';
+import cn from 'classnames';
 
-import { formatNum } from 'helpers/num'
-import styles from './style.module.css'
+import { formatNum } from 'helpers/num';
+import styles from './style.module.css';
 
 interface IProps {
-  count: number
-  className?: string
+  count: number;
+  className?: string;
 }
 
 const PlayCount: React.FC<IProps> = ({ count, className }) => {
@@ -16,7 +16,7 @@ const PlayCount: React.FC<IProps> = ({ count, className }) => {
       <Icon icon='play' />
       {formatNum(count)}
     </div>
-  )
-}
+  );
+};
 
-export default PlayCount
+export default PlayCount;

@@ -1,25 +1,25 @@
-import React from 'react'
-import { Spinner } from '@blueprintjs/core'
-import cn from 'classnames'
+import React from 'react';
+import { Spinner } from '@blueprintjs/core';
+import cn from 'classnames';
 
-import Pagination from 'components/Pagination'
-import MusicList from 'components/MusicList'
+import Pagination from 'components/Pagination';
+import MusicList from 'components/MusicList';
 
-import useQuery from 'hooks/useQuery'
-import useAsyncFn from 'hooks/useAsyncFn'
-import searchApis from 'apis/search'
-import { TARGET_TYPE } from 'apis/types/business'
-import { PAGE_SIZE, PAGE } from 'constants/pagination'
-import styles from './style.module.css'
+import useQuery from 'hooks/useQuery';
+import useAsyncFn from 'hooks/useAsyncFn';
+import searchApis from 'apis/search';
+import { TARGET_TYPE } from 'apis/types/business';
+import { PAGE_SIZE, PAGE } from 'constants/pagination';
+import styles from './style.module.css';
 
-const { useEffect, useState } = React
+const { useEffect, useState } = React;
 
 interface ITab {
-  tab: string
-  tabKey: string
-  unit: string
-  key: string
-  searchType: TARGET_TYPE
+  tab: string;
+  tabKey: string;
+  unit: string;
+  key: string;
+  searchType: TARGET_TYPE;
 }
 
 const TABS: IDictionary<ITab> = {
@@ -58,38 +58,38 @@ const TABS: IDictionary<ITab> = {
     key: 'userprofile',
     searchType: TARGET_TYPE.USER,
   },
-}
+};
 
 const Search = () => {
-  const { keyword } = useQuery()
-  const [page, setPage] = useState(PAGE)
-  const [activeTab, setActiveTab] = useState(TABS.MUSIC.tabKey)
-  const { unit, key, tab, searchType } = TABS[activeTab]
+  const { keyword } = useQuery();
+  const [page, setPage] = useState(PAGE);
+  const [activeTab, setActiveTab] = useState(TABS.MUSIC.tabKey);
+  const { unit, key, tab, searchType } = TABS[activeTab];
 
-  const [state, searchFn] = useAsyncFn(searchApis.search)
-  const { value: result, loading } = state
+  const [state, searchFn] = useAsyncFn(searchApis.search);
+  const { value: result, loading } = state;
 
   useEffect(() => {
-    searchFn({ keywords: keyword, type: searchType })
-  }, [keyword, searchType])
+    searchFn({ keywords: keyword, type: searchType });
+  }, [keyword, searchType]);
 
   const handleTabClick = (key: string) => {
-    setActiveTab(key)
+    setActiveTab(key);
 
-    const { searchType } = TABS[key]
-    searchFn({ keywords: keyword, type: searchType })
-  }
+    const { searchType } = TABS[key];
+    searchFn({ keywords: keyword, type: searchType });
+  };
 
   const handlePageChange = (page: number) => {
-    setPage(page)
+    setPage(page);
     searchFn({
       keywords: keyword,
       type: searchType,
       offset: (page - 1) * PAGE_SIZE,
-    })
-  }
+    });
+  };
 
-  const total = result?.[`${key}Count`] || 0
+  const total = result?.[`${key}Count`] || 0;
 
   return (
     <div className={styles.root}>
@@ -111,7 +111,7 @@ const Search = () => {
               >
                 {TABS[key].tab}
               </div>
-            )
+            );
           })}
         </div>
       </div>
@@ -130,7 +130,7 @@ const Search = () => {
         )}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Search
+export default Search;

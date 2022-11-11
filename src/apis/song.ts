@@ -1,7 +1,7 @@
-import axios from 'helpers/axios'
-import { createMusicFromSimpleMusic } from 'helpers/business'
-import { IMyMusic, IMusic, ISonglist, ISimpleMusic } from 'apis/types/business'
-import { IComment } from 'apis/types/comment'
+import axios from 'helpers/axios';
+import { createMusicFromSimpleMusic } from 'helpers/business';
+import type { IMyMusic, IMusic, ISonglist, ISimpleMusic } from 'apis/types/business';
+import type { IComment } from 'apis/types/comment';
 
 export enum SONG_TYPE {
   ALL = 0,
@@ -12,29 +12,29 @@ export enum SONG_TYPE {
 }
 
 interface IParams {
-  id: number
-  offset?: number
-  limit?: number
+  id: number;
+  offset?: number;
+  limit?: number;
 }
 
 interface IGetCommentsResponse {
-  comments: IComment[]
-  hotComments?: IComment[]
-  isMusician: boolean
-  more: boolean
-  moreHot: boolean
-  topComments: IComment[]
-  total: number
-  userId: number
+  comments: IComment[];
+  hotComments?: IComment[];
+  isMusician: boolean;
+  more: boolean;
+  moreHot: boolean;
+  topComments: IComment[];
+  total: number;
+  userId: number;
 }
 
-type GetSongDetailFn = (ids: number[]) => Promise<IMyMusic[]>
-type GetTopSongsFn = (type?: SONG_TYPE) => Promise<IMyMusic[]>
-type GetRecommendSongsFn = () => Promise<IMusic[]>
-type GetSimiSonglistFn = (params: IParams) => Promise<ISonglist[]>
-type GetgetSimiSongFn = (params: IParams) => Promise<IMusic[]>
-type GetCommentsFn = (params: IParams) => Promise<IGetCommentsResponse>
-type GetgetLyricFn = (id: number) => Promise<{ lyric: string; offset: number; version: number }>
+type GetSongDetailFn = (ids: number[]) => Promise<IMyMusic[]>;
+type GetTopSongsFn = (type?: SONG_TYPE) => Promise<IMyMusic[]>;
+type GetRecommendSongsFn = () => Promise<IMusic[]>;
+type GetSimiSonglistFn = (params: IParams) => Promise<ISonglist[]>;
+type GetgetSimiSongFn = (params: IParams) => Promise<IMusic[]>;
+type GetCommentsFn = (params: IParams) => Promise<IGetCommentsResponse>;
+type GetgetLyricFn = (id: number) => Promise<{ lyric: string; offset: number; version: number }>;
 
 const getSongDetail: GetSongDetailFn = async (ids) => {
   const response = await axios({
@@ -42,10 +42,10 @@ const getSongDetail: GetSongDetailFn = async (ids) => {
     params: {
       ids: ids.join(','),
     },
-  })
+  });
 
-  return response?.songs.map((item: ISimpleMusic) => createMusicFromSimpleMusic({ ...item, status: (item as any).st }))
-}
+  return response?.songs.map((item: ISimpleMusic) => createMusicFromSimpleMusic({ ...item, status: (item as any).st }));
+};
 
 const getTopSongs: GetTopSongsFn = async (type = SONG_TYPE.ALL) => {
   const response = await axios({
@@ -53,10 +53,10 @@ const getTopSongs: GetTopSongsFn = async (type = SONG_TYPE.ALL) => {
     params: {
       type,
     },
-  })
+  });
 
-  return response.data
-}
+  return response.data;
+};
 
 const getRecommendSongs: GetRecommendSongsFn = async () => {
   const response = await axios({
@@ -64,10 +64,10 @@ const getRecommendSongs: GetRecommendSongsFn = async () => {
     params: {
       timestamp: Date.now(),
     },
-  })
+  });
 
-  return response.data?.dailySongs?.map((item: ISimpleMusic) => createMusicFromSimpleMusic(item)) || []
-}
+  return response.data?.dailySongs?.map((item: ISimpleMusic) => createMusicFromSimpleMusic(item)) || [];
+};
 
 const getSimiSonglist: GetSimiSonglistFn = async ({ id, offset, limit }) => {
   const response = await axios({
@@ -77,10 +77,10 @@ const getSimiSonglist: GetSimiSonglistFn = async ({ id, offset, limit }) => {
       offset,
       limit,
     },
-  })
+  });
 
-  return response.playlists
-}
+  return response.playlists;
+};
 
 const getSimiSong: GetgetSimiSongFn = async ({ id, offset, limit }) => {
   const response = await axios({
@@ -90,10 +90,10 @@ const getSimiSong: GetgetSimiSongFn = async ({ id, offset, limit }) => {
       offset,
       limit,
     },
-  })
+  });
 
-  return response.songs
-}
+  return response.songs;
+};
 
 const getComments: GetCommentsFn = async ({ id, offset, limit }) => {
   const response = await axios({
@@ -103,10 +103,10 @@ const getComments: GetCommentsFn = async ({ id, offset, limit }) => {
       offset,
       limit,
     },
-  })
+  });
 
-  return response
-}
+  return response;
+};
 
 const getLyric: GetgetLyricFn = async (id) => {
   const response = await axios({
@@ -114,10 +114,10 @@ const getLyric: GetgetLyricFn = async (id) => {
     params: {
       id,
     },
-  })
+  });
 
-  return response.lrc
-}
+  return response.lrc;
+};
 
 export default {
   getSongDetail,
@@ -127,4 +127,4 @@ export default {
   getSimiSong,
   getComments,
   getLyric,
-}
+};

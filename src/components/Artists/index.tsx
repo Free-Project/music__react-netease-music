@@ -1,10 +1,10 @@
-import React from 'react'
+import React from 'react';
 
-import { IArtist } from 'apis/types/business'
-import styles from './style.module.css'
+import type { IArtist } from 'apis/types/business';
+import styles from './style.module.css';
 
 interface IProps {
-  artists?: IArtist[]
+  artists?: IArtist[];
 }
 
 const Artists: React.FC<IProps> = ({ artists }) => {
@@ -23,7 +23,7 @@ const Artists: React.FC<IProps> = ({ artists }) => {
         ),
       )}
     </div>
-  )
-}
+  );
+};
 
-export default Artists
+export default Artists;

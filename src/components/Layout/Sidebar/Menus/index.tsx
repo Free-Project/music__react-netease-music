@@ -1,21 +1,21 @@
-import React from 'react'
-import { Icon, IconName } from '@blueprintjs/core'
-import { useHistory, useLocation } from 'react-router-dom'
-import cn from 'classnames'
+import React from 'react';
+import { Icon, IconName } from '@blueprintjs/core';
+import { useHistory, useLocation } from 'react-router-dom';
+import cn from 'classnames';
 
-import ROUTES from 'constants/routes'
-import styles from './style.module.css'
+import ROUTES from 'constants/routes';
+import styles from './style.module.css';
 
 interface IMenuItem {
-  icon: IconName
-  label: string
-  active?: boolean
-  route: string
+  icon: IconName;
+  label: string;
+  active?: boolean;
+  route: string;
 }
 
 interface IMenu {
-  title?: string
-  items: IMenuItem[]
+  title?: string;
+  items: IMenuItem[];
 }
 
 const MENU: IMenu[] = [
@@ -53,15 +53,15 @@ const MENU: IMenu[] = [
       },
     ],
   },
-]
+];
 
 const Menus = () => {
-  const history = useHistory()
-  const { pathname } = useLocation()
+  const history = useHistory();
+  const { pathname } = useLocation();
 
   const handleMenuItemClick = (route: string) => {
-    history.push(route)
-  }
+    history.push(route);
+  };
 
   return (
     <>
@@ -71,7 +71,7 @@ const Menus = () => {
             {title && <div className={styles.title}>{title}</div>}
             <div className={styles.tabs}>
               {items.map(({ icon, label, route }) => {
-                const isActive = pathname.startsWith(route) || (pathname === ROUTES.ROOT && route === ROUTES.DISCOVERY)
+                const isActive = pathname.startsWith(route) || (pathname === ROUTES.ROOT && route === ROUTES.DISCOVERY);
                 return (
                   <div
                     key={label}
@@ -81,14 +81,14 @@ const Menus = () => {
                     <Icon icon={icon} />
                     {label}
                   </div>
-                )
+                );
               })}
             </div>
           </div>
-        )
+        );
       })}
     </>
-  )
-}
+  );
+};
 
-export default Menus
+export default Menus;

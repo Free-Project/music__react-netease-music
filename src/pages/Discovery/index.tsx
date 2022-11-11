@@ -1,17 +1,15 @@
-import React from 'react'
-import { Switch, Route, Redirect } from 'react-router-dom'
+import React, { Suspense, lazy } from 'react';
+import { Switch, Route, Redirect } from 'react-router-dom';
 
-import ROUTES from 'constants/routes'
-import styles from './style.module.css'
+import ROUTES from 'constants/routes';
+import styles from './style.module.css';
 
-const { Suspense, lazy } = React
-
-const Recommendation = lazy(() => import('./Recommendation'))
-const Songlist = lazy(() => import('./Songlist'))
-const LeaderBoard = lazy(() => import('./LeaderBoard'))
-const Singers = lazy(() => import('./Singers'))
-const LatestMusic = lazy(() => import('./LatestMusic'))
-const RecommendDaily = lazy(() => import('./RecommendDaily'))
+const Recommendation = lazy(() => import('./Recommendation'));
+const Songlist = lazy(() => import('./Songlist'));
+const LeaderBoard = lazy(() => import('./LeaderBoard'));
+const Singers = lazy(() => import('./Singers'));
+const LatestMusic = lazy(() => import('./LatestMusic'));
+const RecommendDaily = lazy(() => import('./RecommendDaily'));
 
 const Discovery = () => {
   return (
@@ -30,7 +28,7 @@ const Discovery = () => {
         </Switch>
       </Suspense>
     </div>
-  )
-}
+  );
+};
 
-export default Discovery
+export default Discovery;

@@ -9,9 +9,7 @@
     "build": "webpack --mode=production --config config/webpack.config.babel.js",
     "type-check": "tsc --watch",
     "lint": "eslint src --ext .js,.jsx,.ts,.tsx --fix",
-    "style-lint": "stylelint 'src/**/*.css' --fix",
-    "release": "./deploy/bash.sh",
-    "docker-release": "./deploy/docker.sh"
+    "style-lint": "stylelint 'src/**/*.css' --fix"
   },
   "repository": {
     "type": "git",
@@ -96,7 +94,7 @@
   "dependencies": {
     "@apollo/client": "^3.3.20",
     "@blueprintjs/core": "^3.26.0",
-    "@uniquemo/mui": "^0.0.3",
+    "@blueprintjs/popover2": "^1.4.1",
     "axios": "^0.25.0",
     "classnames": "^2.2.6",
     "graphql": "^15.5.0",

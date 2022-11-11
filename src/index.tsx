@@ -1,21 +1,23 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from '@apollo/client'
-import { setContext } from '@apollo/client/link/context'
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from '@apollo/client';
+import { setContext } from '@apollo/client/link/context';
 
-import App from './pages/App'
-import { GRAPHQL_SERVER } from 'constants/server'
+import App from './pages/App';
+import { GRAPHQL_SERVER } from 'constants/server';
 
-import 'normalize.css/normalize.css'
-import '@blueprintjs/core/lib/css/blueprint.css'
-import './styles/global.module.css'
+import 'normalize.css/normalize.css';
+import '@blueprintjs/core/lib/css/blueprint.css';
+import '@blueprintjs/popover2/lib/css/blueprint-popover2.css';
+import './styles/global.module.css';
+import './components/Message/style.module.css';
 
 const httpLink = createHttpLink({
   uri: GRAPHQL_SERVER,
-})
+});
 
 const authLink = setContext((_, { headers }) => {
-  const session = JSON.parse(localStorage.getItem('__session') || '{}')
+  const session = JSON.parse(localStorage.getItem('__session') || '{}');
   return {
     headers: {
       ...headers,
@@ -23,28 +25,28 @@ const authLink = setContext((_, { headers }) => {
       'netease-token': session.token,
       'netease-nick-name': session.profile?.nickname && encodeURIComponent(session.profile?.nickname),
     },
-  }
-})
+  };
+});
 
 const client = new ApolloClient({
   link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
-})
+});
 
 const Root = () => {
   return (
     <ApolloProvider client={client}>
       <App />
     </ApolloProvider>
-  )
-}
+  );
+};
 
 const render = () => {
-  ReactDOM.render(<Root />, document.getElementById('root'))
-}
+  ReactDOM.render(<Root />, document.getElementById('root'));
+};
 
-render()
+render();
 
 if ((module as any).hot) {
-  ;(module as any).hot.accept(['./pages/App.tsx'], () => render())
+  (module as any).hot.accept(['./pages/App.tsx'], () => render());
 }

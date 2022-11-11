@@ -1,28 +1,28 @@
-import React from 'react'
-import { Icon } from '@blueprintjs/core'
-import cn from 'classnames'
+import React from 'react';
+import { Icon } from '@blueprintjs/core';
+import cn from 'classnames';
 
-import PlayIcon from 'components/PlayIcon'
-import { IMyMusic } from 'apis/types/business'
-import { formatTime } from 'helpers/time'
-import { createMusic } from 'helpers/business'
-import { PlayMusicStateContext, PlayMusicDispatchContext, ACTIONS, AudioContext } from 'reducers/playMusic'
-import styles from './style.module.css'
+import PlayIcon from 'components/PlayIcon';
+import type { IMyMusic } from 'apis/types/business';
+import { formatTime } from 'helpers/time';
+import { createMusic } from 'helpers/business';
+import { PlayMusicStateContext, PlayMusicDispatchContext, ACTIONS, AudioContext } from 'reducers/playMusic';
+import styles from './style.module.css';
 
 interface IProps {
-  data?: IMyMusic[]
-  onDoubleClick: () => void
+  data?: IMyMusic[];
+  onDoubleClick: () => void;
 }
 
-const { useContext } = React
+const { useContext } = React;
 
 const Content: React.FC<IProps> = ({ data, onDoubleClick }) => {
-  const state = useContext(PlayMusicStateContext)
-  const dispatch = useContext(PlayMusicDispatchContext)
-  const audioInfo = useContext(AudioContext)
+  const state = useContext(PlayMusicStateContext);
+  const dispatch = useContext(PlayMusicDispatchContext);
+  const audioInfo = useContext(AudioContext);
 
   const handleDoubleClick = (index: number) => {
-    const item = data?.[index] as IMyMusic
+    const item = data?.[index] as IMyMusic;
 
     dispatch({
       type: ACTIONS.PLAY,
@@ -34,15 +34,15 @@ const Content: React.FC<IProps> = ({ data, onDoubleClick }) => {
           picUrl: item?.picUrl || item?.album?.blurPicUrl,
         }),
       },
-    })
+    });
 
-    onDoubleClick()
-  }
+    onDoubleClick();
+  };
 
   return (
     <div className={styles.root}>
       {data?.map(({ id, name, artists, album, duration, picUrl }, index) => {
-        const isActive = state.musicId === id
+        const isActive = state.musicId === id;
         return (
           <div key={id} className={styles.item} onDoubleClick={() => handleDoubleClick(index)}>
             <div className={cn(styles.index, isActive && 'active')}>
@@ -67,10 +67,10 @@ const Content: React.FC<IProps> = ({ data, onDoubleClick }) => {
 
             <div className={styles.duration}>{formatTime(duration / 1000)}</div>
           </div>
-        )
+        );
       })}
     </div>
-  )
-}
+  );
+};
 
-export default Content
+export default Content;

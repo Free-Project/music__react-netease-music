@@ -1,22 +1,22 @@
-import React from 'react'
-import { Icon } from '@blueprintjs/core'
-import cn from 'classnames'
+import React from 'react';
+import { Icon } from '@blueprintjs/core';
+import cn from 'classnames';
 
-import { IComment } from 'apis/types/comment'
-import { formatDatetime } from 'helpers/time'
-import styles from './style.module.css'
+import type { IComment } from 'apis/types/comment';
+import { formatDatetime } from 'helpers/time';
+import styles from './style.module.css';
 
 interface IProps {
-  data: IComment
-  onLikeChange: (comment: IComment) => void
+  data: IComment;
+  onLikeChange: (comment: IComment) => void;
 }
 
 const Comment: React.FC<IProps> = ({ data, onLikeChange }) => {
-  const { user, content, beReplied, time, likedCount, liked } = data
+  const { user, content, beReplied, time, likedCount, liked } = data;
 
   const likeUnlike = async () => {
-    await onLikeChange(data)
-  }
+    await onLikeChange(data);
+  };
 
   return (
     <div className={styles.root}>
@@ -37,7 +37,7 @@ const Comment: React.FC<IProps> = ({ data, onLikeChange }) => {
                 <span className={styles.nickname}>{user.nickname}: </span>
                 <span>{content}</span>
               </div>
-            )
+            );
           })}
         </div>
 
@@ -53,7 +53,7 @@ const Comment: React.FC<IProps> = ({ data, onLikeChange }) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Comment
+export default Comment;

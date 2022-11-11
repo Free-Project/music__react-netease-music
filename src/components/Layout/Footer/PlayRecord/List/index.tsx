@@ -1,32 +1,32 @@
-import React from 'react'
-import { Icon } from '@blueprintjs/core'
-import cn from 'classnames'
+import React from 'react';
+import { Icon } from '@blueprintjs/core';
+import cn from 'classnames';
 
-import Table, { IColumn } from 'components/Table'
-import VipIcon from 'components/VipIcon'
-import { IMyMusic, IArtist, MUSIC_STATUS, MUSIC_TYPE } from 'apis/types/business'
-import { formatTime } from 'helpers/time'
-import { PlayMusicStateContext, AudioContext } from 'reducers/playMusic'
-import styles from './style.module.css'
+import Table, { IColumn } from 'components/Table';
+import VipIcon from 'components/VipIcon';
+import { IMyMusic, IArtist, MUSIC_STATUS, MUSIC_TYPE } from 'apis/types/business';
+import { formatTime } from 'helpers/time';
+import { PlayMusicStateContext, AudioContext } from 'reducers/playMusic';
+import styles from './style.module.css';
 
 interface IProps {
-  data: IMyMusic[]
-  onDoubleClick: (item: IMyMusic) => void
-  onClear: () => void
+  data: IMyMusic[];
+  onDoubleClick: (item: IMyMusic) => void;
+  onClear: () => void;
 }
 
-const { useContext } = React
+const { useContext } = React;
 
 const List: React.FC<IProps> = ({ data, onDoubleClick, onClear }) => {
-  const state = useContext(PlayMusicStateContext)
-  const audioInfo = useContext(AudioContext)
+  const state = useContext(PlayMusicStateContext);
+  const audioInfo = useContext(AudioContext);
 
   const columns: IColumn<IMyMusic, keyof IMyMusic>[] = [
     {
       key: 'name',
       width: '55%',
       render: (name: string, { id, fee }: IMyMusic) => {
-        const isActive = state.musicId === id
+        const isActive = state.musicId === id;
         return (
           <div className={cn(styles.name, isActive && 'active')}>
             {isActive && (
@@ -37,7 +37,7 @@ const List: React.FC<IProps> = ({ data, onDoubleClick, onClear }) => {
               {fee === MUSIC_TYPE.VIP && <VipIcon />}
             </div>
           </div>
-        )
+        );
       },
     },
     {
@@ -46,7 +46,7 @@ const List: React.FC<IProps> = ({ data, onDoubleClick, onClear }) => {
       render: (artists: IArtist[], { id }: IMyMusic) => {
         return (
           <div className={state.musicId === id ? 'active' : ''}>{artists?.map(({ name }) => name).join(' / ')}</div>
-        )
+        );
       },
     },
     {
@@ -54,7 +54,7 @@ const List: React.FC<IProps> = ({ data, onDoubleClick, onClear }) => {
       width: '15%',
       render: (duration: number) => formatTime(duration),
     },
-  ]
+  ];
 
   return (
     <>
@@ -79,7 +79,7 @@ const List: React.FC<IProps> = ({ data, onDoubleClick, onClear }) => {
         />
       </div>
     </>
-  )
-}
+  );
+};
 
-export default List
+export default List;

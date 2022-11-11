@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client'
+import { gql } from '@apollo/client';
 
 export const getSonglistDetail = gql`
   query GetSonglistDetail($id: String!) {
@@ -33,4 +33,4 @@ export const getSonglistDetail = gql`
       }
     }
   }
-`
+`;

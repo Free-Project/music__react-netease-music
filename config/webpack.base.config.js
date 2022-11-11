@@ -1,14 +1,14 @@
-import path from 'path'
-import webpack from 'webpack'
-import HtmlWebpackPlugin from 'html-webpack-plugin'
-import MiniCssExtractPlugin from 'mini-css-extract-plugin'
+import path from 'path';
+import webpack from 'webpack';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 // import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer'
-import TerserPlugin from 'terser-webpack-plugin'
+import TerserPlugin from 'terser-webpack-plugin';
 
-const rootPath = process.cwd()
+const rootPath = process.cwd();
 
 export default (env, argv) => {
-  const isProd = argv.mode === 'production'
+  const isProd = argv.mode === 'production';
 
   const config = {
     entry: path.resolve(rootPath, 'src/index.tsx'),
@@ -21,9 +21,7 @@ export default (env, argv) => {
     resolve: {
       extensions: ['.tsx', '.ts', '.jsx', '.js'],
       modules: [path.resolve(rootPath, 'src'), 'node_modules'],
-      alias: {
-        '@mui': path.resolve(rootPath, 'node_modules/@uniquemo/mui/esm/components'),
-      },
+      alias: {},
     },
     module: {
       rules: [
@@ -39,26 +37,26 @@ export default (env, argv) => {
                     libraryName: '@blueprintjs/core',
                     transformToDefaultImport: false,
                     customName: (name) => {
-                      const BASE_PATH = `${rootPath}/node_modules/@blueprintjs/core/lib/esm`
+                      const BASE_PATH = `${rootPath}/node_modules/@blueprintjs/core/lib/esm`;
 
                       const PATH_MAP = {
                         button: ['button', 'buttons'],
                         'input-group': ['forms', 'inputGroup'],
                         'menu-item': ['menu', 'menuItem'],
                         toaster: ['toast', 'toaster'],
-                      }
+                      };
 
                       if (name === 'position') {
-                        return `${BASE_PATH}/common/position`
+                        return `${BASE_PATH}/common/position`;
                       }
 
-                      const info = PATH_MAP[name]
+                      const info = PATH_MAP[name];
                       if (info) {
-                        const [folder, filename] = info
-                        return `${BASE_PATH}/components/${folder}/${filename}`
+                        const [folder, filename] = info;
+                        return `${BASE_PATH}/components/${folder}/${filename}`;
                       }
 
-                      return `${BASE_PATH}/components/${name}/${name}`
+                      return `${BASE_PATH}/components/${name}/${name}`;
                     },
                   },
                 ],
@@ -107,6 +105,6 @@ export default (env, argv) => {
         }),
       ],
     },
-  }
-  return config
-}
+  };
+  return config;
+};

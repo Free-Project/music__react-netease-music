@@ -1,6 +1,6 @@
-import { CleanWebpackPlugin } from 'clean-webpack-plugin'
-import MiniCssExtractPlugin from 'mini-css-extract-plugin'
-import CssMinimizerPlugin from 'css-minimizer-webpack-plugin'
+import { CleanWebpackPlugin } from 'clean-webpack-plugin';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
 
 export default {
   devtool: false,
@@ -30,4 +30,4 @@ export default {
   optimization: {
     minimizer: [new CssMinimizerPlugin()],
   },
-}
+};

@@ -1,8 +1,8 @@
-import { IMyMusic, IMusic, ISimpleMusic } from 'apis/types/business'
+import type { IMyMusic, IMusic, ISimpleMusic } from 'apis/types/business';
 
 export const getMusicUrl = (id?: number): string => {
-  return id ? `https://music.163.com/song/media/outer/url?id=${id}.mp3` : ''
-}
+  return id ? `https://music.163.com/song/media/outer/url?id=${id}.mp3` : '';
+};
 
 export const createMusic = ({ id, name, artists, duration, picUrl, ...others }: IMyMusic): IMyMusic => {
   return {
@@ -12,11 +12,11 @@ export const createMusic = ({ id, name, artists, duration, picUrl, ...others }: 
     duration,
     picUrl,
     ...others,
-  }
-}
+  };
+};
 
 export const createMusicWithAlbum = (music: IMusic) => {
-  const { id, name, artists, album, duration, ...others } = music
+  const { id, name, artists, album, duration, ...others } = music;
   return {
     id,
     name,
@@ -24,11 +24,11 @@ export const createMusicWithAlbum = (music: IMusic) => {
     duration,
     picUrl: album.blurPicUrl,
     ...others,
-  }
-}
+  };
+};
 
 export const createMusicFromSimpleMusic = (music: ISimpleMusic): IMyMusic => {
-  const { id, name, al, ar, dt, fee, status } = music
+  const { id, name, al, ar, dt, fee, status } = music;
   return {
     id,
     name,
@@ -38,5 +38,5 @@ export const createMusicFromSimpleMusic = (music: ISimpleMusic): IMyMusic => {
     artists: ar,
     duration: dt,
     album: al,
-  }
-}
+  };
+};

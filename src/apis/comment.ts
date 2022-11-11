@@ -1,4 +1,4 @@
-import axios from 'helpers/axios'
+import axios from 'helpers/axios';
 
 enum COMMENT_TYPE {
   MUSIC = 0,
@@ -10,17 +10,17 @@ enum COMMENT_TYPE {
 }
 
 interface ILikeUnlikeCommentRequest {
-  likeOrUnlike: number
-  type?: COMMENT_TYPE
-  id: number
-  commentId: number
+  likeOrUnlike: number;
+  type?: COMMENT_TYPE;
+  id: number;
+  commentId: number;
 }
 
-type Params = Omit<ILikeUnlikeCommentRequest, 'likeOrUnlike'>
+type Params = Omit<ILikeUnlikeCommentRequest, 'likeOrUnlike'>;
 
-type LikeUnlikeCommentFn = (params: ILikeUnlikeCommentRequest) => Promise<any>
-type LikeCommentFn = (params: Params, callback?: () => void) => Promise<any>
-type UnlikeCommentFn = (params: Params, callback?: () => void) => Promise<any>
+type LikeUnlikeCommentFn = (params: ILikeUnlikeCommentRequest) => Promise<any>;
+type LikeCommentFn = (params: Params, callback?: () => void) => Promise<any>;
+type UnlikeCommentFn = (params: Params, callback?: () => void) => Promise<any>;
 
 const likeUnlikeComment: LikeUnlikeCommentFn = async ({ likeOrUnlike, type, id, commentId }) => {
   const response = await axios({
@@ -31,9 +31,9 @@ const likeUnlikeComment: LikeUnlikeCommentFn = async ({ likeOrUnlike, type, id, 
       t: likeOrUnlike,
       cid: commentId,
     },
-  })
-  return response
-}
+  });
+  return response;
+};
 
 const likeComment: LikeCommentFn = async ({ id, commentId, type = COMMENT_TYPE.MUSIC }) => {
   const response = await likeUnlikeComment({
@@ -41,9 +41,9 @@ const likeComment: LikeCommentFn = async ({ id, commentId, type = COMMENT_TYPE.M
     type,
     id,
     commentId,
-  })
-  return response
-}
+  });
+  return response;
+};
 
 const unlikeComment: UnlikeCommentFn = async ({ id, commentId, type = COMMENT_TYPE.MUSIC }) => {
   const response = await likeUnlikeComment({
@@ -51,12 +51,12 @@ const unlikeComment: UnlikeCommentFn = async ({ id, commentId, type = COMMENT_TY
     type,
     id,
     commentId,
-  })
-  return response
-}
+  });
+  return response;
+};
 
 export default {
   likeUnlikeComment,
   likeComment,
   unlikeComment,
-}
+};

@@ -1,37 +1,37 @@
-import React from 'react'
+import React from 'react';
 
-import Item from './Item'
-import albumApis from 'apis/album'
-import { IAlbum, IArtist, IMusic, IMV } from 'apis/types/business'
-import { ISearchSuggestResponse } from 'apis/types/search'
-import { PlayMusicDispatchContext, ACTIONS } from 'reducers/playMusic'
-import { createMusic } from 'helpers/business'
+import Item from './Item';
+import albumApis from 'apis/album';
+import type { IAlbum, IArtist, IMusic, IMV } from 'apis/types/business';
+import type { ISearchSuggestResponse } from 'apis/types/search';
+import { PlayMusicDispatchContext, ACTIONS } from 'reducers/playMusic';
+import { createMusic } from 'helpers/business';
 
-import styles from './style.module.css'
+import styles from './style.module.css';
 
-const { useContext } = React
+const { useContext } = React;
 
 interface IProps {
-  data: ISearchSuggestResponse
+  data: ISearchSuggestResponse;
 }
 
 const SearchResult: React.FC<IProps> = ({ data }) => {
-  const dispatch = useContext(PlayMusicDispatchContext)
-  const { order } = data
+  const dispatch = useContext(PlayMusicDispatchContext);
+  const { order } = data;
 
   const config: {
-    [key: string]: any
+    [key: string]: any;
   } = {
     songs: {
       title: '单曲',
       icon: 'music',
       renderLabel: (item: IMusic) => `${item.name} - ${item.artists.map(({ name }) => name).join(' / ')}`,
       onItemClick: async (item: IMusic) => {
-        let { picUrl } = item
+        let { picUrl } = item;
 
         if (!picUrl) {
-          const result = await albumApis.getAlbum(item.album.id)
-          picUrl = result?.album.blurPicUrl
+          const result = await albumApis.getAlbum(item.album.id);
+          picUrl = result?.album.blurPicUrl;
         }
 
         dispatch({
@@ -44,7 +44,7 @@ const SearchResult: React.FC<IProps> = ({ data }) => {
               duration: item.duration / 1000,
             }),
           },
-        })
+        });
       },
     },
     albums: {
@@ -62,23 +62,23 @@ const SearchResult: React.FC<IProps> = ({ data }) => {
       icon: 'mobile-video',
       renderLabel: (item: IMV) => `${item.name} - ${item.artistName}`,
     },
-  }
+  };
 
   return (
     <div>
       {order?.map((type) => {
-        const configOfType = config[type]
-        const itemData = data[type]
+        const configOfType = config[type];
+        const itemData = data[type];
 
         if (!configOfType) {
-          return null
+          return null;
         }
 
-        return <Item key={type} {...configOfType} data={itemData} />
+        return <Item key={type} {...configOfType} data={itemData} />;
       })}
       {!order && <div className={styles.empty}>没有结果喔</div>}
     </div>
-  )
-}
+  );
+};
 
-export default SearchResult
+export default SearchResult;

@@ -1,44 +1,42 @@
-import React from 'react'
-import { Spinner } from '@blueprintjs/core'
+import React, { useEffect, useState } from 'react';
+import { Spinner } from '@blueprintjs/core';
 
-import Pagination from 'components/Pagination'
-import HighQuality from './HighQuality'
-import Categories, { DEFAULT_CAT } from './Categories'
-import Songlists from 'components/Songlists'
-import songlistApis from 'apis/songlist'
-import useAsyncFn from 'hooks/useAsyncFn'
-import { PAGE_SIZE, PAGE } from 'constants/pagination'
-import styles from './style.module.css'
-
-const { useEffect, useState } = React
+import Pagination from 'components/Pagination';
+import HighQuality from './HighQuality';
+import Categories, { DEFAULT_CAT } from './Categories';
+import Songlists from 'components/Songlists';
+import songlistApis from 'apis/songlist';
+import useAsyncFn from 'hooks/useAsyncFn';
+import { PAGE_SIZE, PAGE } from 'constants/pagination';
+import styles from './style.module.css';
 
 const Songlist = () => {
-  const [selectedCat, setSelectedCat] = useState(DEFAULT_CAT)
-  const [page, setPage] = useState(PAGE)
-  const [state, getSonglistsFn] = useAsyncFn(songlistApis.getSonglists)
-  const [highQualityState, getHighQualitySonglistFn] = useAsyncFn(songlistApis.getHighQualitySonglist)
-  const [catsState, getSonglistCatsFn] = useAsyncFn(songlistApis.getSonglistCats)
-  const [hotCatsState, getSonglistHotCatsFn] = useAsyncFn(songlistApis.getSonglistHotCats)
+  const [selectedCat, setSelectedCat] = useState(DEFAULT_CAT);
+  const [page, setPage] = useState(PAGE);
+  const [state, getSonglistsFn] = useAsyncFn(songlistApis.getSonglists);
+  const [highQualityState, getHighQualitySonglistFn] = useAsyncFn(songlistApis.getHighQualitySonglist);
+  const [catsState, getSonglistCatsFn] = useAsyncFn(songlistApis.getSonglistCats);
+  const [hotCatsState, getSonglistHotCatsFn] = useAsyncFn(songlistApis.getSonglistHotCats);
 
   useEffect(() => {
-    getSonglistHotCatsFn()
-    getSonglistCatsFn()
-    getSonglistsFn({ cat: selectedCat })
-    getHighQualitySonglistFn(selectedCat)
-  }, [])
+    getSonglistHotCatsFn();
+    getSonglistCatsFn();
+    getSonglistsFn({ cat: selectedCat });
+    getHighQualitySonglistFn(selectedCat);
+  }, []);
 
   const handlePageChange = (page: number) => {
-    const offset = (page - 1) * PAGE_SIZE
-    getSonglistsFn({ cat: selectedCat, offset })
-    setPage(page)
-  }
+    const offset = (page - 1) * PAGE_SIZE;
+    getSonglistsFn({ cat: selectedCat, offset });
+    setPage(page);
+  };
 
   const handleCatSelect = (cat: string) => {
-    getSonglistsFn({ cat, offset: 0 })
-    getHighQualitySonglistFn(cat)
-    setSelectedCat(cat)
-    setPage(PAGE)
-  }
+    getSonglistsFn({ cat, offset: 0 });
+    getHighQualitySonglistFn(cat);
+    setSelectedCat(cat);
+    setPage(PAGE);
+  };
 
   return (
     <div className={styles.root}>
@@ -68,7 +66,7 @@ const Songlist = () => {
         )}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Songlist
+export default Songlist;

@@ -1,10 +1,10 @@
-import React from 'react'
+import React from 'react';
 
-import Header from './Header'
-import Sidebar from './Sidebar'
-import Footer from './Footer'
+import Header from './Header';
+import Sidebar from './Sidebar';
+import Footer from './Footer';
 
-import styles from './style.module.css'
+import styles from './style.module.css';
 
 const Layout: React.FC = ({ children }) => {
   return (
@@ -16,7 +16,7 @@ const Layout: React.FC = ({ children }) => {
       </div>
       <Footer />
     </div>
-  )
-}
+  );
+};
 
-export default Layout
+export default Layout;

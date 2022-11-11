@@ -1,7 +1,7 @@
-import axios, { requestWithoutErrorToast } from 'helpers/axios'
-import { ILoginRequest, ILoginResult } from './types/auth'
+import axios, { requestWithoutErrorToast } from 'helpers/axios';
+import type { ILoginRequest, ILoginResult } from './types/auth';
 
-type LoginFn = (params: ILoginRequest) => Promise<ILoginResult>
+type LoginFn = (params: ILoginRequest) => Promise<ILoginResult>;
 
 const login: LoginFn = ({ phone, password }) => {
   return requestWithoutErrorToast({
@@ -10,17 +10,17 @@ const login: LoginFn = ({ phone, password }) => {
       phone,
       password,
     },
-  })
-}
+  });
+};
 
 const logout = () => {
   return axios({
     method: 'post',
     url: '/logout',
-  })
-}
+  });
+};
 
 export default {
   login,
   logout,
-}
+};

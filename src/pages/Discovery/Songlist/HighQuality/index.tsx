@@ -1,10 +1,10 @@
-import React from 'react'
-import { ISonglist } from 'apis/types/business'
+import React from 'react';
+import { ISonglist } from 'apis/types/business';
 
-import styles from './style.module.css'
+import styles from './style.module.css';
 
 interface IProps {
-  data?: ISonglist
+  data?: ISonglist;
 }
 
 const HighQuality: React.FC<IProps> = ({ data }) => {
@@ -23,7 +23,7 @@ const HighQuality: React.FC<IProps> = ({ data }) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default HighQuality
+export default HighQuality;
