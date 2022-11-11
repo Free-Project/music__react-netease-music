@@ -1,13 +1,22 @@
 import axios from 'helpers/axios';
-import type { IGetPersonalizedSonglistRequest, IMusic, IMV, IBanner } from './types/personalized';
+import type {
+  IGetPersonalizedSonglistRequest,
+  IMusic,
+  IMV,
+  IBanner,
+} from './types/personalized';
 import type { ISonglist } from './types/business';
 
-type GetPersonalizedSonglistFn = (params: IGetPersonalizedSonglistRequest) => Promise<ISonglist[]>;
+type GetPersonalizedSonglistFn = (
+  params: IGetPersonalizedSonglistRequest,
+) => Promise<ISonglist[]>;
 type GetPersonalizedNewMusicFn = () => Promise<IMusic[]>;
 type GetPersonalizedMVFn = () => Promise<IMV[]>;
 type GetBannerFn = () => Promise<IBanner[]>;
 
-const getPersonalizedSonglist: GetPersonalizedSonglistFn = async ({ limit }) => {
+const getPersonalizedSonglist: GetPersonalizedSonglistFn = async ({
+  limit,
+}) => {
   const response = await axios({
     url: '/personalized',
     params: {

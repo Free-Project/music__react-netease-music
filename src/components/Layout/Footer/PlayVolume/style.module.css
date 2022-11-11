@@ -10,12 +10,13 @@
 .progress {
   width: 130px;
   margin-left: 3px;
-  border-bottom: 1px solid tipsColor;
+  height: 3px;
+  background: tipsColor;
   position: relative;
 }
 
 .bar {
   position: absolute;
-  top: -1px;
+  top: 0;
   left: 0;
 }

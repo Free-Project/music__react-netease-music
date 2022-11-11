@@ -1,5 +1,5 @@
 import React from 'react';
-import { Icon } from '@blueprintjs/core';
+import { IconSearch } from '@douyinfe/semi-icons';
 import { useHistory } from 'react-router-dom';
 import cn from 'classnames';
 
@@ -49,7 +49,9 @@ const Searcher = () => {
     inputRef.current?.blur();
   };
 
-  const handleInputKeyPress = async (event: React.KeyboardEvent<HTMLInputElement>) => {
+  const handleInputKeyPress = async (
+    event: React.KeyboardEvent<HTMLInputElement>,
+  ) => {
     if (event.key === 'Enter') {
       if (!keyword.trim()) {
         return;
@@ -64,12 +66,15 @@ const Searcher = () => {
   };
 
   // 注意：这里需要使用useMemo，保证每次获取的都是同一个debounceInputChange函数。
-  const debounceInputChange = useMemo(() => debounce(handleInputChange, 500), []);
+  const debounceInputChange = useMemo(
+    () => debounce(handleInputChange, 500),
+    [],
+  );
 
   return (
     <div className={styles.root} ref={(ref) => (searchRef.current = ref)}>
       <div className={styles.searcher}>
-        <Icon icon='search' />
+        <IconSearch />
         <input
           ref={(ref) => (inputRef.current = ref)}
           placeholder='搜索'
@@ -88,8 +93,16 @@ const Searcher = () => {
           <SearchResult data={searchResult} />
         ) : (
           <div>
-            <Words title='热门搜索' words={state.value?.map(({ first }) => first)} onWordClick={handleWordClick} />
-            <Words title='搜索历史' words={searchHistoryLocalStorage.getItem()} onWordClick={handleWordClick} />
+            <Words
+              title='热门搜索'
+              words={state.value?.map(({ first }) => first)}
+              onWordClick={handleWordClick}
+            />
+            <Words
+              title='搜索历史'
+              words={searchHistoryLocalStorage.getItem()}
+              onWordClick={handleWordClick}
+            />
           </div>
         )}
       </div>

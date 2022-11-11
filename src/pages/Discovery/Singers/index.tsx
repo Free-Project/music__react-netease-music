@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Spinner } from '@blueprintjs/core';
+import { Spin } from '@douyinfe/semi-ui';
 import SingerCategory from 'components/SingerCategory';
 import useAsyncFn from 'hooks/useAsyncFn';
 import singerListApis from 'apis/singerlist';
@@ -40,7 +40,7 @@ const Singers = () => {
           }}
         />
         {state.loading ? (
-          <Spinner className='spinner' />
+          <Spin />
         ) : (
           <ul>
             {(singerList || []).map((item) => (

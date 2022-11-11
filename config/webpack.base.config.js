@@ -29,41 +29,7 @@ export default (env, argv) => {
           test: /\.(t|j)sx?$/,
           use: {
             loader: 'babel-loader',
-            options: {
-              plugins: [
-                [
-                  'import',
-                  {
-                    libraryName: '@blueprintjs/core',
-                    transformToDefaultImport: false,
-                    customName: (name) => {
-                      const BASE_PATH = `${rootPath}/node_modules/@blueprintjs/core/lib/esm`;
-
-                      const PATH_MAP = {
-                        button: ['button', 'buttons'],
-                        'input-group': ['forms', 'inputGroup'],
-                        'menu-item': ['menu', 'menuItem'],
-                        toaster: ['toast', 'toaster'],
-                      };
-
-                      if (name === 'position') {
-                        return `${BASE_PATH}/common/position`;
-                      }
-
-                      const info = PATH_MAP[name];
-                      if (info) {
-                        const [folder, filename] = info;
-                        return `${BASE_PATH}/components/${folder}/${filename}`;
-                      }
-
-                      return `${BASE_PATH}/components/${name}/${name}`;
-                    },
-                  },
-                ],
-              ],
-            },
           },
-          exclude: /node_modules/,
         },
         {
           test: /\.css$/,
@@ -85,7 +51,7 @@ export default (env, argv) => {
     },
     plugins: [
       new webpack.DefinePlugin({
-        'process.env': '{}', // 临时修复@blueprintjs报错“process is not defined”
+        'process.env': '{}',
         __LOCALHOST__: process.env.LOCAL === 'true',
       }),
       new HtmlWebpackPlugin({

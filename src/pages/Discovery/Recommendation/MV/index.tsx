@@ -1,5 +1,5 @@
 import React from 'react';
-import { Spinner } from '@blueprintjs/core';
+import { Spin } from '@douyinfe/semi-ui';
 
 import LinkTitle from 'components/LinkTitle';
 import MVItem from './MVItem';
@@ -13,7 +13,9 @@ import styles from './style.module.css';
 const { useEffect } = React;
 
 const MV = () => {
-  const [state, getPersonalizedMVFn] = useAsyncFn(personalizedApis.getPersonalizedMV);
+  const [state, getPersonalizedMVFn] = useAsyncFn(
+    personalizedApis.getPersonalizedMV,
+  );
   const { value: mvs = [], loading: isGettingMV } = state;
 
   useEffect(() => {
@@ -24,7 +26,7 @@ const MV = () => {
     <div className={styles.root}>
       <LinkTitle title='推荐MV' route={ROUTES.MV} />
       {isGettingMV ? (
-        <Spinner />
+        <Spin />
       ) : (
         <div className={styles.content}>
           {mvs.map(({ name, artistName, playCount, picUrl, copywriter }) => {

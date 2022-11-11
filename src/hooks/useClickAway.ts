@@ -3,7 +3,8 @@ import { RefObject, useEffect, useRef } from 'react';
 const defaultEvents = ['mousedown', 'touchstart'];
 
 export const on = (obj: any, ...args: any[]) => obj.addEventListener(...args);
-export const off = (obj: any, ...args: any[]) => obj.removeEventListener(...args);
+export const off = (obj: any, ...args: any[]) =>
+  obj.removeEventListener(...args);
 
 const useClickAway = <E extends Event = Event>(
   ref: RefObject<HTMLElement | null>,

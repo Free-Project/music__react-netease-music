@@ -1,4 +1,5 @@
 import React from 'react';
+import { IconUser, IconSong, IconDisc, IconVideo } from '@douyinfe/semi-icons';
 
 import Item from './Item';
 import albumApis from 'apis/album';
@@ -24,8 +25,9 @@ const SearchResult: React.FC<IProps> = ({ data }) => {
   } = {
     songs: {
       title: '单曲',
-      icon: 'music',
-      renderLabel: (item: IMusic) => `${item.name} - ${item.artists.map(({ name }) => name).join(' / ')}`,
+      icon: <IconSong />,
+      renderLabel: (item: IMusic) =>
+        `${item.name} - ${item.artists.map(({ name }) => name).join(' / ')}`,
       onItemClick: async (item: IMusic) => {
         let { picUrl } = item;
 
@@ -49,17 +51,17 @@ const SearchResult: React.FC<IProps> = ({ data }) => {
     },
     albums: {
       title: '专辑',
-      icon: 'headset',
+      icon: <IconDisc />,
       renderLabel: (item: IAlbum) => `${item.name} - ${item?.artist?.name}`,
     },
     artists: {
       title: '歌手',
-      icon: 'person',
+      icon: <IconUser />,
       renderLabel: (item: IArtist) => `${item.name}`,
     },
     mvs: {
       title: '视频',
-      icon: 'mobile-video',
+      icon: <IconVideo />,
       renderLabel: (item: IMV) => `${item.name} - ${item.artistName}`,
     },
   };

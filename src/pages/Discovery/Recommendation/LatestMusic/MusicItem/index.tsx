@@ -1,12 +1,17 @@
 import React from 'react';
-import { Icon } from '@blueprintjs/core';
+import { IconVolume1, IconVolume2 } from '@douyinfe/semi-icons';
 import cn from 'classnames';
 
 import PlayIcon from 'components/PlayIcon';
 import Artists from 'components/Artists';
 import { IMusicSong } from 'apis/types/personalized';
 
-import { PlayMusicStateContext, PlayMusicDispatchContext, ACTIONS, AudioContext } from 'reducers/playMusic';
+import {
+  PlayMusicStateContext,
+  PlayMusicDispatchContext,
+  ACTIONS,
+  AudioContext,
+} from 'reducers/playMusic';
 import { createMusic } from 'helpers/business';
 import styles from './style.module.css';
 
@@ -20,7 +25,14 @@ interface IProps {
 
 const { useContext } = React;
 
-const MusicItem: React.FC<IProps> = ({ id, name, picUrl, song, index, ...others }) => {
+const MusicItem: React.FC<IProps> = ({
+  id,
+  name,
+  picUrl,
+  song,
+  index,
+  ...others
+}) => {
   const audioInfo = useContext(AudioContext);
   const state = useContext(PlayMusicStateContext);
   const dispatch = useContext(PlayMusicDispatchContext);
@@ -47,17 +59,25 @@ const MusicItem: React.FC<IProps> = ({ id, name, picUrl, song, index, ...others 
   const isMusicActive = state.musicId === id;
 
   return (
-    <div className={cn(styles.root, hasBorderBottom && styles.borderBottom, isMusicActive && styles.active)}>
+    <div
+      className={cn(
+        styles.root,
+        hasBorderBottom && styles.borderBottom,
+        isMusicActive && styles.active,
+      )}
+    >
       <div className={styles.pic} onClick={() => playMusic(id)}>
         <img src={`${picUrl}?param=60y60`} loading='lazy' />
         <PlayIcon className={styles.playIcon} />
       </div>
       {isMusicActive ? (
         <div className={styles.isPlaying}>
-          <Icon icon={audioInfo?.state?.paused ? 'volume-off' : 'volume-up'} />
+          {audioInfo?.state?.paused ? <IconVolume1 /> : <IconVolume2 />}
         </div>
       ) : (
-        <div className={styles.order}>{index < 9 ? `0${index + 1}` : index + 1}</div>
+        <div className={styles.order}>
+          {index < 9 ? `0${index + 1}` : index + 1}
+        </div>
       )}
       <div className={styles.info}>
         <div className={styles.name}>{name}</div>

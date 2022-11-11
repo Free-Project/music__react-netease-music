@@ -1,8 +1,8 @@
 # React Netease Music
-React Netease Music——一个基于React、TypeScript的高仿网易云mac客户端播放器。
+React Netease Music——一个基于React、TypeScript网易云音乐。
 
-## 项目体验地址
-[高仿网易云音乐播放器——音为爱呀😍](http://www.uniquemo.cn/discovery)
+## Demo
+[网易云音乐😍](https://github.com/free-project/music__react-netease-music)
 
 ## 功能列表
 - [x] 登录/登出（目前仅支持手机密码登录）
@@ -38,43 +38,21 @@ React Netease Music——一个基于React、TypeScript的高仿网易云mac客�
 - [ ] 创建/编辑/删除歌单
 - [ ] 私信/@我/评论等通知功能
 - [ ] 主题换肤
-- [ ] ......看心情添加功能😂
-
-注意：部分歌曲可能由于版权问题无法播放喔。
 
 ## 技术栈
 - React，使用react hook做状态管理，没有使用额外的数据管理库。
 - TypeScript，用TypeScript确实可以提高效率😃（容易发现错误）。
 - Graphql，使用@apollo/client优化部分页面性能。
-- @blueprintjs组件库，主要使用其中的Icon、Dialog、Toast、Spinner等。
 - CSS Modules。
 - Webpack。
 - Eslint做代码检查。
 
-## API接口
+感谢 https://github.com/uniquemo/react-netease-music
+
+## API
 - [NeteaseCloudMusicApi](https://binaryify.github.io/NeteaseCloudMusicApi)
-- [Express Graphql Server](https://github.com/uniquemo/express-graphql-server)
 
-## 播放器的相关截图
-![01_个性推荐页](./resources/01_个性推荐页.png)
-
-![02_每日歌曲推荐](./resources/02_每日歌曲推荐.png)
-
-![03_全部歌单](./resources/03_全部歌单.png)
-
-![04_最新音乐页](./resources/04_最新音乐页.png)
-
-![05_歌单详情页](./resources/05_歌单详情页.png)
-
-![06_音乐播放详情](./resources/06_音乐播放详情.png)
-
-![07_播放记录功能](./resources/07_播放记录功能.png)
-
-![08_搜索功能](./resources/08_搜索功能.png)
-
-![09_搜索结果页](./resources/09_搜索结果页.png)
-
-## 项目启动
+## Start
 - 首先将上面👆提到的API接口部分，两个API服务代码拉到本地，并启动对应的服务；
 - [安装`pnpm`包管理工具](https://pnpm.io/installation)；
 - 然后拉取本仓库代码，并执行以下命令：

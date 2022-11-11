@@ -27,7 +27,11 @@ class Message {
   loading() {
     return this._message('loading', arguments);
   }
-  config({ top = this._default.top, duration = this._default.duration, singleton = this._default.singleton }) {
+  config({
+    top = this._default.top,
+    duration = this._default.duration,
+    singleton = this._default.singleton,
+  }) {
     this._default = {
       top,
       duration,
@@ -176,7 +180,8 @@ class Message {
     const svgStr = `<svg class="${this._prefixCls}btn" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
     </svg>`;
-    const closBtn = new DOMParser().parseFromString(svgStr, 'text/html').body.childNodes[0];
+    const closBtn = new DOMParser().parseFromString(svgStr, 'text/html').body
+      .childNodes[0];
     closBtn.onclick = () => {
       removeTimer && clearTimeout(removeTimer);
       remove();

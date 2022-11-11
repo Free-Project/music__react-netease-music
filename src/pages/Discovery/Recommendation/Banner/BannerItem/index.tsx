@@ -11,7 +11,12 @@ interface IProps {
   onClick?: () => void;
 }
 
-const BannerItem: React.FC<IProps> = ({ typeTitle, imageUrl, className, onClick = noop }) => {
+const BannerItem: React.FC<IProps> = ({
+  typeTitle,
+  imageUrl,
+  className,
+  onClick = noop,
+}) => {
   return (
     <div className={cn(styles.root, className)} onClick={onClick}>
       <img src={imageUrl} loading='lazy' />

@@ -1,10 +1,15 @@
 import React from 'react';
-import { Icon } from '@blueprintjs/core';
+import { IconPlay, IconPause, IconDeleteStroked } from '@douyinfe/semi-icons';
 import cn from 'classnames';
 
 import Table, { IColumn } from 'components/Table';
 import VipIcon from 'components/VipIcon';
-import { IMyMusic, IArtist, MUSIC_STATUS, MUSIC_TYPE } from 'apis/types/business';
+import {
+  IMyMusic,
+  IArtist,
+  MUSIC_STATUS,
+  MUSIC_TYPE,
+} from 'apis/types/business';
 import { formatTime } from 'helpers/time';
 import { PlayMusicStateContext, AudioContext } from 'reducers/playMusic';
 import styles from './style.module.css';
@@ -29,9 +34,8 @@ const List: React.FC<IProps> = ({ data, onDoubleClick, onClear }) => {
         const isActive = state.musicId === id;
         return (
           <div className={cn(styles.name, isActive && 'active')}>
-            {isActive && (
-              <Icon className={styles.icon} iconSize={13} icon={audioInfo.state?.paused ? 'pause' : 'play'} />
-            )}
+            {isActive &&
+              (audioInfo.state?.paused ? <IconPause /> : <IconPlay />)}
             <div className={styles.text}>
               <span>{name}</span>
               {fee === MUSIC_TYPE.VIP && <VipIcon />}
@@ -45,7 +49,9 @@ const List: React.FC<IProps> = ({ data, onDoubleClick, onClear }) => {
       width: '30%',
       render: (artists: IArtist[], { id }: IMyMusic) => {
         return (
-          <div className={state.musicId === id ? 'active' : ''}>{artists?.map(({ name }) => name).join(' / ')}</div>
+          <div className={state.musicId === id ? 'active' : ''}>
+            {artists?.map(({ name }) => name).join(' / ')}
+          </div>
         );
       },
     },
@@ -63,7 +69,7 @@ const List: React.FC<IProps> = ({ data, onDoubleClick, onClear }) => {
         {data.length > 0 && (
           <div className={styles.actions}>
             <div onClick={onClear}>
-              <Icon icon='trash' iconSize={15} />
+              <IconDeleteStroked />
               {' 清空'}
             </div>
           </div>

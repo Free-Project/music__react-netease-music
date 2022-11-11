@@ -1,7 +1,7 @@
 {
   "name": "react-netease-music",
-  "version": "1.2.3",
-  "description": "基于React、TypeScript的高仿网易云mac客户端播放器",
+  "version": "1.0.0",
+  "description": "基于React、TypeScript的网易云音乐",
   "main": "index.js",
   "scripts": {
     "dev:local": "LOCAL=true webpack serve --mode=development --config config/webpack.config.babel.js",
@@ -13,15 +13,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/uniquemo/react-netease-music.git"
+    "url": "git+https://github.com/free-project/music__react-netease-music.git"
   },
   "keywords": [
     "react",
     "react hook",
     "music",
     "player",
-    "lyric",
-    "banner",
     "typescript",
     "eslint",
     "网易云",
@@ -31,9 +29,9 @@
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/uniquemo/react-netease-music/issues"
+    "url": "https://github.com/free-project/music__react-netease-music/issues"
   },
-  "homepage": "https://github.com/uniquemo/react-netease-music#readme",
+  "homepage": "https://github.com/free-project/music__react-netease-music#readme",
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"
@@ -93,8 +91,7 @@
   },
   "dependencies": {
     "@apollo/client": "^3.3.20",
-    "@blueprintjs/core": "^3.26.0",
-    "@blueprintjs/popover2": "^1.4.1",
+    "@douyinfe/semi-ui": "^2.23.1",
     "axios": "^0.25.0",
     "classnames": "^2.2.6",
     "graphql": "^15.5.0",

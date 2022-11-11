@@ -11,13 +11,20 @@ import playMusicReducer, {
   AudioContext,
   ACTIONS,
 } from 'reducers/playMusic';
-import logReducer, { initialState as logInitialState, LogStateContext, LogDispatchContext } from 'reducers/log';
+import logReducer, {
+  initialState as logInitialState,
+  LogStateContext,
+  LogDispatchContext,
+} from 'reducers/log';
 import type { IMyMusic } from 'apis/types/business';
 import ROUTES from 'constants/routes';
 
 const Discovery = lazy(() => import('./Discovery'));
 const Videos = lazy(() => import('./Videos'));
 const Search = lazy(() => import('./Search'));
+const Download = lazy(() => import('./Download'));
+const Cloud = lazy(() => import('./Cloud'));
+const Collection = lazy(() => import('./Collection'));
 const SonglistDetail = lazy(() => import('./SonglistDetail'));
 
 const App = () => {
@@ -100,8 +107,15 @@ const App = () => {
                     <Switch>
                       <Route path={ROUTES.DISCOVERY} component={Discovery} />
                       <Route path={ROUTES.VIDEOS} component={Videos} />
+                      <Route path={ROUTES.DOWNLOAD} component={Download} />
+                      <Route path={ROUTES.CLOUD} component={Cloud} />
+                      <Route path={ROUTES.COLLECTION} component={Collection} />
                       <Route exact path={ROUTES.SEARCH} component={Search} />
-                      <Route exact path={ROUTES.SONG_LIST_DETAIL} component={SonglistDetail} />
+                      <Route
+                        exact
+                        path={ROUTES.SONG_LIST_DETAIL}
+                        component={SonglistDetail}
+                      />
                       <Redirect from={ROUTES.ROOT} to={ROUTES.DEFAULT_ROUTE} />
                     </Switch>
                   </Suspense>

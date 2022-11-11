@@ -29,12 +29,18 @@ const Songlists: React.FC<IProps> = ({ data }) => {
     <div className={styles.root}>
       {data.map(({ name, playCount, coverImgUrl, id }) => {
         return (
-          <div key={id} className={styles.item} onClick={() => handleItemClick(id)}>
+          <div
+            key={id}
+            className={styles.item}
+            onClick={() => handleItemClick(id)}
+          >
             <div className='smallCover'>
               <img src={`${coverImgUrl}?param=55y55`} loading='lazy' />
             </div>
             <div className={styles.info}>
-              <div className={cn(styles.name, 'singleLineEllipsis')}>{name}</div>
+              <div className={cn(styles.name, 'singleLineEllipsis')}>
+                {name}
+              </div>
               <PlayCount count={playCount} className={styles.playCount} />
             </div>
           </div>

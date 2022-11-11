@@ -1,5 +1,5 @@
 import React from 'react';
-import { Icon } from '@blueprintjs/core';
+import { IconChevronLeft, IconChevronRight } from '@douyinfe/semi-icons';
 import cn from 'classnames';
 
 import { noop } from 'helpers/fn';
@@ -20,7 +20,12 @@ const MAX_SHOW_PAGE_COUNT = 10;
 const PAGE_LEFT_BORDER = 5;
 const PAGE_SCALE = 3;
 
-const Pagination: React.FC<IProps> = ({ total = TOTAL, page = PAGE, pageSize = PAGE_SIZE, onPageChange = noop }) => {
+const Pagination: React.FC<IProps> = ({
+  total = TOTAL,
+  page = PAGE,
+  pageSize = PAGE_SIZE,
+  onPageChange = noop,
+}) => {
   const [currentPage, setCurrentPage] = useState(page);
   const pageCount = Math.ceil(total / pageSize);
 
@@ -51,7 +56,11 @@ const Pagination: React.FC<IProps> = ({ total = TOTAL, page = PAGE, pageSize = P
     return (
       <div
         key={page}
-        className={cn(styles.item, currentPage === page && styles.active, !isNumber && styles.dotItem)}
+        className={cn(
+          styles.item,
+          currentPage === page && styles.active,
+          !isNumber && styles.dotItem,
+        )}
         onClick={!isNumber ? noop : () => handleItemClick(page as number)}
       >
         {isNumber ? page : '...'}
@@ -104,12 +113,19 @@ const Pagination: React.FC<IProps> = ({ total = TOTAL, page = PAGE, pageSize = P
         lastPage,
       ]);
     } else if (currentPage >= PAGE_RIGHT_BORDER) {
-      result = createPages([firstPage, leftDot, createContinuousPageItems(PAGE_RIGHT_BORDER - PAGE_SCALE, pageCount)]);
+      result = createPages([
+        firstPage,
+        leftDot,
+        createContinuousPageItems(PAGE_RIGHT_BORDER - PAGE_SCALE, pageCount),
+      ]);
     } else {
       result = createPages([
         firstPage,
         leftDot,
-        createContinuousPageItems(currentPage - PAGE_SCALE, currentPage + PAGE_SCALE),
+        createContinuousPageItems(
+          currentPage - PAGE_SCALE,
+          currentPage + PAGE_SCALE,
+        ),
         rightDot,
         lastPage,
       ]);
@@ -124,12 +140,18 @@ const Pagination: React.FC<IProps> = ({ total = TOTAL, page = PAGE, pageSize = P
 
   return (
     <div className={styles.root}>
-      <div className={cn(styles.item, isFirstPage && styles.disabled)} onClick={handlePrev}>
-        <Icon icon='chevron-left' />
+      <div
+        className={cn(styles.item, isFirstPage && styles.disabled)}
+        onClick={handlePrev}
+      >
+        <IconChevronLeft />
       </div>
       <div className={styles.pages}>{renderPages()}</div>
-      <div className={cn(styles.item, isLastPage && styles.disabled)} onClick={handleNext}>
-        <Icon icon='chevron-right' />
+      <div
+        className={cn(styles.item, isLastPage && styles.disabled)}
+        onClick={handleNext}
+      >
+        <IconChevronRight />
       </div>
     </div>
   );

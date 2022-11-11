@@ -1,6 +1,9 @@
 import React from 'react';
 import { IMyMusic } from 'apis/types/business';
-import { HTMLMediaState, HTMLMediaControls } from 'hooks/utils/createHTMLMediaHook';
+import {
+  HTMLMediaState,
+  HTMLMediaControls,
+} from 'hooks/utils/createHTMLMediaHook';
 import { getMusicUrl } from 'helpers/business';
 import {
   MODE,
@@ -111,5 +114,7 @@ export interface IAudioContext {
 
 // Context
 export const PlayMusicStateContext = React.createContext<IState>(initialState);
-export const PlayMusicDispatchContext = React.createContext<React.Dispatch<IAction>>(() => {});
+export const PlayMusicDispatchContext = React.createContext<
+  React.Dispatch<IAction>
+>(() => {});
 export const AudioContext = React.createContext<IAudioContext>({});

@@ -1,6 +1,11 @@
 import axios from 'helpers/axios';
 import { createMusicFromSimpleMusic } from 'helpers/business';
-import type { IMyMusic, IMusic, ISonglist, ISimpleMusic } from 'apis/types/business';
+import type {
+  IMyMusic,
+  IMusic,
+  ISonglist,
+  ISimpleMusic,
+} from 'apis/types/business';
 import type { IComment } from 'apis/types/comment';
 
 export enum SONG_TYPE {
@@ -34,7 +39,9 @@ type GetRecommendSongsFn = () => Promise<IMusic[]>;
 type GetSimiSonglistFn = (params: IParams) => Promise<ISonglist[]>;
 type GetgetSimiSongFn = (params: IParams) => Promise<IMusic[]>;
 type GetCommentsFn = (params: IParams) => Promise<IGetCommentsResponse>;
-type GetgetLyricFn = (id: number) => Promise<{ lyric: string; offset: number; version: number }>;
+type GetgetLyricFn = (
+  id: number,
+) => Promise<{ lyric: string; offset: number; version: number }>;
 
 const getSongDetail: GetSongDetailFn = async (ids) => {
   const response = await axios({
@@ -44,7 +51,9 @@ const getSongDetail: GetSongDetailFn = async (ids) => {
     },
   });
 
-  return response?.songs.map((item: ISimpleMusic) => createMusicFromSimpleMusic({ ...item, status: (item as any).st }));
+  return response?.songs.map((item: ISimpleMusic) =>
+    createMusicFromSimpleMusic({ ...item, status: (item as any).st }),
+  );
 };
 
 const getTopSongs: GetTopSongsFn = async (type = SONG_TYPE.ALL) => {
@@ -66,7 +75,11 @@ const getRecommendSongs: GetRecommendSongsFn = async () => {
     },
   });
 
-  return response.data?.dailySongs?.map((item: ISimpleMusic) => createMusicFromSimpleMusic(item)) || [];
+  return (
+    response.data?.dailySongs?.map((item: ISimpleMusic) =>
+      createMusicFromSimpleMusic(item),
+    ) || []
+  );
 };
 
 const getSimiSonglist: GetSimiSonglistFn = async ({ id, offset, limit }) => {

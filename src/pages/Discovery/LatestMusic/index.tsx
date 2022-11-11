@@ -1,5 +1,5 @@
 import React from 'react';
-import { Spinner } from '@blueprintjs/core';
+import { Spin } from '@douyinfe/semi-ui';
 import cn from 'classnames';
 
 import Content from './Content';
@@ -74,7 +74,10 @@ const LatestMusic = () => {
             return (
               <div
                 key={type}
-                className={cn(styles.tab, type === selectedType && styles.active)}
+                className={cn(
+                  styles.tab,
+                  type === selectedType && styles.active,
+                )}
                 onClick={() => handleTypeChange(type)}
               >
                 {label}
@@ -92,7 +95,7 @@ const LatestMusic = () => {
 
       <div className={styles.content}>
         {state.loading ? (
-          <Spinner className='spinner' />
+          <Spin />
         ) : (
           <Content data={state.value} onDoubleClick={() => playAll(false)} />
         )}

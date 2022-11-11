@@ -1,5 +1,5 @@
 import React from 'react';
-import { Icon } from '@blueprintjs/core';
+import { IconVolume2 } from '@douyinfe/semi-icons';
 
 import ProgressBar from 'components/ProgressBar';
 import { AudioContext } from 'reducers/playMusic';
@@ -25,9 +25,13 @@ const PlayVolume = () => {
 
   return (
     <div className={styles.root}>
-      <Icon icon='volume-off' />
+      <IconVolume2 />
       <div className={styles.progress}>
-        <ProgressBar className={styles.bar} originDonePercent={originDonePercent} onBarClick={handleBarClick} />
+        <ProgressBar
+          className={styles.bar}
+          originDonePercent={originDonePercent}
+          onBarClick={handleBarClick}
+        />
       </div>
     </div>
   );

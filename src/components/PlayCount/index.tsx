@@ -1,5 +1,5 @@
 import React from 'react';
-import { Icon } from '@blueprintjs/core';
+import { IconPlay } from '@douyinfe/semi-icons';
 import cn from 'classnames';
 
 import { formatNum } from 'helpers/num';
@@ -13,7 +13,7 @@ interface IProps {
 const PlayCount: React.FC<IProps> = ({ count, className }) => {
   return (
     <div className={cn(styles.root, className)}>
-      <Icon icon='play' />
+      <IconPlay />
       {formatNum(count)}
     </div>
   );

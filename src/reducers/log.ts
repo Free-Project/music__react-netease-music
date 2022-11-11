@@ -52,4 +52,6 @@ const logReducer = (state: IState, action: IAction) => {
 export default logReducer;
 
 export const LogStateContext = React.createContext<IState>(initialState);
-export const LogDispatchContext = React.createContext<React.Dispatch<IAction>>(() => {});
+export const LogDispatchContext = React.createContext<React.Dispatch<IAction>>(
+  () => {},
+);

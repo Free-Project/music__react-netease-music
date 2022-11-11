@@ -44,7 +44,7 @@
 
   .name {
     color: rgb(69, 69, 69);
-    cursor: default;
+    cursor: pointer;
   }
 }
 

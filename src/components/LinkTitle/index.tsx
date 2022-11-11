@@ -1,6 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import { Icon } from '@blueprintjs/core';
+import { IconChevronRight } from '@douyinfe/semi-icons';
 
 import styles from './style.module.css';
 
@@ -19,7 +19,7 @@ const LinkTitle: React.FC<IProps> = ({ title, route }) => {
   return (
     <div onClick={handleClick} className={styles.root}>
       {title}
-      <Icon icon='chevron-right' />
+      <IconChevronRight />
     </div>
   );
 };

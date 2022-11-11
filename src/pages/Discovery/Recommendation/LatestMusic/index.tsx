@@ -1,5 +1,5 @@
 import React from 'react';
-import { Spinner } from '@blueprintjs/core';
+import { Spin } from '@douyinfe/semi-ui';
 
 import LinkTitle from 'components/LinkTitle';
 import MusicItem from './MusicItem';
@@ -13,7 +13,9 @@ import styles from './style.module.css';
 const { useEffect } = React;
 
 const LatestMusic = () => {
-  const [state, getPersonalizedNewMusicFn] = useAsyncFn(personalizedApis.getPersonalizedNewMusic);
+  const [state, getPersonalizedNewMusicFn] = useAsyncFn(
+    personalizedApis.getPersonalizedNewMusic,
+  );
   const { value: music = [], loading } = state;
 
   useEffect(() => {
@@ -24,18 +26,38 @@ const LatestMusic = () => {
     <div className={styles.root}>
       <LinkTitle title='最新音乐' route={ROUTES.LATEST_MUSIC} />
       {loading ? (
-        <Spinner />
+        <Spin />
       ) : (
         <div className={styles.content}>
           <div className={styles.block}>
-            {music.slice(0, 5).map(({ id, name, picUrl, song, ...others }, index) => (
-              <MusicItem key={name} index={index} id={id} name={name} picUrl={picUrl} song={song} {...others} />
-            ))}
+            {music
+              .slice(0, 5)
+              .map(({ id, name, picUrl, song, ...others }, index) => (
+                <MusicItem
+                  key={name}
+                  index={index}
+                  id={id}
+                  name={name}
+                  picUrl={picUrl}
+                  song={song}
+                  {...others}
+                />
+              ))}
           </div>
           <div className={styles.block}>
-            {music.slice(5, 10).map(({ id, name, picUrl, song, ...others }, index) => (
-              <MusicItem key={name} index={index + 5} id={id} name={name} picUrl={picUrl} song={song} {...others} />
-            ))}
+            {music
+              .slice(5, 10)
+              .map(({ id, name, picUrl, song, ...others }, index) => (
+                <MusicItem
+                  key={name}
+                  index={index + 5}
+                  id={id}
+                  name={name}
+                  picUrl={picUrl}
+                  song={song}
+                  {...others}
+                />
+              ))}
           </div>
         </div>
       )}

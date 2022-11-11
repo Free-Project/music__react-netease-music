@@ -1,15 +1,28 @@
 import axios from 'helpers/axios';
 import type { ISonglist } from './types/business';
-import type { IGetSonglistsRequest, IGetSonglistCatsResponse, ICategory } from './types/songlist';
+import type {
+  IGetSonglistsRequest,
+  IGetSonglistCatsResponse,
+  ICategory,
+} from './types/songlist';
 import { PAGE_SIZE } from 'constants/pagination';
 
-type GetSonglistsFn = (params: IGetSonglistsRequest) => Promise<{ playlists: ISonglist[]; total: number }>;
+type GetSonglistsFn = (
+  params: IGetSonglistsRequest,
+) => Promise<{ playlists: ISonglist[]; total: number }>;
 type GetSonglistCatsFn = () => Promise<IGetSonglistCatsResponse>;
 type GetSonglistHotCatsFn = () => Promise<ICategory[]>;
 type GetHighQualitySonglistFn = (cat?: string) => Promise<ISonglist>;
-type GetUserSonglistFn = (uid: number) => Promise<{ create: ISonglist[]; collect: ISonglist[] }>;
+type GetUserSonglistFn = (
+  uid: number,
+) => Promise<{ create: ISonglist[]; collect: ISonglist[] }>;
 
-const getSonglists: GetSonglistsFn = async ({ cat, order, limit = PAGE_SIZE, offset }) => {
+const getSonglists: GetSonglistsFn = async ({
+  cat,
+  order,
+  limit = PAGE_SIZE,
+  offset,
+}) => {
   const response = await axios({
     url: '/top/playlist',
     params: {
@@ -39,7 +52,9 @@ const getSonglistHotCats: GetSonglistHotCatsFn = async () => {
   return response.tags;
 };
 
-const getHighQualitySonglist: GetHighQualitySonglistFn = async (cat = '全部') => {
+const getHighQualitySonglist: GetHighQualitySonglistFn = async (
+  cat = '全部',
+) => {
   const response = await axios({
     url: '/top/playlist/highquality',
     params: {

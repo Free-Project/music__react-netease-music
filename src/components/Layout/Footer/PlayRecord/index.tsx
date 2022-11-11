@@ -36,7 +36,10 @@ const PlayRecord: React.FC<IProps> = ({ show, onClickAway }) => {
   useClickAway(playRecordRef, () => onClickAway());
 
   return (
-    <div className={cn(styles.root, show && styles.show)} ref={(ref) => (playRecordRef.current = ref)}>
+    <div
+      className={cn(styles.root, show && styles.show)}
+      ref={(ref) => (playRecordRef.current = ref)}
+    >
       {show && (
         <>
           <div className={styles.tabs}>
@@ -53,7 +56,13 @@ const PlayRecord: React.FC<IProps> = ({ show, onClickAway }) => {
             })}
           </div>
 
-          <div className={styles.content}>{activeTab === TABS.PLAY_LIST.tabKey ? <PlayList /> : <PlayHistory />}</div>
+          <div className={styles.content}>
+            {activeTab === TABS.PLAY_LIST.tabKey ? (
+              <PlayList />
+            ) : (
+              <PlayHistory />
+            )}
+          </div>
         </>
       )}
     </div>

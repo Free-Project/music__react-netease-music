@@ -17,9 +17,15 @@ function SingerFilter(props: ISingerFilterProps) {
         return (
           <li
             key={key || name}
-            className={classNames(styles.group, styles['text-center'], styles['cursor-pointer'], styles['txt-sm'], {
-              active: curTag === key,
-            })}
+            className={classNames(
+              styles.group,
+              styles['text-center'],
+              styles['cursor-pointer'],
+              styles['txt-sm'],
+              {
+                active: curTag === key,
+              },
+            )}
             onClick={() => {
               onTagClick?.(key);
             }}

@@ -29,7 +29,13 @@ const PlayHistory = () => {
     forceUpdate();
   };
 
-  return <List data={playHistory} onDoubleClick={handleDoubleClick} onClear={clearPlayHistory} />;
+  return (
+    <List
+      data={playHistory}
+      onDoubleClick={handleDoubleClick}
+      onClear={clearPlayHistory}
+    />
+  );
 };
 
 export default PlayHistory;

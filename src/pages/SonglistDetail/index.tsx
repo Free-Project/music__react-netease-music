@@ -1,5 +1,5 @@
 import React from 'react';
-import { Spinner } from '@blueprintjs/core';
+import { Spin } from '@douyinfe/semi-ui';
 import { useParams } from 'react-router-dom';
 import { useLazyQuery } from '@apollo/client';
 import Message from 'components/Message';
@@ -30,11 +30,14 @@ const SonglistDetail = () => {
   const params = useParams<IDictionary<string>>();
   const { songlistId } = params;
 
-  const [getSonglistDetailGql, { loading, data }] = useLazyQuery(getSonglistDetail, {
-    onError: (error) => {
-      Message.error(error.message);
+  const [getSonglistDetailGql, { loading, data }] = useLazyQuery(
+    getSonglistDetail,
+    {
+      onError: (error) => {
+        Message.error(error.message);
+      },
     },
-  });
+  );
 
   const result = data?.getSonglistDetail;
   const songs = result?.songs as IMusic[];
@@ -76,7 +79,7 @@ const SonglistDetail = () => {
   return (
     <div className={styles.root}>
       {loading ? (
-        <Spinner className='spinner' />
+        <Spin />
       ) : (
         <>
           <div className={styles.basicInfo}>

@@ -1,7 +1,17 @@
 import React from 'react';
-import { Icon } from '@blueprintjs/core';
+import {
+  IconPlay,
+  IconBackward,
+  IconPause,
+  IconFastForward,
+} from '@douyinfe/semi-icons';
 
-import { PlayMusicStateContext, PlayMusicDispatchContext, AudioContext, ACTIONS } from 'reducers/playMusic';
+import {
+  PlayMusicStateContext,
+  PlayMusicDispatchContext,
+  AudioContext,
+  ACTIONS,
+} from 'reducers/playMusic';
 import { playList as playListLocalStorage } from 'helpers/play';
 import styles from './style.module.css';
 
@@ -58,13 +68,13 @@ const PlayOperations = () => {
   return (
     <>
       <div className={styles.prev} onClick={playPrev}>
-        <Icon icon='step-backward' />
+        <IconBackward />
       </div>
       <div className={styles.pause} onClick={togglePlayStatus}>
-        <Icon icon={audioInfo.state?.paused ? 'play' : 'pause'} />
+        {audioInfo.state?.paused ? <IconPlay /> : <IconPause />}
       </div>
       <div className={styles.next} onClick={playNext}>
-        <Icon icon='step-forward' />
+        <IconFastForward />
       </div>
     </>
   );

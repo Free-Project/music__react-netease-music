@@ -25,7 +25,13 @@ const ProgressBar = () => {
     [controls, state?.duration],
   );
 
-  return <BaseProgressBar donePercent={donePercent} renderLabel={renderLabel} onBarClick={handleBarClick} />;
+  return (
+    <BaseProgressBar
+      donePercent={donePercent}
+      renderLabel={renderLabel}
+      onBarClick={handleBarClick}
+    />
+  );
 };
 
 export default ProgressBar;

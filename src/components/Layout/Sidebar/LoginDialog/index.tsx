@@ -1,5 +1,6 @@
 import React from 'react';
-import { Dialog, InputGroup, Button, IDialogProps } from '@blueprintjs/core';
+import { Modal, Input } from '@douyinfe/semi-ui';
+import { IconSmartphoneStroked, IconLockStroked } from '@douyinfe/semi-icons';
 
 import authApis from 'apis/auth';
 import useAsyncFn from 'hooks/useAsyncFn';
@@ -7,13 +8,17 @@ import { noop } from 'helpers/fn';
 import { LogDispatchContext, ACTIONS } from 'reducers/log';
 import styles from './style.module.css';
 
-interface IProps extends IDialogProps {
+interface LoginDialogProps {
+  isOpen: boolean;
   onClose: () => void;
 }
 
 const { useState, useContext } = React;
 
-const LoginDialog: React.FC<IProps> = ({ isOpen, onClose = noop }) => {
+const LoginDialog: React.FC<LoginDialogProps> = ({
+  isOpen,
+  onClose = noop,
+}) => {
   const dispatch = useContext(LogDispatchContext);
   const [phone, setPhone] = useState<string>('');
   const [password, setPassword] = useState<string>('');
@@ -37,34 +42,32 @@ const LoginDialog: React.FC<IProps> = ({ isOpen, onClose = noop }) => {
   };
 
   return (
-    <Dialog style={{ width: '400px' }} title='登录' isOpen={isOpen} onClose={onClose}>
+    <Modal
+      title='登录'
+      visible={isOpen}
+      onOk={handleLogin}
+      onCancel={onClose}
+      okText={'登录'}
+      cancelText={'取消'}
+      confirmLoading={loading}
+    >
       <div className={styles.content}>
-        <InputGroup
+        <Input
+          prefix={<IconSmartphoneStroked />}
           placeholder='请输入手机号'
-          leftIcon='mobile-phone'
           value={phone}
-          onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-            setPhone(event.target.value);
-          }}
+          onChange={setPhone}
         />
-        <InputGroup
+        <Input
+          prefix={<IconLockStroked />}
           placeholder='请输入密码'
-          leftIcon='lock'
           type='password'
           value={password}
-          onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-            setPassword(event.target.value);
-          }}
+          onChange={setPassword}
         />
         {error && <div className='error'>{error.message}</div>}
-
-        <div className={styles.loginBtn}>
-          <Button onClick={handleLogin} loading={loading}>
-            登录
-          </Button>
-        </div>
       </div>
-    </Dialog>
+    </Modal>
   );
 };
 

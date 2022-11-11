@@ -1,5 +1,6 @@
 import React from 'react';
-import { Icon, Popover, Menu, MenuItem } from '@blueprintjs/core';
+import { Dropdown, Popover } from '@douyinfe/semi-ui';
+import { IconUser, IconExit } from '@douyinfe/semi-icons';
 
 import Menus from './Menus';
 import Songlist from './Songlist';
@@ -22,7 +23,9 @@ const Sidebar = () => {
 
   const [showLoginDialog, setShowLoginDialog] = useState(false);
   const [, logoutFn] = useAsyncFn(authApis.logout);
-  const [songlistState, getUserSonglistFn] = useAsyncFn(songlistApis.getUserSonglist);
+  const [songlistState, getUserSonglistFn] = useAsyncFn(
+    songlistApis.getUserSonglist,
+  );
 
   useEffect(() => {
     if (isLogined) {
@@ -42,26 +45,30 @@ const Sidebar = () => {
     <div className={styles.root}>
       <div className={styles.user}>
         <div className={styles.avatar}>
-          {isLogined ? <img src={user.profile.avatarUrl} loading='lazy' /> : <Icon icon='person' />}
+          {isLogined ? (
+            <img src={user.profile.avatarUrl} loading='lazy' />
+          ) : (
+            <IconUser />
+          )}
         </div>
         {isLogined ? (
           <Popover
+            showArrow
             content={
-              <Menu>
-                <MenuItem icon='log-out' text='退出登录' onClick={handleLogout} />
-              </Menu>
+              <Dropdown.Menu>
+                <Dropdown.Item onClick={handleLogout}>
+                  <IconExit /> 退出登录
+                </Dropdown.Item>
+              </Dropdown.Menu>
             }
-            interactionKind='hover'
           >
             <div className={styles.name}>
               <span>{user.profile.nickname}</span>
-              <Icon icon='play' />
             </div>
           </Popover>
         ) : (
           <div className={styles.name} onClick={handleNameClick}>
             <span>未登录</span>
-            <Icon icon='play' />
           </div>
         )}
       </div>
@@ -75,13 +82,21 @@ const Sidebar = () => {
             </div>
 
             <div className={styles.block}>
-              <Songlist title='收藏的歌单' data={songlistState.value?.collect} />
+              <Songlist
+                title='收藏的歌单'
+                data={songlistState.value?.collect}
+              />
             </div>
           </>
         )}
       </div>
 
-      {showLoginDialog && <LoginDialog isOpen={showLoginDialog} onClose={handleLoginDialogClose} />}
+      {showLoginDialog && (
+        <LoginDialog
+          isOpen={showLoginDialog}
+          onClose={handleLoginDialogClose}
+        />
+      )}
       {!!playState.musicId && <MusicDetail />}
     </div>
   );

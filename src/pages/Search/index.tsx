@@ -1,5 +1,5 @@
 import React from 'react';
-import { Spinner } from '@blueprintjs/core';
+import { Spin } from '@douyinfe/semi-ui';
 import cn from 'classnames';
 
 import Pagination from 'components/Pagination';
@@ -118,13 +118,19 @@ const Search = () => {
 
       <div className={styles.content}>
         {loading ? (
-          <Spinner className={styles.spinner} />
+          <Spin />
         ) : (
           <div>
-            {activeTab === TABS.MUSIC.tabKey && <MusicList data={result?.songs} />}
+            {activeTab === TABS.MUSIC.tabKey && (
+              <MusicList data={result?.songs} />
+            )}
 
             <div className='pagination'>
-              <Pagination page={page} total={total} onPageChange={handlePageChange} />
+              <Pagination
+                page={page}
+                total={total}
+                onPageChange={handlePageChange}
+              />
             </div>
           </div>
         )}

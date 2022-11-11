@@ -1,14 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from '@apollo/client';
+import {
+  ApolloClient,
+  InMemoryCache,
+  ApolloProvider,
+  createHttpLink,
+} from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 
 import App from './pages/App';
 import { GRAPHQL_SERVER } from 'constants/server';
 
 import 'normalize.css/normalize.css';
-import '@blueprintjs/core/lib/css/blueprint.css';
-import '@blueprintjs/popover2/lib/css/blueprint-popover2.css';
 import './styles/global.module.css';
 import './components/Message/style.module.css';
 
@@ -23,7 +26,9 @@ const authLink = setContext((_, { headers }) => {
       ...headers,
       'netease-user-id': session.userId,
       'netease-token': session.token,
-      'netease-nick-name': session.profile?.nickname && encodeURIComponent(session.profile?.nickname),
+      'netease-nick-name':
+        session.profile?.nickname &&
+        encodeURIComponent(session.profile?.nickname),
     },
   };
 });

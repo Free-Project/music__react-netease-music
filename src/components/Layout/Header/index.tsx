@@ -1,10 +1,21 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import { Icon } from '@blueprintjs/core';
+import {
+  IconClose,
+  IconMinus,
+  IconExpand,
+  IconChevronDown,
+  IconChevronLeft,
+  IconChevronRight,
+} from '@douyinfe/semi-icons';
 
 import Navbar from './Navbar';
 import Searcher from './Searcher';
-import { PlayMusicStateContext, PlayMusicDispatchContext, ACTIONS } from 'reducers/playMusic';
+import {
+  PlayMusicStateContext,
+  PlayMusicDispatchContext,
+  ACTIONS,
+} from 'reducers/playMusic';
 import { REPOSITORY } from 'constants/github';
 import styles from './style.module.css';
 
@@ -30,17 +41,17 @@ const Header = () => {
       <div className={styles.actions}>
         <div className={styles.iconsWrap}>
           <div className={styles.circle}>
-            <Icon icon='cross' iconSize={8} />
+            <IconClose />
           </div>
           <div className={styles.circle}>
-            <Icon icon='minus' iconSize={8} />
+            <IconMinus />
           </div>
           <div className={styles.circle}>
-            <Icon icon='maximize' iconSize={7} />
+            <IconExpand />
           </div>
           {showLyric && (
             <div className={styles.down} onClick={hideLyric}>
-              <Icon icon='chevron-down' iconSize={20} />
+              <IconChevronDown />
             </div>
           )}
         </div>
@@ -48,10 +59,10 @@ const Header = () => {
         {!showLyric && (
           <div className={styles.backForward}>
             <div onClick={handleGoBack}>
-              <Icon icon='chevron-left' />
+              <IconChevronLeft />
             </div>
             <div onClick={handleGoForward}>
-              <Icon icon='chevron-right' />
+              <IconChevronRight />
             </div>
           </div>
         )}
@@ -61,7 +72,10 @@ const Header = () => {
         <div>{!showLyric && <Navbar />}</div>
         <div className={styles.operations}>
           <Searcher />
-          <div className={styles.githubLogo} onClick={() => window.open(REPOSITORY)} />
+          <div
+            className={styles.githubLogo}
+            onClick={() => window.open(REPOSITORY)}
+          />
         </div>
       </div>
     </div>

@@ -26,7 +26,9 @@ const handleResponse = (response: any) => {
 
 const handleError = (error: any) => {
   const { response, message } = error;
-  return Promise.reject(response ? new Error(response.data.message || message) : error);
+  return Promise.reject(
+    response ? new Error(response.data.message || message) : error,
+  );
 };
 
 const toastError = (error: any) => {

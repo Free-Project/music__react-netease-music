@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Spinner } from '@blueprintjs/core';
+import { Spin } from '@douyinfe/semi-ui';
 
 import Pagination from 'components/Pagination';
 import HighQuality from './HighQuality';
@@ -14,9 +14,15 @@ const Songlist = () => {
   const [selectedCat, setSelectedCat] = useState(DEFAULT_CAT);
   const [page, setPage] = useState(PAGE);
   const [state, getSonglistsFn] = useAsyncFn(songlistApis.getSonglists);
-  const [highQualityState, getHighQualitySonglistFn] = useAsyncFn(songlistApis.getHighQualitySonglist);
-  const [catsState, getSonglistCatsFn] = useAsyncFn(songlistApis.getSonglistCats);
-  const [hotCatsState, getSonglistHotCatsFn] = useAsyncFn(songlistApis.getSonglistHotCats);
+  const [highQualityState, getHighQualitySonglistFn] = useAsyncFn(
+    songlistApis.getHighQualitySonglist,
+  );
+  const [catsState, getSonglistCatsFn] = useAsyncFn(
+    songlistApis.getSonglistCats,
+  );
+  const [hotCatsState, getSonglistHotCatsFn] = useAsyncFn(
+    songlistApis.getSonglistHotCats,
+  );
 
   useEffect(() => {
     getSonglistHotCatsFn();
@@ -55,12 +61,16 @@ const Songlist = () => {
 
       <div>
         {state.loading ? (
-          <Spinner className='spinner' />
+          <Spin />
         ) : (
           <>
             <Songlists data={state.value?.playlists} />
             <div className='pagination'>
-              <Pagination page={page} total={state.value?.total} onPageChange={handlePageChange} />
+              <Pagination
+                page={page}
+                total={state.value?.total}
+                onPageChange={handlePageChange}
+              />
             </div>
           </>
         )}

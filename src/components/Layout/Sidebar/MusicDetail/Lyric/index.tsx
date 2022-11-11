@@ -1,5 +1,5 @@
 import React from 'react';
-import { Spinner } from '@blueprintjs/core';
+import { Spin } from '@douyinfe/semi-ui';
 import cn from 'classnames';
 
 import songApis from 'apis/song';
@@ -22,7 +22,10 @@ const Lyric = () => {
   const { musicId, showLyric } = state;
 
   const [lyricState, getLyricFn] = useAsyncFn(songApis.getLyric);
-  const lines = useMemo(() => formatLyric(lyricState.value?.lyric), [lyricState.value?.lyric]);
+  const lines = useMemo(
+    () => formatLyric(lyricState.value?.lyric),
+    [lyricState.value?.lyric],
+  );
 
   useEffect(() => {
     if (musicId && showLyric) {
@@ -37,14 +40,16 @@ const Lyric = () => {
 
         const lineIndex = lines.findIndex(([time], index) => {
           const prevTime = index - 1 >= 0 ? lines[index - 1][0] : time;
-          const nextTime = index + 1 < lines.length ? lines[index + 1][0] : time;
+          const nextTime =
+            index + 1 < lines.length ? lines[index + 1][0] : time;
           if (prevTime <= audioTime && nextTime >= audioTime) {
             return true;
           }
         });
 
         if (lineIndex > -1) {
-          const scrollHeight = LYRIC_LINE_HEIGHT * lineIndex - HIGHLIGHT_LYRIC_TOP;
+          const scrollHeight =
+            LYRIC_LINE_HEIGHT * lineIndex - HIGHLIGHT_LYRIC_TOP;
           lyricRef.current?.scrollTo({
             top: scrollHeight < 0 ? 0 : scrollHeight,
             behavior: 'smooth',
@@ -58,12 +63,15 @@ const Lyric = () => {
   return (
     <div className={styles.root} ref={(ref) => (lyricRef.current = ref)}>
       {lyricState.loading ? (
-        <Spinner className='spinner' />
+        <Spin />
       ) : (
         <>
           {lines.map(([time, lyric], index) => {
             return (
-              <div key={time} className={cn(styles.line, line === index && styles.active)}>
+              <div
+                key={time}
+                className={cn(styles.line, line === index && styles.active)}
+              >
                 {lyric}
               </div>
             );

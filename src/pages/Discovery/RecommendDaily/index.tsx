@@ -1,5 +1,5 @@
 import React from 'react';
-import { Spinner } from '@blueprintjs/core';
+import { Spin } from '@douyinfe/semi-ui';
 
 import MusicList from 'components/MusicList';
 import songApis from 'apis/song';
@@ -56,7 +56,9 @@ const RecommendDaily = () => {
           </div>
           <div className={styles.title}>
             <div className={styles.name}>每日歌曲推荐</div>
-            <div className={styles.tips}>根据你的音乐口味生成，每天6:00更新</div>
+            <div className={styles.tips}>
+              根据你的音乐口味生成，每天6:00更新
+            </div>
           </div>
         </div>
 
@@ -70,7 +72,7 @@ const RecommendDaily = () => {
       {isLogined ? (
         <div className={styles.content}>
           {state.loading ? (
-            <Spinner className='spinner' />
+            <Spin />
           ) : (
             <MusicList data={state.value || []} onPlayAll={() => playAll()} />
           )}

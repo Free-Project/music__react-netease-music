@@ -32,14 +32,22 @@ const SimiSongs: React.FC<IProps> = ({ data }) => {
         const { album, name, id, artists } = item;
 
         return (
-          <div className={styles.item} key={id} onClick={() => handleItemClick(item)}>
+          <div
+            className={styles.item}
+            key={id}
+            onClick={() => handleItemClick(item)}
+          >
             <div className='smallCover'>
               <img src={`${album.blurPicUrl}?param=55y55`} loading='lazy' />
               <PlayIcon className={styles.playIcon} />
             </div>
             <div>
-              <div className={cn(styles.name, 'singleLineEllipsis')}>{name}</div>
-              <div className={styles.artists}>{artists.map(({ name }) => name).join(' / ')}</div>
+              <div className={cn(styles.name, 'singleLineEllipsis')}>
+                {name}
+              </div>
+              <div className={styles.artists}>
+                {artists.map(({ name }) => name).join(' / ')}
+              </div>
             </div>
           </div>
         );

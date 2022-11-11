@@ -22,7 +22,12 @@ type LikeUnlikeCommentFn = (params: ILikeUnlikeCommentRequest) => Promise<any>;
 type LikeCommentFn = (params: Params, callback?: () => void) => Promise<any>;
 type UnlikeCommentFn = (params: Params, callback?: () => void) => Promise<any>;
 
-const likeUnlikeComment: LikeUnlikeCommentFn = async ({ likeOrUnlike, type, id, commentId }) => {
+const likeUnlikeComment: LikeUnlikeCommentFn = async ({
+  likeOrUnlike,
+  type,
+  id,
+  commentId,
+}) => {
   const response = await axios({
     url: '/comment/like',
     params: {
@@ -35,7 +40,11 @@ const likeUnlikeComment: LikeUnlikeCommentFn = async ({ likeOrUnlike, type, id, 
   return response;
 };
 
-const likeComment: LikeCommentFn = async ({ id, commentId, type = COMMENT_TYPE.MUSIC }) => {
+const likeComment: LikeCommentFn = async ({
+  id,
+  commentId,
+  type = COMMENT_TYPE.MUSIC,
+}) => {
   const response = await likeUnlikeComment({
     likeOrUnlike: 1,
     type,
@@ -45,7 +54,11 @@ const likeComment: LikeCommentFn = async ({ id, commentId, type = COMMENT_TYPE.M
   return response;
 };
 
-const unlikeComment: UnlikeCommentFn = async ({ id, commentId, type = COMMENT_TYPE.MUSIC }) => {
+const unlikeComment: UnlikeCommentFn = async ({
+  id,
+  commentId,
+  type = COMMENT_TYPE.MUSIC,
+}) => {
   const response = await likeUnlikeComment({
     likeOrUnlike: 2,
     type,

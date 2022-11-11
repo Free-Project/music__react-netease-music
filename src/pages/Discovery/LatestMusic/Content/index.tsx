@@ -1,12 +1,17 @@
 import React from 'react';
-import { Icon } from '@blueprintjs/core';
+import { IconVolume1, IconVolume2 } from '@douyinfe/semi-icons';
 import cn from 'classnames';
 
 import PlayIcon from 'components/PlayIcon';
 import type { IMyMusic } from 'apis/types/business';
 import { formatTime } from 'helpers/time';
 import { createMusic } from 'helpers/business';
-import { PlayMusicStateContext, PlayMusicDispatchContext, ACTIONS, AudioContext } from 'reducers/playMusic';
+import {
+  PlayMusicStateContext,
+  PlayMusicDispatchContext,
+  ACTIONS,
+  AudioContext,
+} from 'reducers/playMusic';
 import styles from './style.module.css';
 
 interface IProps {
@@ -44,10 +49,18 @@ const Content: React.FC<IProps> = ({ data, onDoubleClick }) => {
       {data?.map(({ id, name, artists, album, duration, picUrl }, index) => {
         const isActive = state.musicId === id;
         return (
-          <div key={id} className={styles.item} onDoubleClick={() => handleDoubleClick(index)}>
+          <div
+            key={id}
+            className={styles.item}
+            onDoubleClick={() => handleDoubleClick(index)}
+          >
             <div className={cn(styles.index, isActive && 'active')}>
               {isActive ? (
-                <Icon icon={audioInfo.state?.paused ? 'volume-off' : 'volume-up'} iconSize={15} />
+                audioInfo.state?.paused ? (
+                  <IconVolume1 />
+                ) : (
+                  <IconVolume2 />
+                )
               ) : (
                 <span>{index + 1}</span>
               )}
@@ -55,13 +68,21 @@ const Content: React.FC<IProps> = ({ data, onDoubleClick }) => {
 
             <div className={styles.musicInfo}>
               <div className={styles.pic}>
-                <img src={`${picUrl || album?.blurPicUrl}?param=60y60`} className='cover' loading='lazy' />
+                <img
+                  src={`${picUrl || album?.blurPicUrl}?param=60y60`}
+                  className='cover'
+                  loading='lazy'
+                />
                 <PlayIcon className={styles.playIcon} />
               </div>
-              <div className={cn(styles.name, isActive && 'active')}>{name}</div>
+              <div className={cn(styles.name, isActive && 'active')}>
+                {name}
+              </div>
             </div>
 
-            <div className={styles.artists}>{artists.map(({ name }) => name).join(' / ')}</div>
+            <div className={styles.artists}>
+              {artists.map(({ name }) => name).join(' / ')}
+            </div>
 
             <div className={styles.album}>{album?.name}</div>
 

@@ -16,12 +16,20 @@ const Discovery = () => {
     <div className={styles.root}>
       <Suspense fallback={null}>
         <Switch>
-          <Route exact path={ROUTES.RECOMMENDATION} component={Recommendation} />
+          <Route
+            exact
+            path={ROUTES.RECOMMENDATION}
+            component={Recommendation}
+          />
           <Route exact path={ROUTES.SONG_LIST} component={Songlist} />
           <Route exact path={ROUTES.LEADER_BOARD} component={LeaderBoard} />
           <Route exact path={ROUTES.SINGERS} component={Singers} />
           <Route exact path={ROUTES.LATEST_MUSIC} component={LatestMusic} />
-          <Route exact path={ROUTES.RECOMMEND_DAILY} component={RecommendDaily} />
+          <Route
+            exact
+            path={ROUTES.RECOMMEND_DAILY}
+            component={RecommendDaily}
+          />
           {/* /discovery 或者 不匹配上面路由的，都显示Recommendation */}
           <Route exact path={ROUTES.DISCOVERY} component={Recommendation} />
           <Redirect from={`${ROUTES.DISCOVERY}/*`} to={ROUTES.RECOMMENDATION} />

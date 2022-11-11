@@ -28,7 +28,13 @@ const PlayList = () => {
     forceUpdate();
   };
 
-  return <List data={playList} onDoubleClick={handleDoubleClick} onClear={handleClear} />;
+  return (
+    <List
+      data={playList}
+      onDoubleClick={handleDoubleClick}
+      onClear={handleClear}
+    />
+  );
 };
 
 export default PlayList;

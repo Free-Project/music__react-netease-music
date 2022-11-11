@@ -1,5 +1,6 @@
 import React from 'react';
-import { Icon, Tooltip } from '@blueprintjs/core';
+import { Tooltip } from '@douyinfe/semi-ui';
+import { IconChevronUp, IconChevronDown } from '@douyinfe/semi-icons';
 import cn from 'classnames';
 
 import Artists from 'components/Artists';
@@ -9,7 +10,11 @@ import PlayRecord from './PlayRecord';
 import PlayMode from './PlayMode';
 import PlayOperations from './PlayOperations';
 import PlayVolume from './PlayVolume';
-import { PlayMusicStateContext, PlayMusicDispatchContext, ACTIONS } from 'reducers/playMusic';
+import {
+  PlayMusicStateContext,
+  PlayMusicDispatchContext,
+  ACTIONS,
+} from 'reducers/playMusic';
 import styles from './style.module.css';
 
 const { useContext, useState, useCallback } = React;
@@ -48,15 +53,25 @@ const Footer = () => {
         {!!musicId && (
           <>
             <div className={cn(styles.pic, !showLyric && styles.showLyric)}>
-              <img src={music?.album?.picUrl ? `${music?.album?.picUrl}?param=40y40` : undefined} loading='lazy' />
+              <img
+                src={
+                  music?.album?.picUrl
+                    ? `${music?.album?.picUrl}?param=40y40`
+                    : undefined
+                }
+                loading='lazy'
+              />
               {!showLyric && (
                 <div className={styles.mask} onClick={handleShowLyric}>
-                  <Icon icon='double-chevron-up' />
+                  <IconChevronUp />
                 </div>
               )}
               {showLyric && (
-                <div className={cn(styles.mask, styles.hideLyric)} onClick={handleHideLyric}>
-                  <Icon icon='double-chevron-down' />
+                <div
+                  className={cn(styles.mask, styles.hideLyric)}
+                  onClick={handleHideLyric}
+                >
+                  <IconChevronDown />
                 </div>
               )}
             </div>
@@ -82,8 +97,8 @@ const Footer = () => {
           <PlayMode />
         </div>
         <div onClick={togglePlayRecord} className={styles.item}>
-          <Tooltip content='打开播放列表'>
-            <Icon icon='menu-closed' className={showPlayRecord ? 'active' : ''} />
+          <Tooltip content={'打开播放列表'}>
+            <div className={showPlayRecord ? 'active' : ''}> 播放列表</div>
           </Tooltip>
         </div>
         <div className={styles.item}>
@@ -91,7 +106,10 @@ const Footer = () => {
         </div>
       </div>
 
-      <PlayRecord show={showPlayRecord} onClickAway={() => setShowPlayRecord(false)} />
+      <PlayRecord
+        show={showPlayRecord}
+        onClickAway={() => setShowPlayRecord(false)}
+      />
     </div>
   );
 };

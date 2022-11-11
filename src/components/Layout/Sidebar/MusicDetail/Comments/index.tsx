@@ -1,5 +1,5 @@
 import React from 'react';
-import { Spinner } from '@blueprintjs/core';
+import { Spin } from '@douyinfe/semi-ui';
 import cn from 'classnames';
 
 import Pagination from 'components/Pagination';
@@ -50,7 +50,9 @@ const Comments = () => {
   const handleLikeChange = async (comment: IComment, isHot: boolean) => {
     const comments = (isHot ? result?.hotComments : result?.comments) || [];
     const { commentId, liked } = comment;
-    const cm = comments.find(({ commentId: cid }) => cid === commentId) as IComment;
+    const cm = comments.find(
+      ({ commentId: cid }) => cid === commentId,
+    ) as IComment;
 
     if (liked) {
       await unlikeCommentFn({ id: musicId, commentId }, () => {
@@ -72,7 +74,7 @@ const Comments = () => {
         <div className={styles.block}>
           <div className={styles.title}>最新评论</div>
           <div className={styles.loading}>
-            <Spinner className='spinner' size={Spinner.SIZE_SMALL} />
+            <Spin size='small' />
           </div>
         </div>
       ) : (
@@ -84,7 +86,10 @@ const Comments = () => {
                 {result?.hotComments.map((item) => {
                   return (
                     <div className={styles.item} key={item.commentId}>
-                      <Comment data={item} onLikeChange={(item) => handleLikeChange(item, true)} />
+                      <Comment
+                        data={item}
+                        onLikeChange={(item) => handleLikeChange(item, true)}
+                      />
                     </div>
                   );
                 })}
@@ -98,7 +103,10 @@ const Comments = () => {
               {result?.comments.map((item) => {
                 return (
                   <div className={styles.item} key={item.commentId}>
-                    <Comment data={item} onLikeChange={(item) => handleLikeChange(item, false)} />
+                    <Comment
+                      data={item}
+                      onLikeChange={(item) => handleLikeChange(item, false)}
+                    />
                   </div>
                 );
               })}
@@ -106,7 +114,12 @@ const Comments = () => {
           </div>
 
           <div className={styles.pagination}>
-            <Pagination page={page} pageSize={PAGE_SIZE} total={result?.total} onPageChange={handlePageChange} />
+            <Pagination
+              page={page}
+              pageSize={PAGE_SIZE}
+              total={result?.total}
+              onPageChange={handlePageChange}
+            />
           </div>
         </>
       )}

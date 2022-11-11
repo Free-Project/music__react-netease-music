@@ -12,7 +12,13 @@ interface IProps {
   copywriter: string;
 }
 
-const MVItem: React.FC<IProps> = ({ name, artistName, playCount, picUrl, copywriter }) => {
+const MVItem: React.FC<IProps> = ({
+  name,
+  artistName,
+  playCount,
+  picUrl,
+  copywriter,
+}) => {
   return (
     <div className={styles.root}>
       <div className={styles.pic}>

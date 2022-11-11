@@ -1,5 +1,5 @@
 import React from 'react';
-import { Spinner } from '@blueprintjs/core';
+import { Spin } from '@douyinfe/semi-ui';
 import cn from 'classnames';
 
 import Lyric from './Lyric';
@@ -22,7 +22,9 @@ const MusicDetail = () => {
   const state = useContext(PlayMusicStateContext);
   const { showLyric, music, musicId } = state;
 
-  const [songlistState, getSimiSonglistFn] = useAsyncFn(songApis.getSimiSonglist);
+  const [songlistState, getSimiSonglistFn] = useAsyncFn(
+    songApis.getSimiSonglist,
+  );
   const [simiSongState, getSimiSongFn] = useAsyncFn(songApis.getSimiSong);
 
   useEffect(() => {
@@ -40,12 +42,19 @@ const MusicDetail = () => {
             <div className={styles.cdWrap}>
               <div className={styles.cd}>
                 <div className={styles.bar}>
-                  <img src={playBar} className={cn(styles.playBar, !isPlaying && styles.pause)} />
+                  <img
+                    src={playBar}
+                    className={cn(styles.playBar, !isPlaying && styles.pause)}
+                  />
                   <img src={playCd} className={styles.playCd} />
                 </div>
                 <div className={styles.circle}>
                   <div className={cn(styles.cover, isPlaying && styles.rotate)}>
-                    <img src={`${music?.picUrl || music?.album?.blurPicUrl}?param=190y190`} />
+                    <img
+                      src={`${
+                        music?.picUrl || music?.album?.blurPicUrl
+                      }?param=190y190`}
+                    />
                   </div>
                 </div>
               </div>
@@ -55,7 +64,9 @@ const MusicDetail = () => {
               <div className={styles.name}>{music?.name}</div>
               <div className={styles.artists}>
                 歌手：
-                <span>{music?.artists.map(({ name }) => name).join(' / ')}</span>
+                <span>
+                  {music?.artists.map(({ name }) => name).join(' / ')}
+                </span>
               </div>
               <div className={styles.lrc}>
                 <Lyric />
@@ -69,7 +80,7 @@ const MusicDetail = () => {
             </div>
             <div className={styles.relatedDetail}>
               {songlistState.loading || simiSongState.loading ? (
-                <Spinner size={Spinner.SIZE_SMALL} />
+                <Spin size='small' />
               ) : (
                 <>
                   {!!songlistState.value?.length && (

@@ -18,8 +18,16 @@ interface ILocalStorageFactoryReturn<T> {
   removeItem: () => void;
 }
 
-export const localStorageFactory = <T>(params: ILocalStorageFactoryParams<T>): ILocalStorageFactoryReturn<T> => {
-  const { key, defaultValue, raw, serializer = JSON.stringify, deserializer = JSON.parse } = params;
+export const localStorageFactory = <T>(
+  params: ILocalStorageFactoryParams<T>,
+): ILocalStorageFactoryReturn<T> => {
+  const {
+    key,
+    defaultValue,
+    raw,
+    serializer = JSON.stringify,
+    deserializer = JSON.parse,
+  } = params;
 
   const setItem = (value: T) => {
     const data = (raw ? value : serializer(value)) as string;

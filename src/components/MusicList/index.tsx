@@ -1,14 +1,29 @@
 import React from 'react';
-import { Icon } from '@blueprintjs/core';
+import {
+  IconVolume1,
+  IconVolume2,
+  IconDownloadStroked,
+} from '@douyinfe/semi-icons';
 import cn from 'classnames';
 
 import Table, { IColumn } from 'components/Table';
 import VipIcon from 'components/VipIcon';
-import { IMusic, IArtist, IAlbum, MUSIC_STATUS, MUSIC_TYPE } from 'apis/types/business';
+import {
+  IMusic,
+  IArtist,
+  IAlbum,
+  MUSIC_STATUS,
+  MUSIC_TYPE,
+} from 'apis/types/business';
 import albumApis from 'apis/album';
 import { formatTime } from 'helpers/time';
 import { createMusic } from 'helpers/business';
-import { PlayMusicStateContext, PlayMusicDispatchContext, AudioContext, ACTIONS } from 'reducers/playMusic';
+import {
+  PlayMusicStateContext,
+  PlayMusicDispatchContext,
+  AudioContext,
+  ACTIONS,
+} from 'reducers/playMusic';
 import styles from './style.module.css';
 
 interface IProps {
@@ -33,12 +48,12 @@ const MusicList: React.FC<IProps> = ({ data, onPlayAll }) => {
           <div className={styles.operations}>
             {state.musicId === record.id ? (
               <span className={styles.isPlaying}>
-                <Icon icon={audioInfo.state?.paused ? 'volume-off' : 'volume-up'} iconSize={14} />
+                {audioInfo.state?.paused ? <IconVolume1 /> : <IconVolume2 />}
               </span>
             ) : (
               <span className={styles.index}>{(index || 0) + 1}</span>
             )}
-            <Icon icon='import' iconSize={14} />
+            <IconDownloadStroked />
           </div>
         );
       },
@@ -50,11 +65,15 @@ const MusicList: React.FC<IProps> = ({ data, onPlayAll }) => {
       render: (name: string, { alias, id, fee }: IMusic) => {
         return (
           <>
-            <div className={cn(styles.name, state.musicId === id && styles.active)}>
+            <div
+              className={cn(styles.name, state.musicId === id && styles.active)}
+            >
               <span>{name}</span>
               {fee === MUSIC_TYPE.VIP && <VipIcon />}
             </div>
-            {alias?.length ? <div className={styles.alias}>{alias.join(' ')}</div> : null}
+            {alias?.length ? (
+              <div className={styles.alias}>{alias.join(' ')}</div>
+            ) : null}
           </>
         );
       },
@@ -63,7 +82,8 @@ const MusicList: React.FC<IProps> = ({ data, onPlayAll }) => {
       title: '歌手',
       key: 'artists',
       width: '15%',
-      render: (artists: IArtist[]) => artists?.map(({ name }) => name).join(' / '),
+      render: (artists: IArtist[]) =>
+        artists?.map(({ name }) => name).join(' / '),
     },
     {
       title: '专辑',
@@ -102,7 +122,8 @@ const MusicList: React.FC<IProps> = ({ data, onPlayAll }) => {
     onPlayAll && onPlayAll();
   };
 
-  const checkIsRecordRowDisabled = (record: IMusic) => record.status === MUSIC_STATUS.NOT_FOUND;
+  const checkIsRecordRowDisabled = (record: IMusic) =>
+    record.status === MUSIC_STATUS.NOT_FOUND;
 
   return (
     <div>

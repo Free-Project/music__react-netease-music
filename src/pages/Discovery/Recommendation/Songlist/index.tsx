@@ -1,5 +1,5 @@
 import React from 'react';
-import { Spinner } from '@blueprintjs/core';
+import { Spin } from '@douyinfe/semi-ui';
 
 import LinkTitle from 'components/LinkTitle';
 import Songlists from 'components/Songlists';
@@ -12,7 +12,9 @@ import styles from './style.module.css';
 const { useEffect } = React;
 
 const Songlist = () => {
-  const [state, personalizedSonglistFn] = useAsyncFn(personalizedApis.getPersonalizedSonglist);
+  const [state, personalizedSonglistFn] = useAsyncFn(
+    personalizedApis.getPersonalizedSonglist,
+  );
   const { value: songlist = [], loading: isGettingSonglist } = state || {};
 
   useEffect(() => {
@@ -22,7 +24,7 @@ const Songlist = () => {
   return (
     <div className={styles.root}>
       <LinkTitle title='推荐歌单' route={ROUTES.SONG_LIST} />
-      {isGettingSonglist ? <Spinner /> : <Songlists data={songlist} />}
+      {isGettingSonglist ? <Spin /> : <Songlists data={songlist} />}
     </div>
   );
 };
