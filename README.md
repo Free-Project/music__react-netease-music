@@ -2,7 +2,7 @@
 React Netease Music——一个基于React、TypeScript网易云音乐。
 
 ## Demo
-[网易云音乐😍](https://github.com/free-project/music__react-netease-music)
+[云音乐🎸 - Cloud Music]([https://react-cloud-music.netlify.app](https://react-cloud-music.netlify.app/))
 
 ## 功能列表
 - [x] 登录/登出（目前仅支持手机密码登录）
