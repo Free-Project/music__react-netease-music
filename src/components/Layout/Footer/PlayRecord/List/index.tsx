@@ -2,11 +2,11 @@ import React from 'react';
 import { IconPlay, IconPause, IconDeleteStroked } from '@douyinfe/semi-icons';
 import cn from 'classnames';
 
-import Table, { IColumn } from 'components/Table';
+import Table, { Type_Column } from 'components/Table';
 import VipIcon from 'components/VipIcon';
 import {
-  IMyMusic,
-  IArtist,
+  Type_MyMusic,
+  Type_Artist,
   MUSIC_STATUS,
   MUSIC_TYPE,
 } from 'apis/types/business';
@@ -14,23 +14,23 @@ import { formatTime } from 'helpers/time';
 import { PlayMusicStateContext, AudioContext } from 'reducers/playMusic';
 import styles from './style.module.css';
 
-interface IProps {
-  data: IMyMusic[];
-  onDoubleClick: (item: IMyMusic) => void;
+interface Props {
+  data: Type_MyMusic[];
+  onDoubleClick: (item: Type_MyMusic) => void;
   onClear: () => void;
 }
 
 const { useContext } = React;
 
-const List: React.FC<IProps> = ({ data, onDoubleClick, onClear }) => {
+const List: React.FC<Props> = ({ data, onDoubleClick, onClear }) => {
   const state = useContext(PlayMusicStateContext);
   const audioInfo = useContext(AudioContext);
 
-  const columns: IColumn<IMyMusic, keyof IMyMusic>[] = [
+  const columns: Type_Column<Type_MyMusic, keyof Type_MyMusic>[] = [
     {
       key: 'name',
       width: '55%',
-      render: (name: string, { id, fee }: IMyMusic) => {
+      render: (name: string, { id, fee }: Type_MyMusic) => {
         const isActive = state.musicId === id;
         return (
           <div className={cn(styles.name, isActive && 'active')}>
@@ -47,7 +47,7 @@ const List: React.FC<IProps> = ({ data, onDoubleClick, onClear }) => {
     {
       key: 'artists',
       width: '30%',
-      render: (artists: IArtist[], { id }: IMyMusic) => {
+      render: (artists: Type_Artist[], { id }: Type_MyMusic) => {
         return (
           <div className={state.musicId === id ? 'active' : ''}>
             {artists?.map(({ name }) => name).join(' / ')}
@@ -76,7 +76,7 @@ const List: React.FC<IProps> = ({ data, onDoubleClick, onClear }) => {
         )}
       </div>
       <div className={styles.list}>
-        <Table<IMyMusic>
+        <Table<Type_MyMusic>
           columns={columns}
           data={data}
           showHeader={false}

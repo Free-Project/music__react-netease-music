@@ -43,6 +43,6 @@
 }
 
 .list {
-  height: calc(100% - 27px);
+  height: calc(100% - 36px);
   overflow: scroll;
 }

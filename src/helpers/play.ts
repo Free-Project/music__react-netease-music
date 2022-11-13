@@ -1,5 +1,5 @@
 import { DEFAULT_VALUE, localStorageFactory } from 'helpers/localStorage';
-import type { IMyMusic } from 'apis/types/business';
+import type { Type_MyMusic } from 'apis/types/business';
 
 enum KEY {
   PLAY_HISTORY = '__playHistory',
@@ -7,12 +7,12 @@ enum KEY {
   PLAY_MODE = '__playMode',
 }
 
-export const playHistory = localStorageFactory<IMyMusic[]>({
+export const playHistory = localStorageFactory<Type_MyMusic[]>({
   key: KEY.PLAY_HISTORY,
   defaultValue: DEFAULT_VALUE.ARRAY,
 });
 
-export const setPlayHistory = (music: IMyMusic): IMyMusic[] => {
+export const setPlayHistory = (music: Type_MyMusic): Type_MyMusic[] => {
   const list = playHistory.getItem().slice(0, 100);
   const index = list.findIndex((item) => item.id === music.id);
 
@@ -26,7 +26,7 @@ export const setPlayHistory = (music: IMyMusic): IMyMusic[] => {
   return list;
 };
 
-export const playList = localStorageFactory<IMyMusic[]>({
+export const playList = localStorageFactory<Type_MyMusic[]>({
   key: KEY.PLAY_LIST,
   defaultValue: DEFAULT_VALUE.ARRAY,
 });

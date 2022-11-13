@@ -1,9 +1,9 @@
 import axios from 'helpers/axios';
-import type { IGetSingerlistsRequest, Artist } from './types/singerlist';
+import type { Type_GetSingerlistsRequest, Artist } from './types/singerList';
 import { PAGE_SIZE } from 'constants/pagination';
 
 type GetSingerlistsFn = (
-  params: IGetSingerlistsRequest,
+  params: Type_GetSingerlistsRequest,
 ) => Promise<{ artists: Artist[]; total: number }>;
 
 const getSingerlists: GetSingerlistsFn = async ({

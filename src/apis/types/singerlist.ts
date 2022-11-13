@@ -1,4 +1,4 @@
-export interface IGetSingerlistsRequest {
+export interface Type_GetSingerlistsRequest {
   initial?: string;
   type?: number | string;
   area?: number | string;

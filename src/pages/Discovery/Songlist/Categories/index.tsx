@@ -2,13 +2,16 @@ import React from 'react';
 import { Popover } from '@douyinfe/semi-ui';
 import cn from 'classnames';
 
-import { IGetSonglistCatsResponse, ICategory } from 'apis/types/songlist';
+import {
+  Type_GetSongListCatsResponse,
+  Type_Category,
+} from 'apis/types/songList';
 import { noop } from 'helpers/fn';
 import styles from './style.module.css';
 
-interface IProps {
-  cats?: IGetSonglistCatsResponse;
-  hotCats?: ICategory[];
+interface Props {
+  cats?: Type_GetSongListCatsResponse;
+  hotCats?: Type_Category[];
   selectedCat?: string;
   onCatSelect?: (cat: string) => void;
 }
@@ -17,7 +20,7 @@ const { useState } = React;
 
 export const DEFAULT_CAT = '全部';
 
-const Categories: React.FC<IProps> = ({
+const Categories: React.FC<Props> = ({
   cats,
   hotCats,
   selectedCat,

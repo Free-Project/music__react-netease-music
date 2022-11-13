@@ -1,4 +1,4 @@
-interface IDictionary<T> {
+interface Type_Dictionary<T> {
   [key: string]: T;
 }
 

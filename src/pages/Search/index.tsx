@@ -14,7 +14,7 @@ import styles from './style.module.css';
 
 const { useEffect, useState } = React;
 
-interface ITab {
+interface Type_Tab {
   tab: string;
   tabKey: string;
   unit: string;
@@ -22,7 +22,7 @@ interface ITab {
   searchType: TARGET_TYPE;
 }
 
-const TABS: IDictionary<ITab> = {
+const TABS: Type_Dictionary<Type_Tab> = {
   MUSIC: {
     tab: '单曲',
     tabKey: 'MUSIC',

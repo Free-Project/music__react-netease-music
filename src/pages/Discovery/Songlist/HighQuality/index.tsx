@@ -1,13 +1,13 @@
 import React from 'react';
-import { ISonglist } from 'apis/types/business';
+import { Type_SongList } from 'apis/types/business';
 
 import styles from './style.module.css';
 
-interface IProps {
-  data?: ISonglist;
+interface Props {
+  data?: Type_SongList;
 }
 
-const HighQuality: React.FC<IProps> = ({ data }) => {
+const HighQuality: React.FC<Props> = ({ data }) => {
   return (
     <div className={styles.root}>
       {data?.coverImgUrl && (

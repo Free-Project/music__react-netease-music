@@ -9,16 +9,18 @@ enum COMMENT_TYPE {
   VIDEO = 5,
 }
 
-interface ILikeUnlikeCommentRequest {
+interface Type_LikeUnlikeCommentRequest {
   likeOrUnlike: number;
   type?: COMMENT_TYPE;
   id: number;
   commentId: number;
 }
 
-type Params = Omit<ILikeUnlikeCommentRequest, 'likeOrUnlike'>;
+type Params = Omit<Type_LikeUnlikeCommentRequest, 'likeOrUnlike'>;
 
-type LikeUnlikeCommentFn = (params: ILikeUnlikeCommentRequest) => Promise<any>;
+type LikeUnlikeCommentFn = (
+  params: Type_LikeUnlikeCommentRequest,
+) => Promise<any>;
 type LikeCommentFn = (params: Params, callback?: () => void) => Promise<any>;
 type UnlikeCommentFn = (params: Params, callback?: () => void) => Promise<any>;
 

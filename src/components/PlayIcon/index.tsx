@@ -4,11 +4,11 @@ import cn from 'classnames';
 
 import styles from './style.module.css';
 
-interface IProps {
+interface Props {
   className?: string;
 }
 
-const PlayIcon: React.FC<IProps> = ({ className }) => {
+const PlayIcon: React.FC<Props> = ({ className }) => {
   return (
     <div className={cn(styles.root, className)}>
       <IconPlay />

@@ -1,7 +1,7 @@
 import axios from 'helpers/axios';
-import type { IGetAlbumResponse } from './types/album';
+import type { Type_GetAlbumResponse } from './types/album';
 
-type GetAlbumFn = (id: number) => Promise<IGetAlbumResponse>;
+type GetAlbumFn = (id: number) => Promise<Type_GetAlbumResponse>;
 
 const getAlbum: GetAlbumFn = async (id) => {
   const response = await axios({

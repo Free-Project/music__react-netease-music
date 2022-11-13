@@ -3,18 +3,18 @@ import { useHistory } from 'react-router-dom';
 import cn from 'classnames';
 
 import PlayCount from 'components/PlayCount';
-import type { ISonglist } from 'apis/types/business';
+import type { Type_SongList } from 'apis/types/business';
 import { PlayMusicDispatchContext, ACTIONS } from 'reducers/playMusic';
 import ROUTES from 'constants/routes';
 import styles from './style.module.css';
 
-interface IProps {
-  data: ISonglist[];
+interface Props {
+  data: Type_SongList[];
 }
 
 const { useContext } = React;
 
-const Songlists: React.FC<IProps> = ({ data }) => {
+const SongLists: React.FC<Props> = ({ data }) => {
   const history = useHistory();
   const dispatch = useContext(PlayMusicDispatchContext);
 
@@ -50,4 +50,4 @@ const Songlists: React.FC<IProps> = ({ data }) => {
   );
 };
 
-export default Songlists;
+export default SongLists;

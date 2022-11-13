@@ -4,20 +4,20 @@ import cn from 'classnames';
 import { noop } from 'helpers/fn';
 import styles from './style.module.css';
 
-interface ITab {
+interface Type_Tab {
   label?: string;
   key: string;
   renderLabel?: () => React.ReactElement;
   onClick?: (key: string) => void;
 }
 
-interface IProps {
-  tabs: ITab[];
+interface Props {
+  tabs: Type_Tab[];
 }
 
 const { useState } = React;
 
-const Tabs: React.FC<IProps> = ({ tabs }) => {
+const Tabs: React.FC<Props> = ({ tabs }) => {
   const [activeTab, setActiveTab] = useState(tabs?.[0].key);
 
   return (

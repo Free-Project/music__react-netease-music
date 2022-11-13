@@ -2,13 +2,13 @@ import React from 'react';
 
 import styles from './style.module.css';
 
-interface IProps {
+interface Props {
   title: string;
   words?: string[];
   onWordClick: (word: string) => void;
 }
 
-const Words: React.FC<IProps> = ({ title, words, onWordClick }) => {
+const Words: React.FC<Props> = ({ title, words, onWordClick }) => {
   return (
     <div className={styles.root}>
       <div className={styles.title}>{title}</div>

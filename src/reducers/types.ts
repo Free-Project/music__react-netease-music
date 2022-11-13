@@ -1,4 +1,4 @@
-export interface IAction {
+export interface Type_Action {
   type: string;
-  payload?: IDictionary<any>;
+  payload?: Type_Dictionary<any>;
 }

@@ -1,9 +1,9 @@
-export interface ILoginRequest {
+export interface Type_LoginRequest {
   phone: string;
   password: string;
 }
 
-export interface ILoginResult {
+export interface Type_LoginResult {
   token: string;
   userId: number;
   profile: {

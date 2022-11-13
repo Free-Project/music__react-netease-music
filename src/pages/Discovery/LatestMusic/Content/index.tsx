@@ -3,7 +3,7 @@ import { IconVolume1, IconVolume2 } from '@douyinfe/semi-icons';
 import cn from 'classnames';
 
 import PlayIcon from 'components/PlayIcon';
-import type { IMyMusic } from 'apis/types/business';
+import type { Type_MyMusic } from 'apis/types/business';
 import { formatTime } from 'helpers/time';
 import { createMusic } from 'helpers/business';
 import {
@@ -14,20 +14,20 @@ import {
 } from 'reducers/playMusic';
 import styles from './style.module.css';
 
-interface IProps {
-  data?: IMyMusic[];
+interface Props {
+  data?: Type_MyMusic[];
   onDoubleClick: () => void;
 }
 
 const { useContext } = React;
 
-const Content: React.FC<IProps> = ({ data, onDoubleClick }) => {
+const Content: React.FC<Props> = ({ data, onDoubleClick }) => {
   const state = useContext(PlayMusicStateContext);
   const dispatch = useContext(PlayMusicDispatchContext);
   const audioInfo = useContext(AudioContext);
 
   const handleDoubleClick = (index: number) => {
-    const item = data?.[index] as IMyMusic;
+    const item = data?.[index] as Type_MyMusic;
 
     dispatch({
       type: ACTIONS.PLAY,

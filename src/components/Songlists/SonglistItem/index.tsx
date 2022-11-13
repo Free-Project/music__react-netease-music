@@ -6,7 +6,7 @@ import PlayIcon from 'components/PlayIcon';
 import ROUTES from 'constants/routes';
 import styles from './style.module.css';
 
-interface IProps {
+interface Props {
   id: number;
   name: string;
   playCount: number;
@@ -15,7 +15,7 @@ interface IProps {
 
 const { useCallback } = React;
 
-const SonglistItem: React.FC<IProps> = ({ id, name, playCount, picUrl }) => {
+const SongListItem: React.FC<Props> = ({ id, name, playCount, picUrl }) => {
   const history = useHistory();
 
   const handleItemClick = useCallback(() => {
@@ -34,4 +34,4 @@ const SonglistItem: React.FC<IProps> = ({ id, name, playCount, picUrl }) => {
   );
 };
 
-export default SonglistItem;
+export default SongListItem;

@@ -1,14 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Spin } from '@douyinfe/semi-ui';
 import { useParams } from 'react-router-dom';
-import { useLazyQuery } from '@apollo/client';
-import Message from 'components/Message';
 import Tabs from 'components/Tabs';
 import MusicList from 'components/MusicList';
 import BasicInfo from './BasicInfo';
-import { createMusic } from 'helpers/business';
-import { getSonglistDetail } from 'graphql/music';
-import type { IMusic } from 'apis/types/business';
+import { createMusic, createMusicFromSimpleMusic } from 'helpers/business';
+import songListApis from 'apis/songList';
+import useAsyncFn from 'hooks/useAsyncFn';
 import { PlayMusicDispatchContext, ACTIONS } from 'reducers/playMusic';
 import styles from './style.module.css';
 
@@ -17,7 +15,7 @@ const { useEffect, useContext } = React;
 const TABS = [
   {
     label: '歌曲列表',
-    key: 'songlist',
+    key: 'songList',
   },
   {
     label: '评论',
@@ -25,30 +23,29 @@ const TABS = [
   },
 ];
 
-const SonglistDetail = () => {
+const SongListDetail = () => {
   const dispatch = useContext(PlayMusicDispatchContext);
-  const params = useParams<IDictionary<string>>();
-  const { songlistId } = params;
-
-  const [getSonglistDetailGql, { loading, data }] = useLazyQuery(
-    getSonglistDetail,
-    {
-      onError: (error) => {
-        Message.error(error.message);
-      },
-    },
+  const params = useParams<Type_Dictionary<string>>();
+  const { songListId } = params;
+  const [unLoaded, setUnLoaded] = useState(true);
+  const [songListDetail, getSongListDetailFn] = useAsyncFn(
+    songListApis.getSongListDetail,
   );
 
-  const result = data?.getSonglistDetail;
-  const songs = result?.songs as IMusic[];
+  useEffect(() => {
+    setUnLoaded(false);
+  }, []);
 
   useEffect(() => {
-    getSonglistDetailGql({
-      variables: {
-        id: songlistId,
-      },
+    getSongListDetailFn({
+      id: songListId,
     });
-  }, [songlistId]);
+  }, [songListId]);
+
+  const songDetail = songListDetail?.value;
+  const songs = (songDetail?.tracks || []).map((item) => {
+    return createMusicFromSimpleMusic(item);
+  });
 
   const playAll = (autoPlay?: boolean) => {
     const list = songs.map((item) => {
@@ -78,14 +75,13 @@ const SonglistDetail = () => {
 
   return (
     <div className={styles.root}>
-      {loading ? (
+      {unLoaded && songListDetail.loading ? (
         <Spin />
       ) : (
         <>
           <div className={styles.basicInfo}>
-            <BasicInfo data={result?.songlist} onPlayAll={playAll} />
+            <BasicInfo data={songDetail} onPlayAll={playAll} />
           </div>
-
           <div className={styles.content}>
             <div className={styles.tabs}>
               <Tabs tabs={TABS} />
@@ -98,4 +94,4 @@ const SonglistDetail = () => {
   );
 };
 
-export default SonglistDetail;
+export default SongListDetail;

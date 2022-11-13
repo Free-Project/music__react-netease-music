@@ -1,16 +1,16 @@
 import React from 'react';
-import { ISonglist } from 'apis/types/business';
+import { Type_SongList } from 'apis/types/business';
 
 import { formatDatetime } from 'helpers/time';
 import { formatNum } from 'helpers/num';
 import styles from './style.module.css';
 
-interface IProps {
-  data?: ISonglist;
+interface Props {
+  data?: Type_SongList;
   onPlayAll: (autoPlay?: boolean) => void;
 }
 
-const BasicInfo: React.FC<IProps> = ({ data, onPlayAll }) => {
+const BasicInfo: React.FC<Props> = ({ data, onPlayAll }) => {
   return (
     <div className={styles.root}>
       <div className={styles.pic}>

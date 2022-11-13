@@ -1,5 +1,5 @@
 import React from 'react';
-import { IMyMusic } from 'apis/types/business';
+import { Type_MyMusic } from 'apis/types/business';
 import {
   HTMLMediaState,
   HTMLMediaControls,
@@ -12,7 +12,7 @@ import {
   playMode as playModeLocalStorage,
   playList as playListLocalStorage,
 } from 'helpers/play';
-import { IAction } from './types';
+import { Type_Action } from './types';
 
 // Actions
 const PLAY = 'PLAY';
@@ -34,10 +34,10 @@ export const ACTIONS = {
 };
 
 // Reducer
-export interface IState {
+export interface Type_State {
   musicId: number;
   musicUrl: string;
-  music?: IMyMusic;
+  music?: Type_MyMusic;
   playMode: MODE;
   showLyric: boolean;
 }
@@ -49,7 +49,10 @@ export const initialState = {
   showLyric: false,
 };
 
-const playMusicReducer = (state: IState, { type, payload }: IAction) => {
+const playMusicReducer = (
+  state: Type_State,
+  { type, payload }: Type_Action,
+) => {
   switch (type) {
     case ACTIONS.PLAY: {
       if (!payload?.keepOrder) {
@@ -103,7 +106,7 @@ const playMusicReducer = (state: IState, { type, payload }: IAction) => {
 
 export default playMusicReducer;
 
-export interface IAudioContext {
+export interface Type_AudioContext {
   audio?: React.ReactElement<any> | undefined;
   state?: HTMLMediaState;
   controls?: HTMLMediaControls;
@@ -113,8 +116,9 @@ export interface IAudioContext {
 }
 
 // Context
-export const PlayMusicStateContext = React.createContext<IState>(initialState);
+export const PlayMusicStateContext =
+  React.createContext<Type_State>(initialState);
 export const PlayMusicDispatchContext = React.createContext<
-  React.Dispatch<IAction>
+  React.Dispatch<Type_Action>
 >(() => {});
-export const AudioContext = React.createContext<IAudioContext>({});
+export const AudioContext = React.createContext<Type_AudioContext>({});

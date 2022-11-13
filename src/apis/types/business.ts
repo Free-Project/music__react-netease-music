@@ -19,7 +19,7 @@ export enum MUSIC_TYPE {
   VIP = 1,
 }
 
-export interface IArtist {
+export interface Type_Artist {
   albumSize: number;
   id: number;
   img1v1Id: number;
@@ -33,9 +33,9 @@ export interface IArtist {
   alias?: string[];
 }
 
-export interface IAlbum {
-  artist?: IArtist;
-  artists?: IArtist[];
+export interface Type_Album {
+  artist?: Type_Artist;
+  artists?: Type_Artist[];
   blurPicUrl?: string;
   copyrightId?: number;
   description?: string;
@@ -51,10 +51,10 @@ export interface IAlbum {
   type?: string;
 }
 
-export interface IMV {
+export interface Type_MV {
   artistId: number;
   artistName: string;
-  artists: IArtist[];
+  artists: Type_Artist[];
   cover: string;
   duration: number;
   id: number;
@@ -65,10 +65,10 @@ export interface IMV {
   subed: boolean;
 }
 
-export interface IMusic {
-  album: IAlbum;
+export interface Type_Music {
+  album: Type_Album;
   alias?: string[];
-  artists: IArtist[];
+  artists: Type_Artist[];
   copyrightId?: number;
   duration: number;
   fee?: number;
@@ -81,19 +81,18 @@ export interface IMusic {
   picUrl?: string;
 }
 
-export interface IMyMusic {
+export interface Type_MyMusic {
   id: number;
   name: string;
-  artists: IArtist[];
+  artists: Type_Artist[];
   duration: number;
   picUrl?: string;
-  album?: IAlbum;
+  album?: Type_Album;
   fee?: number; // 用来判断是否需要vip，fee=1则vip才能听
   status?: number; // 歌曲状态，-200表示资源不存在
-  [key: string]: any;
 }
 
-export interface ISonglist {
+export interface Type_SongList {
   adType: number;
   backgroundCoverId: number;
   cloudTrackCount: number;
@@ -127,22 +126,23 @@ export interface ISonglist {
   trackIds: [];
   trackNumberUpdateTime: number;
   trackUpdateTime: number;
-  tracks: ISimpleMusic[];
+  tracks: Type_SimpleMusic[];
   updateTime: number;
   userId: number;
 }
 
-export interface ISimpleMusic {
+export interface Type_SimpleMusic {
   al: {
     id: number;
     name: string;
     picUrl: string;
   };
-  ar: IArtist[];
+  ar: Type_Artist[];
   dt: number;
   id: number;
   name: string;
   publishTime: number;
   fee?: number;
   status?: number;
+  artists: [];
 }

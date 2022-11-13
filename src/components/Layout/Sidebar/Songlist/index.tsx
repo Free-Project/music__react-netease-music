@@ -3,20 +3,20 @@ import { useHistory, useRouteMatch } from 'react-router-dom';
 import cn from 'classnames';
 
 import { LogStateContext } from 'reducers/log';
-import type { ISonglist } from 'apis/types/business';
+import type { Type_SongList } from 'apis/types/business';
 import ROUTES from 'constants/routes';
 import styles from './style.module.css';
 
-interface IProps {
+interface Props {
   title: string;
-  data?: ISonglist[];
+  data?: Type_SongList[];
 }
 
 const { useContext } = React;
 
-const Songlist: React.FC<IProps> = ({ title, data }) => {
+const SongList: React.FC<Props> = ({ title, data }) => {
   const history = useHistory();
-  const routeMatch = useRouteMatch<{ songlistId: string }>(
+  const routeMatch = useRouteMatch<{ songListId: string }>(
     ROUTES.SONG_LIST_DETAIL,
   );
   const logState = useContext(LogStateContext);
@@ -30,7 +30,7 @@ const Songlist: React.FC<IProps> = ({ title, data }) => {
       <div className={styles.content}>
         {data?.map(({ id, name, trackCount }) => {
           const isActive =
-            routeMatch && Number(routeMatch.params.songlistId) === id;
+            routeMatch && Number(routeMatch.params.songListId) === id;
           const text = `${name.replace(
             logState.user.profile.nickname,
             '我',
@@ -51,4 +51,4 @@ const Songlist: React.FC<IProps> = ({ title, data }) => {
   );
 };
 
-export default Songlist;
+export default SongList;

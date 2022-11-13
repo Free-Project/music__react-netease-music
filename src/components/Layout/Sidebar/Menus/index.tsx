@@ -12,19 +12,19 @@ import cn from 'classnames';
 import ROUTES from 'constants/routes';
 import styles from './style.module.css';
 
-interface IMenuItem {
+interface Type_MenuItem {
   icon: any;
   label: string;
   active?: boolean;
   route: string;
 }
 
-interface IMenu {
+interface Type_Menu {
   title?: string;
-  items: IMenuItem[];
+  items: Type_MenuItem[];
 }
 
-const MENU: IMenu[] = [
+const MENU: Type_Menu[] = [
   {
     items: [
       {

@@ -3,11 +3,11 @@ import { Dropdown, Popover } from '@douyinfe/semi-ui';
 import { IconUser, IconExit } from '@douyinfe/semi-icons';
 
 import Menus from './Menus';
-import Songlist from './Songlist';
+import SongList from './SongList';
 import MusicDetail from './MusicDetail';
 import LoginDialog from './LoginDialog';
 import authApis from 'apis/auth';
-import songlistApis from 'apis/songlist';
+import songListApis from 'apis/songList';
 import useAsyncFn from 'hooks/useAsyncFn';
 import { LogStateContext, LogDispatchContext, ACTIONS } from 'reducers/log';
 import { PlayMusicStateContext } from 'reducers/playMusic';
@@ -23,13 +23,13 @@ const Sidebar = () => {
 
   const [showLoginDialog, setShowLoginDialog] = useState(false);
   const [, logoutFn] = useAsyncFn(authApis.logout);
-  const [songlistState, getUserSonglistFn] = useAsyncFn(
-    songlistApis.getUserSonglist,
+  const [songListState, getUserSongListFn] = useAsyncFn(
+    songListApis.getUserSongList,
   );
 
   useEffect(() => {
     if (isLogined) {
-      getUserSonglistFn(logState.user.userId);
+      getUserSongListFn(logState.user.userId);
     }
   }, [isLogined]);
 
@@ -75,16 +75,16 @@ const Sidebar = () => {
 
       <div className={styles.content}>
         <Menus />
-        {!songlistState.loading && isLogined && (
+        {!songListState.loading && isLogined && (
           <>
             <div className={styles.block}>
-              <Songlist title='创建的歌单' data={songlistState.value?.create} />
+              <SongList title='创建的歌单' data={songListState.value?.create} />
             </div>
 
             <div className={styles.block}>
-              <Songlist
+              <SongList
                 title='收藏的歌单'
-                data={songlistState.value?.collect}
+                data={songListState.value?.collect}
               />
             </div>
           </>

@@ -4,7 +4,7 @@ import cn from 'classnames';
 
 import Lyric from './Lyric';
 import Comments from './Comments';
-import Songlists from './Songlists';
+import SongLists from './SongLists';
 import SimiSongs from './SimiSongs';
 import songApis from 'apis/song';
 import useAsyncFn from 'hooks/useAsyncFn';
@@ -22,14 +22,14 @@ const MusicDetail = () => {
   const state = useContext(PlayMusicStateContext);
   const { showLyric, music, musicId } = state;
 
-  const [songlistState, getSimiSonglistFn] = useAsyncFn(
-    songApis.getSimiSonglist,
+  const [songListState, getSimType_SongListFn] = useAsyncFn(
+    songApis.getSimType_SongList,
   );
   const [simiSongState, getSimiSongFn] = useAsyncFn(songApis.getSimiSong);
 
   useEffect(() => {
     if (musicId && showLyric) {
-      getSimiSonglistFn({ id: musicId });
+      getSimType_SongListFn({ id: musicId });
       getSimiSongFn({ id: musicId });
     }
   }, [musicId, showLyric]);
@@ -79,15 +79,15 @@ const MusicDetail = () => {
               <Comments />
             </div>
             <div className={styles.relatedDetail}>
-              {songlistState.loading || simiSongState.loading ? (
+              {songListState.loading || simiSongState.loading ? (
                 <Spin size='small' />
               ) : (
                 <>
-                  {!!songlistState.value?.length && (
+                  {!!songListState.value?.length && (
                     <div className={styles.block}>
                       <div className={styles.title}>包含这首歌的歌单</div>
                       <div>
-                        <Songlists data={songlistState.value || []} />
+                        <SongLists data={songListState.value || []} />
                       </div>
                     </div>
                   )}

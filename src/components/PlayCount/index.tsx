@@ -5,12 +5,12 @@ import cn from 'classnames';
 import { formatNum } from 'helpers/num';
 import styles from './style.module.css';
 
-interface IProps {
+interface Props {
   count: number;
   className?: string;
 }
 
-const PlayCount: React.FC<IProps> = ({ count, className }) => {
+const PlayCount: React.FC<Props> = ({ count, className }) => {
   return (
     <div className={cn(styles.root, className)}>
       <IconPlay />

@@ -3,8 +3,13 @@ import { IconUser, IconSong, IconDisc, IconVideo } from '@douyinfe/semi-icons';
 
 import Item from './Item';
 import albumApis from 'apis/album';
-import type { IAlbum, IArtist, IMusic, IMV } from 'apis/types/business';
-import type { ISearchSuggestResponse } from 'apis/types/search';
+import type {
+  Type_Album,
+  Type_Artist,
+  Type_Music,
+  Type_MV,
+} from 'apis/types/business';
+import type { Type_SearchSuggestResponse } from 'apis/types/search';
 import { PlayMusicDispatchContext, ACTIONS } from 'reducers/playMusic';
 import { createMusic } from 'helpers/business';
 
@@ -12,11 +17,11 @@ import styles from './style.module.css';
 
 const { useContext } = React;
 
-interface IProps {
-  data: ISearchSuggestResponse;
+interface Props {
+  data: Type_SearchSuggestResponse;
 }
 
-const SearchResult: React.FC<IProps> = ({ data }) => {
+const SearchResult: React.FC<Props> = ({ data }) => {
   const dispatch = useContext(PlayMusicDispatchContext);
   const { order } = data;
 
@@ -26,9 +31,9 @@ const SearchResult: React.FC<IProps> = ({ data }) => {
     songs: {
       title: '单曲',
       icon: <IconSong />,
-      renderLabel: (item: IMusic) =>
+      renderLabel: (item: Type_Music) =>
         `${item.name} - ${item.artists.map(({ name }) => name).join(' / ')}`,
-      onItemClick: async (item: IMusic) => {
+      onItemClick: async (item: Type_Music) => {
         let { picUrl } = item;
 
         if (!picUrl) {
@@ -52,17 +57,17 @@ const SearchResult: React.FC<IProps> = ({ data }) => {
     albums: {
       title: '专辑',
       icon: <IconDisc />,
-      renderLabel: (item: IAlbum) => `${item.name} - ${item?.artist?.name}`,
+      renderLabel: (item: Type_Album) => `${item.name} - ${item?.artist?.name}`,
     },
     artists: {
       title: '歌手',
       icon: <IconUser />,
-      renderLabel: (item: IArtist) => `${item.name}`,
+      renderLabel: (item: Type_Artist) => `${item.name}`,
     },
     mvs: {
       title: '视频',
       icon: <IconVideo />,
-      renderLabel: (item: IMV) => `${item.name} - ${item.artistName}`,
+      renderLabel: (item: Type_MV) => `${item.name} - ${item.artistName}`,
     },
   };
 

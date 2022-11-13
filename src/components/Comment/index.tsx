@@ -1,16 +1,16 @@
 import React from 'react';
 import cn from 'classnames';
 
-import { IComment } from 'apis/types/comment';
+import { Type_Comment } from 'apis/types/comment';
 import { formatDatetime } from 'helpers/time';
 import styles from './style.module.css';
 
-interface IProps {
-  data: IComment;
-  onLikeChange: (comment: IComment) => void;
+interface Props {
+  data: Type_Comment;
+  onLikeChange: (comment: Type_Comment) => void;
 }
 
-const Comment: React.FC<IProps> = ({ data, onLikeChange }) => {
+const Comment: React.FC<Props> = ({ data, onLikeChange }) => {
   const { user, content, beReplied, time, likedCount, liked } = data;
 
   const likeUnlike = async () => {

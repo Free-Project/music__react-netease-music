@@ -5,8 +5,8 @@ import ROUTES from 'constants/routes';
 import styles from './style.module.css';
 
 const Recommendation = lazy(() => import('./Recommendation'));
-const Songlist = lazy(() => import('./Songlist'));
-const LeaderBoard = lazy(() => import('./LeaderBoard'));
+const SongList = lazy(() => import('./SongList'));
+const TopList = lazy(() => import('./TopList'));
 const Singers = lazy(() => import('./Singers'));
 const LatestMusic = lazy(() => import('./LatestMusic'));
 const RecommendDaily = lazy(() => import('./RecommendDaily'));
@@ -21,8 +21,8 @@ const Discovery = () => {
             path={ROUTES.RECOMMENDATION}
             component={Recommendation}
           />
-          <Route exact path={ROUTES.SONG_LIST} component={Songlist} />
-          <Route exact path={ROUTES.LEADER_BOARD} component={LeaderBoard} />
+          <Route exact path={ROUTES.SONG_LIST} component={SongList} />
+          <Route exact path={ROUTES.TOP_LIST} component={TopList} />
           <Route exact path={ROUTES.SINGERS} component={Singers} />
           <Route exact path={ROUTES.LATEST_MUSIC} component={LatestMusic} />
           <Route

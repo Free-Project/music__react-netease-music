@@ -2,14 +2,14 @@ import React from 'react';
 import SingerFilter from 'components/SingerFilter';
 import { alphaTypes, areaTypes, categoryTypes } from 'constants/singer';
 
-interface ISingerCategoryProps {
+interface Type_SingerCategoryProps {
   onTagClick?: (obj?: any) => void;
   curAlpha?: string;
   curCategory?: string;
   curArea?: string;
 }
 
-function SingerCategory(props: ISingerCategoryProps) {
+function SingerCategory(props: Type_SingerCategoryProps) {
   const { curAlpha, onTagClick, curCategory, curArea } = props;
   return (
     <div className='px-32 flex flex-col mt-6 justify-between'>

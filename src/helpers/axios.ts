@@ -3,7 +3,7 @@ import Message from 'components/Message';
 import { SERVER } from 'constants/server';
 
 const TIMEOUT = 40000;
-const MIME_TYPE: IDictionary<ResponseType> = {
+const MIME_TYPE: Type_Dictionary<ResponseType> = {
   JSON: 'json',
 };
 

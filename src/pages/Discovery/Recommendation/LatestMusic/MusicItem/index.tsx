@@ -4,7 +4,7 @@ import cn from 'classnames';
 
 import PlayIcon from 'components/PlayIcon';
 import Artists from 'components/Artists';
-import { IMusicSong } from 'apis/types/personalized';
+import { Type_MusicSong } from 'apis/types/personalized';
 
 import {
   PlayMusicStateContext,
@@ -15,17 +15,17 @@ import {
 import { createMusic } from 'helpers/business';
 import styles from './style.module.css';
 
-interface IProps {
+interface Props {
   id: number;
   name: string;
   picUrl: string;
-  song: IMusicSong;
+  song: Type_MusicSong;
   index: number;
 }
 
 const { useContext } = React;
 
-const MusicItem: React.FC<IProps> = ({
+const MusicItem: React.FC<Props> = ({
   id,
   name,
   picUrl,

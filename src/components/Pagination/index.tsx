@@ -8,7 +8,7 @@ import styles from './style.module.css';
 
 // 1~5正常+后3，n-5~n正常+前3，其他前3+后3，最多全部显示10页
 
-interface IProps {
+interface Props {
   total?: number;
   page?: number;
   pageSize?: number;
@@ -20,7 +20,7 @@ const MAX_SHOW_PAGE_COUNT = 10;
 const PAGE_LEFT_BORDER = 5;
 const PAGE_SCALE = 3;
 
-const Pagination: React.FC<IProps> = ({
+const Pagination: React.FC<Props> = ({
   total = TOTAL,
   page = PAGE,
   pageSize = PAGE_SIZE,

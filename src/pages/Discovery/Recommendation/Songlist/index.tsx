@@ -2,7 +2,7 @@ import React from 'react';
 import { Spin } from '@douyinfe/semi-ui';
 
 import LinkTitle from 'components/LinkTitle';
-import Songlists from 'components/Songlists';
+import SongLists from 'components/SongLists';
 
 import ROUTES from 'constants/routes';
 import useAsyncFn from 'hooks/useAsyncFn';
@@ -11,22 +11,22 @@ import styles from './style.module.css';
 
 const { useEffect } = React;
 
-const Songlist = () => {
-  const [state, personalizedSonglistFn] = useAsyncFn(
-    personalizedApis.getPersonalizedSonglist,
+const SongList = () => {
+  const [state, personalizedSongListFn] = useAsyncFn(
+    personalizedApis.getPersonalizedSongList,
   );
-  const { value: songlist = [], loading: isGettingSonglist } = state || {};
+  const { value: songList = [], loading: isGettingSongList } = state || {};
 
   useEffect(() => {
-    personalizedSonglistFn({ limit: 10 });
+    personalizedSongListFn({ limit: 10 });
   }, []);
 
   return (
     <div className={styles.root}>
       <LinkTitle title='推荐歌单' route={ROUTES.SONG_LIST} />
-      {isGettingSonglist ? <Spin /> : <Songlists data={songlist} />}
+      {isGettingSongList ? <Spin /> : <SongLists data={songList} />}
     </div>
   );
 };
 
-export default Songlist;
+export default SongList;

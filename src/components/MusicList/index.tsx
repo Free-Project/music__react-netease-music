@@ -6,12 +6,12 @@ import {
 } from '@douyinfe/semi-icons';
 import cn from 'classnames';
 
-import Table, { IColumn } from 'components/Table';
+import Table, { Type_Column } from 'components/Table';
 import VipIcon from 'components/VipIcon';
 import {
-  IMusic,
-  IArtist,
-  IAlbum,
+  Type_Music,
+  Type_Artist,
+  Type_Album,
   MUSIC_STATUS,
   MUSIC_TYPE,
 } from 'apis/types/business';
@@ -26,24 +26,24 @@ import {
 } from 'reducers/playMusic';
 import styles from './style.module.css';
 
-interface IProps {
-  data: IMusic[];
+interface Props {
+  data: Type_Music[];
   onPlayAll?: (autoPlay?: boolean) => void;
 }
 
 const { useContext } = React;
 
-const MusicList: React.FC<IProps> = ({ data, onPlayAll }) => {
+const MusicList: React.FC<Props> = ({ data, onPlayAll }) => {
   const state = useContext(PlayMusicStateContext);
   const dispatch = useContext(PlayMusicDispatchContext);
   const audioInfo = useContext(AudioContext);
 
-  const columns: IColumn<IMusic, keyof IMusic>[] = [
+  const columns: Type_Column<Type_Music, keyof Type_Music>[] = [
     {
       title: '',
       key: 'name',
       width: '80px',
-      render: (name: string, record: IMusic, index?: number) => {
+      render: (name: string, record: Type_Music, index?: number) => {
         return (
           <div className={styles.operations}>
             {state.musicId === record.id ? (
@@ -62,7 +62,7 @@ const MusicList: React.FC<IProps> = ({ data, onPlayAll }) => {
       title: '音乐标题',
       key: 'name',
       width: '45%',
-      render: (name: string, { alias, id, fee }: IMusic) => {
+      render: (name: string, { alias, id, fee }: Type_Music) => {
         return (
           <>
             <div
@@ -82,14 +82,14 @@ const MusicList: React.FC<IProps> = ({ data, onPlayAll }) => {
       title: '歌手',
       key: 'artists',
       width: '15%',
-      render: (artists: IArtist[]) =>
+      render: (artists: Type_Artist[]) =>
         artists?.map(({ name }) => name).join(' / '),
     },
     {
       title: '专辑',
       key: 'album',
       width: '20%',
-      render: (album: IAlbum) => album?.name,
+      render: (album: Type_Album) => album?.name,
     },
     {
       title: '时长',
@@ -99,7 +99,7 @@ const MusicList: React.FC<IProps> = ({ data, onPlayAll }) => {
     },
   ];
 
-  const handleDoubleClick = async (item: IMusic) => {
+  const handleDoubleClick = async (item: Type_Music) => {
     let { picUrl } = item;
 
     if (!picUrl) {
@@ -122,12 +122,12 @@ const MusicList: React.FC<IProps> = ({ data, onPlayAll }) => {
     onPlayAll && onPlayAll();
   };
 
-  const checkIsRecordRowDisabled = (record: IMusic) =>
+  const checkIsRecordRowDisabled = (record: Type_Music) =>
     record.status === MUSIC_STATUS.NOT_FOUND;
 
   return (
     <div>
-      <Table<IMusic>
+      <Table<Type_Music>
         columns={columns}
         data={data}
         onDoubleClick={handleDoubleClick}

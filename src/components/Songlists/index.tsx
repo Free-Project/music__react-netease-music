@@ -1,14 +1,14 @@
 import React from 'react';
 
-import SongListItem from './SonglistItem';
+import SongListItem from './SongListItem';
 import styles from './style.module.css';
-import type { ISonglist } from 'apis/types/business';
+import type { Type_SongList } from 'apis/types/business';
 
-interface IProps {
-  data?: ISonglist[];
+interface Props {
+  data?: Type_SongList[];
 }
 
-const Songlists: React.FC<IProps> = ({ data }) => {
+const SongLists: React.FC<Props> = ({ data }) => {
   return (
     <div className={styles.root}>
       {data?.map(({ id, name, playCount, picUrl, coverImgUrl }, index) => {
@@ -26,4 +26,4 @@ const Songlists: React.FC<IProps> = ({ data }) => {
   );
 };
 
-export default Songlists;
+export default SongLists;

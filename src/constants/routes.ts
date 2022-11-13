@@ -2,8 +2,8 @@ const ROOT = '/';
 
 const DISCOVERY = '/discovery';
 const RECOMMENDATION = `${DISCOVERY}/recommendation`;
-const SONG_LIST = `${DISCOVERY}/songlist`;
-const LEADER_BOARD = `${DISCOVERY}/leaderboard`;
+const SONG_LIST = `${DISCOVERY}/songList`;
+const TOP_LIST = `${DISCOVERY}/topList`;
 const SINGERS = `${DISCOVERY}/singers`;
 const LATEST_MUSIC = `${DISCOVERY}/latestmusic`;
 const RECOMMEND_DAILY = `${DISCOVERY}/recommend_daily`;
@@ -14,8 +14,8 @@ const MV = `${VIDEOS}/mv`;
 
 const SEARCH = '/search';
 
-const SONG_LISTS = '/songlists';
-const SONG_LIST_DETAIL = `${SONG_LISTS}/:songlistId`;
+const SONG_LISTS = '/songLists';
+const SONG_LIST_DETAIL = `${SONG_LISTS}/:songListId`;
 
 const DOWNLOAD = '/download';
 const CLOUD = '/cloud';
@@ -29,7 +29,7 @@ const ROUTES = {
   DISCOVERY,
   RECOMMENDATION,
   SONG_LIST,
-  LEADER_BOARD,
+  TOP_LIST,
   SINGERS,
   LATEST_MUSIC,
   RECOMMEND_DAILY,

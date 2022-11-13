@@ -2,7 +2,7 @@ import { useLocation } from 'react-router-dom';
 
 const useQuery = () => {
   const { search } = useLocation();
-  const result: IDictionary<string> = {};
+  const result: Type_Dictionary<string> = {};
 
   search
     .substr(1)

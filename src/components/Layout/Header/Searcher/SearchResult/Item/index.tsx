@@ -1,12 +1,17 @@
 import React from 'react';
 
-import type { IAlbum, IArtist, IMusic, IMV } from 'apis/types/business';
+import type {
+  Type_Album,
+  Type_Artist,
+  Type_Music,
+  Type_MV,
+} from 'apis/types/business';
 import { noop } from 'helpers/fn';
 import styles from './style.module.css';
 
-type Type = IAlbum | IArtist | IMusic | IMV;
+type Type = Type_Album | Type_Artist | Type_Music | Type_MV;
 
-interface IItemProps {
+interface Type_ItemProps {
   title: string;
   icon: any;
   data: Type[];
@@ -14,7 +19,7 @@ interface IItemProps {
   onItemClick?: (item: any) => void;
 }
 
-const Item: React.FC<IItemProps> = ({
+const Item: React.FC<Type_ItemProps> = ({
   title,
   icon,
   data,

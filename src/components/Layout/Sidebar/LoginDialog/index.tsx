@@ -8,17 +8,14 @@ import { noop } from 'helpers/fn';
 import { LogDispatchContext, ACTIONS } from 'reducers/log';
 import styles from './style.module.css';
 
-interface LoginDialogProps {
+interface Props {
   isOpen: boolean;
   onClose: () => void;
 }
 
 const { useState, useContext } = React;
 
-const LoginDialog: React.FC<LoginDialogProps> = ({
-  isOpen,
-  onClose = noop,
-}) => {
+const LoginDialog: React.FC<Props> = ({ isOpen, onClose = noop }) => {
   const dispatch = useContext(LogDispatchContext);
   const [phone, setPhone] = useState<string>('');
   const [password, setPassword] = useState<string>('');

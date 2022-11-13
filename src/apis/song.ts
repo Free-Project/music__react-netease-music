@@ -1,12 +1,12 @@
 import axios from 'helpers/axios';
-import { createMusicFromSimpleMusic } from 'helpers/business';
+import { createMyMusicFromSimpleMusic } from 'helpers/business';
 import type {
-  IMyMusic,
-  IMusic,
-  ISonglist,
-  ISimpleMusic,
+  Type_MyMusic,
+  Type_Music,
+  Type_SongList,
+  Type_SimpleMusic,
 } from 'apis/types/business';
-import type { IComment } from 'apis/types/comment';
+import type { Type_Comment } from 'apis/types/comment';
 
 export enum SONG_TYPE {
   ALL = 0,
@@ -16,29 +16,29 @@ export enum SONG_TYPE {
   KOREAN = 16,
 }
 
-interface IParams {
+interface Type_Params {
   id: number;
   offset?: number;
   limit?: number;
 }
 
-interface IGetCommentsResponse {
-  comments: IComment[];
-  hotComments?: IComment[];
+interface Type_GetCommentsResponse {
+  comments: Type_Comment[];
+  hotComments?: Type_Comment[];
   isMusician: boolean;
   more: boolean;
   moreHot: boolean;
-  topComments: IComment[];
+  topComments: Type_Comment[];
   total: number;
   userId: number;
 }
 
-type GetSongDetailFn = (ids: number[]) => Promise<IMyMusic[]>;
-type GetTopSongsFn = (type?: SONG_TYPE) => Promise<IMyMusic[]>;
-type GetRecommendSongsFn = () => Promise<IMusic[]>;
-type GetSimiSonglistFn = (params: IParams) => Promise<ISonglist[]>;
-type GetgetSimiSongFn = (params: IParams) => Promise<IMusic[]>;
-type GetCommentsFn = (params: IParams) => Promise<IGetCommentsResponse>;
+type GetSongDetailFn = (ids: number[]) => Promise<Type_MyMusic[]>;
+type GetTopSongsFn = (type?: SONG_TYPE) => Promise<Type_MyMusic[]>;
+type GetRecommendSongsFn = () => Promise<Type_Music[]>;
+type GetSimType_SongListFn = (params: Type_Params) => Promise<Type_SongList[]>;
+type GetgetSimiSongFn = (params: Type_Params) => Promise<Type_Music[]>;
+type GetCommentsFn = (params: Type_Params) => Promise<Type_GetCommentsResponse>;
 type GetgetLyricFn = (
   id: number,
 ) => Promise<{ lyric: string; offset: number; version: number }>;
@@ -51,8 +51,8 @@ const getSongDetail: GetSongDetailFn = async (ids) => {
     },
   });
 
-  return response?.songs.map((item: ISimpleMusic) =>
-    createMusicFromSimpleMusic({ ...item, status: (item as any).st }),
+  return response?.songs.map((item: Type_SimpleMusic) =>
+    createMyMusicFromSimpleMusic({ ...item, status: (item as any).st }),
   );
 };
 
@@ -76,13 +76,17 @@ const getRecommendSongs: GetRecommendSongsFn = async () => {
   });
 
   return (
-    response.data?.dailySongs?.map((item: ISimpleMusic) =>
-      createMusicFromSimpleMusic(item),
+    response.data?.dailySongs?.map((item: Type_SimpleMusic) =>
+      createMyMusicFromSimpleMusic(item),
     ) || []
   );
 };
 
-const getSimiSonglist: GetSimiSonglistFn = async ({ id, offset, limit }) => {
+const getSimType_SongList: GetSimType_SongListFn = async ({
+  id,
+  offset,
+  limit,
+}) => {
   const response = await axios({
     url: '/simi/playlist',
     params: {
@@ -136,7 +140,7 @@ export default {
   getSongDetail,
   getTopSongs,
   getRecommendSongs,
-  getSimiSonglist,
+  getSimType_SongList,
   getSimiSong,
   getComments,
   getLyric,

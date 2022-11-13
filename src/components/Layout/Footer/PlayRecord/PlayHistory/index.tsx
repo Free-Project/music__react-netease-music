@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 
 import List from '../List';
-import type { IMyMusic } from 'apis/types/business';
+import type { Type_MyMusic } from 'apis/types/business';
 import { PlayMusicDispatchContext, ACTIONS } from 'reducers/playMusic';
 import { playHistory as playHistoryLocalStorage } from 'helpers/play';
 import useUpdate from 'hooks/useUpdate';
@@ -11,7 +11,7 @@ const PlayHistory = () => {
   const dispatch = useContext(PlayMusicDispatchContext);
   const playHistory = playHistoryLocalStorage.getItem();
 
-  const handleDoubleClick = (item: IMyMusic) => {
+  const handleDoubleClick = (item: Type_MyMusic) => {
     dispatch({
       type: ACTIONS.PLAY,
       payload: {

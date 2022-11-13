@@ -34,9 +34,6 @@ export default {
         target: 'https://music-api.nice-boy.com',
         pathRewrite: { '^/api': '' },
       },
-      '/graphql': {
-        target: 'http://localhost:4000',
-      },
     },
   },
 };

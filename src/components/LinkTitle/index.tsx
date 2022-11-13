@@ -4,12 +4,12 @@ import { IconChevronRight } from '@douyinfe/semi-icons';
 
 import styles from './style.module.css';
 
-interface IProps {
+interface Props {
   title: string;
   route: string;
 }
 
-const LinkTitle: React.FC<IProps> = ({ title, route }) => {
+const LinkTitle: React.FC<Props> = ({ title, route }) => {
   const history = useHistory();
 
   const handleClick = () => {

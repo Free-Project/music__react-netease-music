@@ -21,7 +21,7 @@ const NAVBAR = {
     },
     {
       label: '排行榜',
-      route: ROUTES.LEADER_BOARD,
+      route: ROUTES.TOP_LIST,
     },
     {
       label: '歌手',

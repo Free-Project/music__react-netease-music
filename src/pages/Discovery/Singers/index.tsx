@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Spin } from '@douyinfe/semi-ui';
 import SingerCategory from 'components/SingerCategory';
 import useAsyncFn from 'hooks/useAsyncFn';
-import singerListApis from 'apis/singerlist';
-import type { Artist } from 'apis/types/singerlist';
+import singerListApis from 'apis/singerList';
+import type { Artist } from 'apis/types/singerList';
 
 const Singers = () => {
   const [searchInfo, setSearchInfo] = useState({

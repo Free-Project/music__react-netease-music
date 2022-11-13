@@ -2,21 +2,21 @@ import React from 'react';
 import cn from 'classnames';
 
 import PlayIcon from 'components/PlayIcon';
-import type { IMusic } from 'apis/types/business';
+import type { Type_Music } from 'apis/types/business';
 import { createMusicWithAlbum } from 'helpers/business';
 import { PlayMusicDispatchContext, ACTIONS } from 'reducers/playMusic';
 import styles from './style.module.css';
 
-interface IProps {
-  data: IMusic[];
+interface Props {
+  data: Type_Music[];
 }
 
 const { useContext } = React;
 
-const SimiSongs: React.FC<IProps> = ({ data }) => {
+const SimiSongs: React.FC<Props> = ({ data }) => {
   const dispatch = useContext(PlayMusicDispatchContext);
 
-  const handleItemClick = (music: IMusic) => {
+  const handleItemClick = (music: Type_Music) => {
     dispatch({
       type: ACTIONS.PLAY,
       payload: {

@@ -4,7 +4,7 @@ export const DEFAULT_VALUE = {
   STRING: '',
 };
 
-interface ILocalStorageFactoryParams<T> {
+interface Type_LocalStorageFactoryParams<T> {
   key: string;
   defaultValue: string;
   raw?: boolean;
@@ -12,15 +12,15 @@ interface ILocalStorageFactoryParams<T> {
   deserializer?: (value: string) => T;
 }
 
-interface ILocalStorageFactoryReturn<T> {
+interface Type_LocalStorageFactoryReturn<T> {
   setItem: (value: T) => void;
   getItem: () => T;
   removeItem: () => void;
 }
 
 export const localStorageFactory = <T>(
-  params: ILocalStorageFactoryParams<T>,
-): ILocalStorageFactoryReturn<T> => {
+  params: Type_LocalStorageFactoryParams<T>,
+): Type_LocalStorageFactoryReturn<T> => {
   const {
     key,
     defaultValue,

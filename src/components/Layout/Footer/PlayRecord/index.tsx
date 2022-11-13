@@ -1,24 +1,25 @@
 import React from 'react';
 import cn from 'classnames';
+import { IconClose } from '@douyinfe/semi-icons';
 
 import PlayList from './PlayList';
 import PlayHistory from './PlayHistory';
-import useClickAway from 'hooks/useClickAway';
+// import useClickAway from 'hooks/useClickAway';
 import styles from './style.module.css';
 
-interface ITab {
+interface Type_Tab {
   tab: string;
   tabKey: string;
 }
 
-interface IProps {
+interface Props {
   show: boolean;
   onClickAway: () => void;
 }
 
 const { useState, useRef } = React;
 
-const TABS: IDictionary<ITab> = {
+const TABS: Type_Dictionary<Type_Tab> = {
   PLAY_LIST: {
     tab: '播放列表',
     tabKey: 'PLAY_LIST',
@@ -29,11 +30,11 @@ const TABS: IDictionary<ITab> = {
   },
 };
 
-const PlayRecord: React.FC<IProps> = ({ show, onClickAway }) => {
+const PlayRecord: React.FC<Props> = ({ show, onClickAway }) => {
   const playRecordRef = useRef<HTMLDivElement | null>(null);
   const [activeTab, setActiveTab] = useState(TABS.PLAY_LIST.tabKey);
 
-  useClickAway(playRecordRef, () => onClickAway());
+  // useClickAway(playRecordRef, () => onClickAway());
 
   return (
     <div
@@ -42,6 +43,9 @@ const PlayRecord: React.FC<IProps> = ({ show, onClickAway }) => {
     >
       {show && (
         <>
+          <div className={styles.close} onClick={onClickAway}>
+            <IconClose />
+          </div>
           <div className={styles.tabs}>
             {Object.keys(TABS).map((key) => {
               return (
@@ -55,7 +59,6 @@ const PlayRecord: React.FC<IProps> = ({ show, onClickAway }) => {
               );
             })}
           </div>
-
           <div className={styles.content}>
             {activeTab === TABS.PLAY_LIST.tabKey ? (
               <PlayList />

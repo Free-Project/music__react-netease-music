@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext, useState, useCallback } from 'react';
 import { Tooltip } from '@douyinfe/semi-ui';
 import { IconChevronUp, IconChevronDown } from '@douyinfe/semi-icons';
 import cn from 'classnames';
@@ -16,8 +16,6 @@ import {
   ACTIONS,
 } from 'reducers/playMusic';
 import styles from './style.module.css';
-
-const { useContext, useState, useCallback } = React;
 
 const Footer = () => {
   const [showPlayRecord, setShowPlayRecord] = useState(false);

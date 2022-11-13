@@ -2,13 +2,13 @@ import React from 'react';
 import classNames from 'classnames';
 import styles from './style.module.css';
 
-interface ISingerFilterProps {
+interface Type_SingerFilterProps {
   filterList?: { key?: string; name?: string }[];
   curTag?: string;
   onTagClick?: (key?: string) => void;
 }
 
-function SingerFilter(props: ISingerFilterProps) {
+function SingerFilter(props: Type_SingerFilterProps) {
   const { filterList, curTag, onTagClick } = props;
   return (
     <ul className={styles.flex}>

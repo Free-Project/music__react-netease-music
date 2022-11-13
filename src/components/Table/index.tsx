@@ -4,7 +4,7 @@ import cn from 'classnames';
 import { noop } from 'helpers/fn';
 import styles from './style.module.css';
 
-export interface IColumn<RecordType, Key extends keyof RecordType> {
+export interface Type_Column<RecordType, Key extends keyof RecordType> {
   title?: string;
   key: Key;
   width?: string;
@@ -15,9 +15,9 @@ export interface IColumn<RecordType, Key extends keyof RecordType> {
   ) => string | ReactElement;
 }
 
-interface IProps<RecordType> {
+interface Props<RecordType> {
   showHeader?: boolean;
-  columns: IColumn<RecordType, keyof RecordType>[];
+  columns: Type_Column<RecordType, keyof RecordType>[];
   data: RecordType[];
   onDoubleClick?: (item: RecordType) => void;
   isRecordRowDisabled?: (record: RecordType) => boolean;
@@ -29,7 +29,7 @@ function Table<RecordType extends Record<string, any> = any>({
   data,
   onDoubleClick = noop,
   isRecordRowDisabled,
-}: IProps<RecordType>) {
+}: Props<RecordType>) {
   return (
     <div className={styles.root}>
       {showHeader && (

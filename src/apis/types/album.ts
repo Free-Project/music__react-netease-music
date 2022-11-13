@@ -1,6 +1,6 @@
-import { IAlbum } from './business';
+import { Type_Album } from './business';
 
-export interface IGetAlbumResponse {
-  album: IAlbum;
+export interface Type_GetAlbumResponse {
+  album: Type_Album;
   songs: any[];
 }

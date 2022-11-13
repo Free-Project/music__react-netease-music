@@ -1,16 +1,22 @@
-import { IAlbum, IArtist, IMusic, IMV, TARGET_TYPE } from './business';
+import {
+  Type_Album,
+  Type_Artist,
+  Type_Music,
+  Type_MV,
+  TARGET_TYPE,
+} from './business';
 
-export interface ISearchHot {
+export interface Type_SearchHot {
   first: string;
   iconType: number;
   second: number;
 }
 
-export interface ISearchSuggestRequest {
+export interface Type_SearchSuggestRequest {
   keywords: string;
 }
 
-export interface ISearchSuggestType {
+export interface Type_SearchSuggestType {
   albums: 'albums';
   artists: 'artists';
   mvs: 'mvs';
@@ -19,15 +25,15 @@ export interface ISearchSuggestType {
 
 export type TypeKey = 'artists' | 'albums' | 'mvs' | 'songs';
 
-export interface ISearchSuggestResponse {
+export interface Type_SearchSuggestResponse {
   order: TypeKey[];
-  albums: IAlbum[];
-  artists: IArtist[];
-  mvs: IMV[];
-  songs: IMusic[];
+  albums: Type_Album[];
+  artists: Type_Artist[];
+  mvs: Type_MV[];
+  songs: Type_Music[];
 }
 
-export interface ISearchRequest {
+export interface Type_SearchRequest {
   keywords: string;
   type?: TARGET_TYPE;
   limit?: number;

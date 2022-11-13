@@ -1,7 +1,7 @@
 import axios, { requestWithoutErrorToast } from 'helpers/axios';
-import type { ILoginRequest, ILoginResult } from './types/auth';
+import type { Type_LoginRequest, Type_LoginResult } from './types/auth';
 
-type LoginFn = (params: ILoginRequest) => Promise<ILoginResult>;
+type LoginFn = (params: Type_LoginRequest) => Promise<Type_LoginResult>;
 
 const login: LoginFn = ({ phone, password }) => {
   return requestWithoutErrorToast({

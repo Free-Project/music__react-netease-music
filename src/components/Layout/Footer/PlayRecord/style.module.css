@@ -6,7 +6,7 @@
 
 .root {
   width: 380px;
-  height: calc(100% - headerHeight - footerHeight);
+  height: calc(100% - headerHeight - footerHeight - 16px);
   position: fixed;
   top: headerHeight;
   right: 0;
@@ -19,6 +19,12 @@
   &.show {
     transform: translate(0, 0);
   }
+}
+
+.close {
+  position: absolute;
+  padding: 12px;
+  cursor: pointer;
 }
 
 .tabs {
@@ -53,5 +59,4 @@
 .content {
   height: calc(100% - 69px);
   font-size: 0.9em;
-  overflow: scroll;
 }

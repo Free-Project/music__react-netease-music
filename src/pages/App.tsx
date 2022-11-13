@@ -16,7 +16,7 @@ import logReducer, {
   LogStateContext,
   LogDispatchContext,
 } from 'reducers/log';
-import type { IMyMusic } from 'apis/types/business';
+import type { Type_MyMusic } from 'apis/types/business';
 import ROUTES from 'constants/routes';
 
 const Discovery = lazy(() => import('./Discovery'));
@@ -25,7 +25,7 @@ const Search = lazy(() => import('./Search'));
 const Download = lazy(() => import('./Download'));
 const Cloud = lazy(() => import('./Cloud'));
 const Collection = lazy(() => import('./Collection'));
-const SonglistDetail = lazy(() => import('./SonglistDetail'));
+const SongListDetail = lazy(() => import('./SongListDetail'));
 
 const App = () => {
   const [logState, logDispath] = useReducer(logReducer, logInitialState);
@@ -71,7 +71,9 @@ const App = () => {
   const playNextMusic = useCallback(() => {
     switch (playMode) {
       case MODE.PLAY_IN_ORDER: {
-        const idx = playList.findIndex(({ id }: IMyMusic) => id === musicId);
+        const idx = playList.findIndex(
+          ({ id }: Type_MyMusic) => id === musicId,
+        );
         if (playList.length) {
           const nextIdx = idx > -1 ? (idx + 1) % playList.length : 0;
           playMusic(nextIdx);
@@ -114,7 +116,7 @@ const App = () => {
                       <Route
                         exact
                         path={ROUTES.SONG_LIST_DETAIL}
-                        component={SonglistDetail}
+                        component={SongListDetail}
                       />
                       <Redirect from={ROUTES.ROOT} to={ROUTES.DEFAULT_ROUTE} />
                     </Switch>

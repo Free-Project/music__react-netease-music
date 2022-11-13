@@ -1,5 +1,6 @@
 import React from 'react';
 import { Tooltip } from '@douyinfe/semi-ui';
+import { IconDescend2, IconSync, IconPulse } from '@douyinfe/semi-icons';
 
 import { MODE } from 'helpers/play';
 import {
@@ -14,21 +15,25 @@ const MODE_ORDER = [
   MODE.SHUFFLE_PLAYBACK,
 ];
 
-const MODE_MAP: IDictionary<{
+const MODE_MAP: Type_Dictionary<{
   label: string;
-  icon: string;
+  name?: string;
+  icon: any;
 }> = {
   [MODE.PLAY_IN_ORDER]: {
     label: '顺序播放',
-    icon: 'sort',
+    name: 'sort',
+    icon: <IconDescend2 />,
   },
   [MODE.SINGLE_CYCLE]: {
     label: '单曲循环',
-    icon: 'repeat',
+    name: 'repeat',
+    icon: <IconSync />,
   },
   [MODE.SHUFFLE_PLAYBACK]: {
     label: '随机播放',
-    icon: 'random',
+    name: 'random',
+    icon: <IconPulse />,
   },
 };
 

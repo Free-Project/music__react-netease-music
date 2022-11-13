@@ -1,4 +1,4 @@
-export interface IUser {
+export interface Type_User {
   anonym: number;
   authStatus: number;
   avatarUrl: string;
@@ -8,15 +8,15 @@ export interface IUser {
   vipType: number;
 }
 
-export interface IReply {
+export interface Type_Reply {
   beRepliedCommentId: number;
   content: string;
   status: number;
-  user: IUser;
+  user: Type_User;
 }
 
-export interface IComment {
-  beReplied: IReply[];
+export interface Type_Comment {
+  beReplied: Type_Reply[];
   commentId: number;
   commentLocationType: number;
   content: string;
@@ -25,5 +25,5 @@ export interface IComment {
   parentCommentId: number;
   status: number;
   time: number;
-  user: IUser;
+  user: Type_User;
 }

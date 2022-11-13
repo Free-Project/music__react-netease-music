@@ -4,7 +4,7 @@ import PlayCount from 'components/PlayCount';
 
 import styles from './style.module.css';
 
-interface IProps {
+interface Props {
   name: string;
   artistName: string;
   playCount: number;
@@ -12,7 +12,7 @@ interface IProps {
   copywriter: string;
 }
 
-const MVItem: React.FC<IProps> = ({
+const MVItem: React.FC<Props> = ({
   name,
   artistName,
   playCount,

@@ -4,14 +4,14 @@ import cn from 'classnames';
 import { noop } from 'helpers/fn';
 import styles from './style.module.css';
 
-interface IProps {
+interface Props {
   typeTitle: string;
   imageUrl: string;
   className?: string;
   onClick?: () => void;
 }
 
-const BannerItem: React.FC<IProps> = ({
+const BannerItem: React.FC<Props> = ({
   typeTitle,
   imageUrl,
   className,

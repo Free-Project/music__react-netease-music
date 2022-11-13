@@ -1,10 +1,10 @@
-import { IArtist } from './business';
+import { Type_Artist } from './business';
 
-export interface IGetPersonalizedSonglistRequest {
+export interface Type_GetPersonalizedSongListRequest {
   limit?: number;
 }
 
-export interface ISonglist {
+export interface Type_SongList {
   alg: string;
   canDislike: boolean;
   copywriter: string;
@@ -18,21 +18,21 @@ export interface ISonglist {
   type: number;
 }
 
-export interface IMusicSong {
-  artists: IArtist[];
+export interface Type_MusicSong {
+  artists: Type_Artist[];
   duration: number;
 }
 
-export interface IMusic {
+export interface Type_Music {
   alg: string;
   canDislike: boolean;
   id: number;
   name: string;
   picUrl: string;
-  song: IMusicSong;
+  song: Type_MusicSong;
 }
 
-export interface IMV {
+export interface Type_MV {
   alg: string;
   artistId: number;
   artistName: string;
@@ -47,7 +47,7 @@ export interface IMV {
   type: number;
 }
 
-export interface IBanner {
+export interface Type_Banner {
   exclusive: boolean;
   imageUrl: string;
   targetId: number;

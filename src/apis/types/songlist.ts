@@ -3,14 +3,18 @@ enum ORDER {
   NEW = 'new',
 }
 
-export interface IGetSonglistsRequest {
+export interface Type_GetSongListsRequest {
   cat?: string;
   order?: ORDER;
   limit?: number;
   offset?: number;
 }
 
-export interface ICategory {
+export interface Type_GetSongListDetailRequest {
+  id: number | string;
+}
+
+export interface Type_Category {
   activity: boolean;
   category: number;
   hot: boolean;
@@ -18,8 +22,8 @@ export interface ICategory {
   type: number;
 }
 
-export interface IGetSonglistCatsResponse {
-  all: ICategory;
-  categories: IDictionary<string>;
-  sub: ICategory[];
+export interface Type_GetSongListCatsResponse {
+  all: Type_Category;
+  categories: Type_Dictionary<string>;
+  sub: Type_Category[];
 }

@@ -9,7 +9,7 @@ import commentApis from 'apis/comment';
 import useAsyncFn from 'hooks/useAsyncFn';
 import { PlayMusicStateContext } from 'reducers/playMusic';
 import { PAGE } from 'constants/pagination';
-import type { IComment } from 'apis/types/comment';
+import type { Type_Comment } from 'apis/types/comment';
 import styles from './style.module.css';
 
 const { useEffect, useContext, useState } = React;
@@ -47,12 +47,12 @@ const Comments = () => {
     });
   };
 
-  const handleLikeChange = async (comment: IComment, isHot: boolean) => {
+  const handleLikeChange = async (comment: Type_Comment, isHot: boolean) => {
     const comments = (isHot ? result?.hotComments : result?.comments) || [];
     const { commentId, liked } = comment;
     const cm = comments.find(
       ({ commentId: cid }) => cid === commentId,
-    ) as IComment;
+    ) as Type_Comment;
 
     if (liked) {
       await unlikeCommentFn({ id: musicId, commentId }, () => {

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import List from '../List';
-import type { IMyMusic } from 'apis/types/business';
+import type { Type_MyMusic } from 'apis/types/business';
 import { PlayMusicDispatchContext, ACTIONS } from 'reducers/playMusic';
 import { playList as playListLocalStorage } from 'helpers/play';
 import useUpdate from 'hooks/useUpdate';
@@ -13,7 +13,7 @@ const PlayList = () => {
   const dispatch = useContext(PlayMusicDispatchContext);
   const playList = playListLocalStorage.getItem();
 
-  const handleDoubleClick = (item: IMyMusic) => {
+  const handleDoubleClick = (item: Type_MyMusic) => {
     dispatch({
       type: ACTIONS.PLAY,
       payload: {

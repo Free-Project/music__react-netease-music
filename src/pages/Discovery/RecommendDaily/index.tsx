@@ -8,7 +8,7 @@ import { getDay, getWeekday } from 'helpers/time';
 import { createMusic } from 'helpers/business';
 import { PlayMusicDispatchContext, ACTIONS } from 'reducers/playMusic';
 import { LogStateContext } from 'reducers/log';
-import { IMusic } from 'apis/types/business';
+import { Type_Music } from 'apis/types/business';
 import styles from './style.module.css';
 
 const { useEffect, useContext } = React;
@@ -35,7 +35,7 @@ const RecommendDaily = () => {
     });
 
     if (autoPlay) {
-      const item = state.value?.[0] as IMusic;
+      const item = state.value?.[0] as Type_Music;
       dispatch({
         type: ACTIONS.PLAY,
         payload: {

@@ -1,18 +1,18 @@
 import axios from 'helpers/axios';
 import type {
-  ISearchHot,
-  ISearchSuggestRequest,
-  ISearchSuggestResponse,
-  ISearchRequest,
+  Type_SearchHot,
+  Type_SearchSuggestRequest,
+  Type_SearchSuggestResponse,
+  Type_SearchRequest,
 } from './types/search';
 import { TARGET_TYPE } from './types/business';
 import { PAGE_SIZE } from 'constants/pagination';
 
-type SearchHotFn = () => Promise<ISearchHot[]>;
+type SearchHotFn = () => Promise<Type_SearchHot[]>;
 type SearchSuggestFn = (
-  params: ISearchSuggestRequest,
-) => Promise<ISearchSuggestResponse>;
-type SearchFn = (params: ISearchRequest) => Promise<any>;
+  params: Type_SearchSuggestRequest,
+) => Promise<Type_SearchSuggestResponse>;
+type SearchFn = (params: Type_SearchRequest) => Promise<any>;
 
 const searchHot: SearchHotFn = async () => {
   const response = await axios({

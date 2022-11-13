@@ -4,7 +4,7 @@ import cn from 'classnames';
 import { isNumber } from 'helpers/is';
 import styles from './style.module.css';
 
-interface IProps {
+interface Props {
   className?: string;
   donePercent?: number;
   originDonePercent?: number;
@@ -14,7 +14,7 @@ interface IProps {
 
 const { useRef, useCallback, useMemo } = React;
 
-const ProgressBar: React.FC<IProps> = ({
+const ProgressBar: React.FC<Props> = ({
   donePercent = 0,
   originDonePercent,
   renderLabel,

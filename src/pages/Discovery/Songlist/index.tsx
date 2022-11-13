@@ -4,42 +4,42 @@ import { Spin } from '@douyinfe/semi-ui';
 import Pagination from 'components/Pagination';
 import HighQuality from './HighQuality';
 import Categories, { DEFAULT_CAT } from './Categories';
-import Songlists from 'components/Songlists';
-import songlistApis from 'apis/songlist';
+import SongLists from 'components/SongLists';
+import songListApis from 'apis/songList';
 import useAsyncFn from 'hooks/useAsyncFn';
 import { PAGE_SIZE, PAGE } from 'constants/pagination';
 import styles from './style.module.css';
 
-const Songlist = () => {
+const SongList = () => {
   const [selectedCat, setSelectedCat] = useState(DEFAULT_CAT);
   const [page, setPage] = useState(PAGE);
-  const [state, getSonglistsFn] = useAsyncFn(songlistApis.getSonglists);
-  const [highQualityState, getHighQualitySonglistFn] = useAsyncFn(
-    songlistApis.getHighQualitySonglist,
+  const [state, getSongListsFn] = useAsyncFn(songListApis.getSongLists);
+  const [highQualityState, getHighQualitySongListFn] = useAsyncFn(
+    songListApis.getHighQualitySongList,
   );
-  const [catsState, getSonglistCatsFn] = useAsyncFn(
-    songlistApis.getSonglistCats,
+  const [catsState, getSongListCatsFn] = useAsyncFn(
+    songListApis.getSongListCats,
   );
-  const [hotCatsState, getSonglistHotCatsFn] = useAsyncFn(
-    songlistApis.getSonglistHotCats,
+  const [hotCatsState, getSongListHotCatsFn] = useAsyncFn(
+    songListApis.getSongListHotCats,
   );
 
   useEffect(() => {
-    getSonglistHotCatsFn();
-    getSonglistCatsFn();
-    getSonglistsFn({ cat: selectedCat });
-    getHighQualitySonglistFn(selectedCat);
+    getSongListHotCatsFn();
+    getSongListCatsFn();
+    getSongListsFn({ cat: selectedCat });
+    getHighQualitySongListFn(selectedCat);
   }, []);
 
   const handlePageChange = (page: number) => {
     const offset = (page - 1) * PAGE_SIZE;
-    getSonglistsFn({ cat: selectedCat, offset });
+    getSongListsFn({ cat: selectedCat, offset });
     setPage(page);
   };
 
   const handleCatSelect = (cat: string) => {
-    getSonglistsFn({ cat, offset: 0 });
-    getHighQualitySonglistFn(cat);
+    getSongListsFn({ cat, offset: 0 });
+    getHighQualitySongListFn(cat);
     setSelectedCat(cat);
     setPage(PAGE);
   };
@@ -64,7 +64,7 @@ const Songlist = () => {
           <Spin />
         ) : (
           <>
-            <Songlists data={state.value?.playlists} />
+            <SongLists data={state.value?.playlists} />
             <div className='pagination'>
               <Pagination
                 page={page}
@@ -79,4 +79,4 @@ const Songlist = () => {
   );
 };
 
-export default Songlist;
+export default SongList;

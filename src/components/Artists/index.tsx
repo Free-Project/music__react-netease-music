@@ -1,13 +1,13 @@
 import React from 'react';
 
-import type { IArtist } from 'apis/types/business';
+import type { Type_Artist } from 'apis/types/business';
 import styles from './style.module.css';
 
-interface IProps {
-  artists?: IArtist[];
+interface Props {
+  artists?: Type_Artist[];
 }
 
-const Artists: React.FC<IProps> = ({ artists }) => {
+const Artists: React.FC<Props> = ({ artists }) => {
   return (
     <div className={styles.root}>
       {artists?.map(({ name }, index) =>

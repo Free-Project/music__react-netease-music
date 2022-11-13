@@ -23,7 +23,7 @@ export type AsyncFn<Result = any, Args extends any[] = any[]> = [
   (...args: Args) => Promise<Result | null>,
 ];
 
-export interface IOptions<Result> {
+export interface Type_Options<Result> {
   deps: DependencyList;
   initialState: AsyncState<Result>;
   successHandler?: (value: Result) => void;
@@ -32,7 +32,7 @@ export interface IOptions<Result> {
 
 export default function useAsyncFn<Result = any, Args extends any[] = any[]>(
   fn: (...args: Args) => Promise<Result>,
-  options: IOptions<Result> = {
+  options: Type_Options<Result> = {
     deps: [],
     initialState: { loading: false },
   },
