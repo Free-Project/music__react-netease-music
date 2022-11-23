@@ -5,7 +5,7 @@ import Tabs from 'components/Tabs';
 import MusicList from 'components/MusicList';
 import BasicInfo from './BasicInfo';
 import { createMusic, createMusicFromSimpleMusic } from 'helpers/business';
-import songListApis from 'apis/songList';
+import songListApis from 'apis/songlist';
 import useAsyncFn from 'hooks/useAsyncFn';
 import { PlayMusicDispatchContext, ACTIONS } from 'reducers/playMusic';
 import styles from './style.module.css';
