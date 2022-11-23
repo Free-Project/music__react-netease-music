@@ -28,11 +28,7 @@ const Recommendation = () => {
       <div className={styles.footer}>
         {new Date().getFullYear()}{' '}
         <a href={USER_PROFILE} target='_blank' rel='noreferrer'>
-          @uniquemo
-        </a>{' '}
-        备案号{' '}
-        <a href='https://beian.miit.gov.cn/' target='_blank' rel='noreferrer'>
-          粤ICP备2021121971号-1
+          @Free-Project
         </a>
       </div>
     </div>
