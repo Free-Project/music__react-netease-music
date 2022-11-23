@@ -7,7 +7,7 @@ import SongList from './SongList';
 import MusicDetail from './MusicDetail';
 import LoginDialog from './LoginDialog';
 import authApis from 'apis/auth';
-import songListApis from 'apis/songList';
+import songListApis from 'apis/songlist';
 import useAsyncFn from 'hooks/useAsyncFn';
 import { LogStateContext, LogDispatchContext, ACTIONS } from 'reducers/log';
 import { PlayMusicStateContext } from 'reducers/playMusic';
