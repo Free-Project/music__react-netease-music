@@ -5,7 +5,7 @@ import Pagination from 'components/Pagination';
 import HighQuality from './HighQuality';
 import Categories, { DEFAULT_CAT } from './Categories';
 import SongLists from 'components/SongLists';
-import songListApis from 'apis/songList';
+import songListApis from 'apis/songlist';
 import useAsyncFn from 'hooks/useAsyncFn';
 import { PAGE_SIZE, PAGE } from 'constants/pagination';
 import styles from './style.module.css';
